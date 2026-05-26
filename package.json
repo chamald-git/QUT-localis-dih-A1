@@ -1,0 +1,29 @@
+{
+  "name": "destination-insight-hubs",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Destination Insight Hubs — IFQ717 Web Development Capstone, Localis Technologies Australia",
+  "type": "module",
+  "workspaces": [
+    "client",
+    "server"
+  ],
+  "engines": {
+    "node": ">=20.0.0",
+    "npm": ">=10.0.0"
+  },
+  "scripts": {
+    "dev": "concurrently -n server,client -c blue,magenta \"npm:dev:server\" \"npm:dev:client\"",
+    "dev:server": "npm --workspace server run dev",
+    "dev:client": "npm --workspace client run dev",
+    "build": "npm --workspace client run build",
+    "lint": "npm --workspace server run lint && npm --workspace client run lint",
+    "db:up": "docker compose up -d",
+    "db:down": "docker compose down",
+    "db:reset": "docker compose down -v && docker compose up -d",
+    "db:logs": "docker compose logs -f mysql"
+  },
+  "devDependencies": {
+    "concurrently": "^9.1.2"
+  }
+}
