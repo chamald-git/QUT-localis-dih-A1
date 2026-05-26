@@ -32,15 +32,28 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 20
-          cache: npm
 
-      - name: Install dependencies
-        run: npm ci
+      - name: Install root dependencies
+        run: npm install
 
-      - name: Lint
+      - name: Install server dependencies
+        working-directory: server
+        run: npm install
+
+      - name: Install client dependencies
+        working-directory: client
+        run: npm install
+
+      - name: Lint server
+        working-directory: server
+        run: npm run lint
+
+      - name: Lint client
+        working-directory: client
         run: npm run lint
 
       - name: Build client
+        working-directory: client
         run: npm run build
 
       - name: Health smoke test
@@ -49,10 +62,10 @@ jobs:
           PORT: 4000
           DATABASE_URL: mysql://root:root@127.0.0.1:3306/dih_dev
           JWT_SECRET: ci-secret
+        working-directory: server
         run: |
-          npm --workspace server run start &
+          npm run start &
           SERVER_PID=$!
-          # Poll the health endpoint until it reports connected (max ~30s).
           for i in $(seq 1 30); do
             BODY=$(curl -s http://localhost:4000/api/health || true)
             echo "Attempt $i: $BODY"
