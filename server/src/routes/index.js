@@ -1,13 +1,10 @@
 import { Router } from 'express';
 import healthRoute from './health.route.js';
+import occupancyRoute from './occupancy.route.js';
 
-/**
- * Central router. Every feature router mounts here, and this is mounted once
- * at /api in app.js. As DIH features land (auth, regions, metrics) their
- * routers are added below.
- */
 const router = Router();
 
 router.use(healthRoute);
+router.use('/occupancy', occupancyRoute);
 
 export default router;
