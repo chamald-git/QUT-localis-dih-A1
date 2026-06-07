@@ -38,4 +38,14 @@ export const api = {
   getHealth() {
     return request('/api/health');
   },
+
+  /**
+   * GET /api/insights?persona=… → { persona, narrative, chartSpec, data }
+   * Unwraps the { data } success envelope.
+   */
+  getInsight(persona) {
+    return request(`/api/insights?persona=${encodeURIComponent(persona)}`).then(
+      (body) => body.data
+    );
+  },
 };
