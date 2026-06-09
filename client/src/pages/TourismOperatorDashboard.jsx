@@ -10,6 +10,13 @@ const mockUser = {
 
 const regions = ['Cairns', 'Gold Coast', 'Noosa', 'Whitsundays'];
 
+// These options control how many recent rows we ask for from the occupancy API.
+const timePeriods = [
+  { label: 'Last 30 days', rowLimit: 30 },
+  { label: 'Last 60 days', rowLimit: 60 },
+  { label: 'Last 90 days', rowLimit: 90 },
+];
+
 // These values are examples until the spend API endpoints are connected.
 const visitorSpending = [
   {
@@ -87,14 +94,49 @@ function getDemandNote(occupancyValue) {
   return 'Demand is softer';
 }
 
+// Fallback insight text for operators until the AI endpoint is connected.
+function getOperatorInsight(region, summary) {
+  if (!summary) {
+    return `Waiting for live occupancy and ADR data for ${region}.`;
+  }
+
+  const occupancyNumber = Number(summary.occupancy_pct);
+  const adrNumber = Number(summary.adr);
+
+  if (Number.isNaN(occupancyNumber)) {
+    return `Occupancy data is unavailable for ${region}. Operators may need to check the dashboard again later.`;
+  }
+
+  const adrText = Number.isNaN(adrNumber)
+    ? 'ADR data is not currently available.'
+    : `Average daily rate is about $${adrNumber.toFixed(0)}.`;
+
+  if (occupancyNumber >= 70) {
+    return `${region} is currently showing strong demand at ${occupancyNumber.toFixed(
+      1
+    )}% occupancy. ${adrText} Operators may want to confirm casual staff early, review stock levels, and check whether pricing or package offers need adjusting. This is fallback text until the AI insight endpoint is connected.`;
+  }
+
+  if (occupancyNumber >= 55) {
+    return `${region} is currently showing steady demand at ${occupancyNumber.toFixed(
+      1
+    )}% occupancy. ${adrText} Operators may want to keep staffing flexible, monitor bookings, and prepare early offers if demand increases. This is fallback text until the AI insight endpoint is connected.`;
+  }
+
+  return `${region} is currently showing softer demand at ${occupancyNumber.toFixed(
+    1
+  )}% occupancy. ${adrText} Operators may want to consider targeted promotions, flexible staffing, or using quieter periods for maintenance and planning. This is fallback text until the AI insight endpoint is connected.`;
+}
+
 export default function TourismOperatorDashboard() {
   const [selectedRegion, setSelectedRegion] = useState(mockUser.region);
+  const [selectedTimePeriod, setSelectedTimePeriod] = useState(timePeriods[2]);
   const [occupancySummary, setOccupancySummary] = useState(null);
   const [occupancyRows, setOccupancyRows] = useState([]);
   const [occupancyError, setOccupancyError] = useState(null);
   const [occupancyLoading, setOccupancyLoading] = useState(true);
 
-  // Load the live occupancy data whenever the selected region changes.
+  // Load the live occupancy data whenever the selected region or time period changes.
   useEffect(() => {
     async function loadOccupancyData() {
       setOccupancyLoading(true);
@@ -103,7 +145,7 @@ export default function TourismOperatorDashboard() {
       try {
         const [summaryResult, rowsResult] = await Promise.all([
           api.getOccupancySummary(selectedRegion),
-          api.getOccupancyRows(selectedRegion, 5),
+          api.getOccupancyRows(selectedRegion, selectedTimePeriod.rowLimit),
         ]);
 
         setOccupancySummary(summaryResult.data);
@@ -118,7 +160,7 @@ export default function TourismOperatorDashboard() {
     }
 
     loadOccupancyData();
-  }, [selectedRegion]);
+  }, [selectedRegion, selectedTimePeriod]);
 
   const currentSnapshot = [
     {
@@ -193,10 +235,21 @@ export default function TourismOperatorDashboard() {
 
         <label>
           Time period
-          <select defaultValue="Last 90 days">
-            <option>Last 30 days</option>
-            <option>Last 90 days</option>
-            <option>Year to date</option>
+          <select
+            value={selectedTimePeriod.label}
+            onChange={(event) => {
+              const newTimePeriod = timePeriods.find(
+                (period) => period.label === event.target.value
+              );
+
+              if (newTimePeriod) {
+                setSelectedTimePeriod(newTimePeriod);
+              }
+            }}
+          >
+            {timePeriods.map((period) => (
+              <option key={period.label}>{period.label}</option>
+            ))}
           </select>
         </label>
 
@@ -242,12 +295,7 @@ export default function TourismOperatorDashboard() {
 
         <article className="insight-panel">
           <h3>Plain-English Operator Insight</h3>
-          <p>
-            Demand is currently being interpreted for {selectedRegion}. A
-            short-term rise in occupancy may suggest that operators need to
-            review staffing, stock, pricing and package offers. This is fallback
-            text until the AI insight endpoint is connected.
-          </p>
+          <p>{getOperatorInsight(selectedRegion, occupancySummary)}</p>
         </article>
       </section>
 
@@ -307,7 +355,8 @@ export default function TourismOperatorDashboard() {
           <article className="panel chart-placeholder">
             <h3>Occupancy and ADR Trend</h3>
             <p className="muted">
-              Recent live occupancy and ADR rows for {selectedRegion}.
+              Recent live occupancy and ADR rows for {selectedRegion} using the{' '}
+              {selectedTimePeriod.label.toLowerCase()} view.
             </p>
 
             {occupancyLoading && (
