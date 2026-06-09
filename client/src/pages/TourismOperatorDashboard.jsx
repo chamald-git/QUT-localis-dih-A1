@@ -128,6 +128,78 @@ function getOperatorInsight(region, summary) {
   )}% occupancy. ${adrText} Operators may want to consider targeted promotions, flexible staffing, or using quieter periods for maintenance and planning. This is fallback text until the AI insight endpoint is connected.`;
 }
 
+// Uses the recent rows already loaded from the API to create a simple trend summary.
+function getTrendSummary(rows) {
+  if (!rows.length) {
+    return null;
+  }
+
+  const sortedRows = [...rows].sort(
+    (firstRow, secondRow) =>
+      new Date(firstRow.date).getTime() - new Date(secondRow.date).getTime()
+  );
+
+  const firstRow = sortedRows[0];
+  const lastRow = sortedRows[sortedRows.length - 1];
+
+  const occupancyValues = sortedRows
+    .map((row) => Number(row.occupancy_pct))
+    .filter((value) => !Number.isNaN(value));
+
+  const adrValues = sortedRows
+    .map((row) => Number(row.adr))
+    .filter((value) => !Number.isNaN(value));
+
+  if (!occupancyValues.length || !adrValues.length) {
+    return null;
+  }
+
+  const averageOccupancy =
+    occupancyValues.reduce((total, value) => total + value, 0) /
+    occupancyValues.length;
+
+  const averageAdr =
+    adrValues.reduce((total, value) => total + value, 0) / adrValues.length;
+
+  const firstOccupancy = Number(firstRow.occupancy_pct);
+  const lastOccupancy = Number(lastRow.occupancy_pct);
+  const firstAdr = Number(firstRow.adr);
+  const lastAdr = Number(lastRow.adr);
+
+  if (
+    Number.isNaN(firstOccupancy) ||
+    Number.isNaN(lastOccupancy) ||
+    Number.isNaN(firstAdr) ||
+    Number.isNaN(lastAdr)
+  ) {
+    return null;
+  }
+
+  return {
+    averageOccupancy: averageOccupancy * 100,
+    averageAdr,
+    occupancyChange: (lastOccupancy - firstOccupancy) * 100,
+    adrChange: lastAdr - firstAdr,
+  };
+}
+
+// Gives the trend summary a plain-English operator meaning.
+function getTrendMessage(summary) {
+  if (!summary) {
+    return 'Trend summary is waiting for live occupancy rows.';
+  }
+
+  if (summary.occupancyChange > 2) {
+    return 'Occupancy has increased across this period. Operators may want to prepare for stronger demand.';
+  }
+
+  if (summary.occupancyChange < -2) {
+    return 'Occupancy has softened across this period. Operators may want to watch bookings and consider targeted offers.';
+  }
+
+  return 'Occupancy has stayed fairly steady across this period. Operators may want to keep staffing flexible and continue monitoring demand.';
+}
+
 export default function TourismOperatorDashboard() {
   const [selectedRegion, setSelectedRegion] = useState(mockUser.region);
   const [selectedTimePeriod, setSelectedTimePeriod] = useState(timePeriods[2]);
@@ -161,6 +233,8 @@ export default function TourismOperatorDashboard() {
 
     loadOccupancyData();
   }, [selectedRegion, selectedTimePeriod]);
+
+  const trendSummary = getTrendSummary(occupancyRows);
 
   const currentSnapshot = [
     {
@@ -397,9 +471,33 @@ export default function TourismOperatorDashboard() {
           </article>
 
           <article className="panel chart-placeholder">
-            <h3>Seasonal Pattern</h3>
-            <p>Bar chart: monthly demand</p>
-            <p>Peak and quiet periods</p>
+            <h3>Recent Trend Summary</h3>
+
+            {trendSummary ? (
+              <>
+                <p>
+                  <strong>Average occupancy:</strong>{' '}
+                  {trendSummary.averageOccupancy.toFixed(1)}%
+                </p>
+                <p>
+                  <strong>Average ADR:</strong> $
+                  {trendSummary.averageAdr.toFixed(0)}
+                </p>
+                <p>
+                  <strong>Occupancy change:</strong>{' '}
+                  {trendSummary.occupancyChange >= 0 ? '+' : ''}
+                  {trendSummary.occupancyChange.toFixed(1)} percentage points
+                </p>
+                <p>
+                  <strong>ADR change:</strong>{' '}
+                  {trendSummary.adrChange >= 0 ? '+' : '-'}$
+                  {Math.abs(trendSummary.adrChange).toFixed(0)}
+                </p>
+                <p className="muted">{getTrendMessage(trendSummary)}</p>
+              </>
+            ) : (
+              <p className="muted">Trend summary is waiting for live data.</p>
+            )}
           </article>
         </div>
 
