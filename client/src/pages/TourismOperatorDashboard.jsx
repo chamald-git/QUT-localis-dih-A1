@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { api } from '../api/client.js';
 
+// Temporary user data so I can build the operator view before login is ready.
 const mockUser = {
   role: 'operator',
   region: 'Noosa',
@@ -9,6 +10,7 @@ const mockUser = {
 
 const regions = ['Cairns', 'Gold Coast', 'Noosa', 'Whitsundays'];
 
+// These values are examples until the spend API endpoints are connected.
 const visitorSpending = [
   {
     label: 'Total Visitor Spend',
@@ -27,6 +29,7 @@ const visitorSpending = [
   },
 ];
 
+// Example category data for the first dashboard version.
 const spendCategories = [
   { label: 'Accommodation', percentage: 90 },
   { label: 'Restaurants', percentage: 72 },
@@ -45,6 +48,7 @@ function SummaryCard({ label, value, note }) {
   );
 }
 
+// Makes API dates easier to read on the dashboard.
 function formatDate(dateString) {
   return new Intl.DateTimeFormat('en-AU', {
     day: 'numeric',
@@ -53,6 +57,7 @@ function formatDate(dateString) {
   }).format(new Date(dateString));
 }
 
+// The list API returns occupancy as a decimal, so this turns it into a percent.
 function formatOccupancyFromDecimal(decimalValue) {
   const occupancyNumber = Number(decimalValue);
 
@@ -63,6 +68,7 @@ function formatOccupancyFromDecimal(decimalValue) {
   return `${(occupancyNumber * 100).toFixed(1)}%`;
 }
 
+// Simple wording for the live occupancy card.
 function getDemandNote(occupancyValue) {
   const occupancyNumber = Number(occupancyValue);
 
@@ -88,6 +94,7 @@ export default function TourismOperatorDashboard() {
   const [occupancyError, setOccupancyError] = useState(null);
   const [occupancyLoading, setOccupancyLoading] = useState(true);
 
+  // Load the live occupancy data whenever the selected region changes.
   useEffect(() => {
     async function loadOccupancyData() {
       setOccupancyLoading(true);
@@ -118,7 +125,9 @@ export default function TourismOperatorDashboard() {
       label: 'Visitor Demand',
       value: occupancySummary
         ? `${Number(occupancySummary.occupancy_pct).toFixed(1)}% occupancy`
-        : 'Loading...',
+        : occupancyError
+          ? 'Unavailable'
+          : 'Loading...',
       note: occupancySummary
         ? getDemandNote(occupancySummary.occupancy_pct)
         : 'Using live occupancy API',
@@ -127,26 +136,28 @@ export default function TourismOperatorDashboard() {
       label: 'Average Daily Rate',
       value: occupancySummary
         ? `$${Number(occupancySummary.adr).toFixed(0)}`
-        : 'Loading...',
+        : occupancyError
+          ? 'Unavailable'
+          : 'Loading...',
       note: occupancySummary
         ? `Based on ${occupancySummary.data_points} recent records`
         : 'Using live occupancy API',
     },
     {
-  label: 'Booking Window',
-  value: 'Example: 32 days',
-  note: 'Mock value until booking API is connected',
-},
-{
-  label: 'Average Stay',
-  value: 'Example: 4.2 nights',
-  note: 'Mock value until length-of-stay API is connected',
-},
-{
-  label: 'Staffing Pressure',
-  value: 'Example: High',
-  note: 'Derived signal, waiting on spend/booking data',
-},
+      label: 'Booking Window',
+      value: 'Example: 32 days',
+      note: 'Mock value until booking API is connected',
+    },
+    {
+      label: 'Average Stay',
+      value: 'Example: 4.2 nights',
+      note: 'Mock value until length-of-stay API is connected',
+    },
+    {
+      label: 'Staffing Pressure',
+      value: 'Example: High',
+      note: 'Derived signal, waiting on spend/booking data',
+    },
   ];
 
   return (
@@ -234,8 +245,8 @@ export default function TourismOperatorDashboard() {
           <p>
             Demand is currently being interpreted for {selectedRegion}. A
             short-term rise in occupancy may suggest that operators need to
-            review staffing, stock, pricing and package offers. This is
-            fallback text until the AI insight endpoint is connected.
+            review staffing, stock, pricing and package offers. This is fallback
+            text until the AI insight endpoint is connected.
           </p>
         </article>
       </section>
@@ -305,7 +316,10 @@ export default function TourismOperatorDashboard() {
 
             {!occupancyLoading && occupancyRows.length > 0 && (
               <div className="mini-table-wrap">
-                <table className="mini-table">
+                <table
+                  className="mini-table"
+                  aria-label={`Recent occupancy and ADR rows for ${selectedRegion}`}
+                >
                   <thead>
                     <tr>
                       <th>Date</th>
@@ -349,6 +363,16 @@ export default function TourismOperatorDashboard() {
             expansion.
           </p>
         </article>
+      </section>
+
+      <section className="mvp-note">
+        <h2>MVP data note</h2>
+        <p>
+          This dashboard currently uses live occupancy and average daily rate
+          data from the backend API. Booking window, average stay, visitor
+          spending, spend categories, visitor activity and staffing pressure are
+          shown as example values until the related API endpoints are connected.
+        </p>
       </section>
     </main>
   );
