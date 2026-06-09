@@ -38,4 +38,14 @@ export const api = {
   getHealth() {
     return request('/api/health');
   },
+
+  /**
+   * GET /api/occupancy/summary?region=Noosa
+   * Returns headline occupancy and ADR values for the selected region.
+   */
+  getOccupancySummary(region) {
+    return request(
+      `/api/occupancy/summary?region=${encodeURIComponent(region)}`
+    );
+  },
 };

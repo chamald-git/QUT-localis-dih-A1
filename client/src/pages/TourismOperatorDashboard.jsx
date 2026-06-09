@@ -1,47 +1,29 @@
+import { useEffect, useState } from 'react';
+import { api } from '../api/client.js';
+
 const mockUser = {
   role: 'operator',
   region: 'Noosa',
   tier: 'operator-basic',
 };
 
-const currentSnapshot = [
-  {
-    label: 'Visitor Demand',
-    value: '72% occupancy',
-    note: 'Demand is strong',
-  },
-  {
-    label: 'Booking Window',
-    value: '32 days',
-    note: 'Visitors plan ahead',
-  },
-  {
-    label: 'Average Stay',
-    value: '4.2 nights',
-    note: 'Good for packages',
-  },
-  {
-    label: 'Staffing Pressure',
-    value: 'High',
-    note: 'Recruit/roster early',
-  },
-];
+const regions = ['Cairns', 'Gold Coast', 'Noosa', 'Whitsundays'];
 
 const visitorSpending = [
   {
     label: 'Total Visitor Spend',
     value: '$2.4M',
-    note: 'Strong local activity',
+    note: 'Placeholder until spend API is connected',
   },
   {
     label: 'Spend per Visitor',
     value: '$148',
-    note: 'Visitor value signal',
+    note: 'Placeholder until spend API is connected',
   },
   {
     label: 'Spend per Transaction',
     value: '$42',
-    note: 'Basket size signal',
+    note: 'Placeholder until spend API is connected',
   },
 ];
 
@@ -63,7 +45,83 @@ function SummaryCard({ label, value, note }) {
   );
 }
 
+function getDemandNote(occupancyValue) {
+  const occupancyNumber = Number(occupancyValue);
+
+  if (Number.isNaN(occupancyNumber)) {
+    return 'Demand signal unavailable';
+  }
+
+  if (occupancyNumber >= 70) {
+    return 'Demand is strong';
+  }
+
+  if (occupancyNumber >= 55) {
+    return 'Demand is steady';
+  }
+
+  return 'Demand is softer';
+}
+
 export default function TourismOperatorDashboard() {
+  const [selectedRegion, setSelectedRegion] = useState(mockUser.region);
+  const [occupancySummary, setOccupancySummary] = useState(null);
+  const [occupancyError, setOccupancyError] = useState(null);
+  const [occupancyLoading, setOccupancyLoading] = useState(true);
+
+  useEffect(() => {
+    async function loadOccupancySummary() {
+      setOccupancyLoading(true);
+      setOccupancyError(null);
+
+      try {
+        const result = await api.getOccupancySummary(selectedRegion);
+        setOccupancySummary(result.data);
+      } catch (err) {
+        setOccupancySummary(null);
+        setOccupancyError(err.message);
+      } finally {
+        setOccupancyLoading(false);
+      }
+    }
+
+    loadOccupancySummary();
+  }, [selectedRegion]);
+
+  const currentSnapshot = [
+    {
+      label: 'Visitor Demand',
+      value: occupancySummary
+        ? `${Number(occupancySummary.occupancy_pct).toFixed(1)}% occupancy`
+        : 'Loading...',
+      note: occupancySummary
+        ? getDemandNote(occupancySummary.occupancy_pct)
+        : 'Using live occupancy API',
+    },
+    {
+      label: 'Average Daily Rate',
+      value: occupancySummary ? `$${Number(occupancySummary.adr).toFixed(0)}` : 'Loading...',
+      note: occupancySummary
+        ? `Based on ${occupancySummary.data_points} recent records`
+        : 'Using live occupancy API',
+    },
+    {
+      label: 'Booking Window',
+      value: '32 days',
+      note: 'Placeholder until booking API is connected',
+    },
+    {
+      label: 'Average Stay',
+      value: '4.2 nights',
+      note: 'Placeholder until length-of-stay API is connected',
+    },
+    {
+      label: 'Staffing Pressure',
+      value: 'High',
+      note: 'Derived signal, placeholder for now',
+    },
+  ];
+
   return (
     <main className="dashboard-shell">
       <header className="dashboard-header">
@@ -78,18 +136,20 @@ export default function TourismOperatorDashboard() {
 
         <div className="user-pill">
           <span>{mockUser.role}</span>
-          <strong>{mockUser.region}</strong>
+          <strong>{selectedRegion}</strong>
         </div>
       </header>
 
       <section className="filter-row" aria-label="Dashboard filters">
         <label>
           Region
-          <select defaultValue={mockUser.region}>
-            <option>Cairns</option>
-            <option>Gold Coast</option>
-            <option>Noosa</option>
-            <option>Whitsundays</option>
+          <select
+            value={selectedRegion}
+            onChange={(event) => setSelectedRegion(event.target.value)}
+          >
+            {regions.map((region) => (
+              <option key={region}>{region}</option>
+            ))}
           </select>
         </label>
 
@@ -114,8 +174,22 @@ export default function TourismOperatorDashboard() {
         </label>
       </section>
 
+      {occupancyError && (
+        <section className="status status-error">
+          <span className="dot" />
+          <div>
+            <strong>Occupancy data unavailable</strong>
+            <p className="muted">{occupancyError}</p>
+          </div>
+        </section>
+      )}
+
       <section className="dashboard-section">
         <h2>Current Snapshot</h2>
+        {occupancyLoading && (
+          <p className="muted">Loading live occupancy and ADR data...</p>
+        )}
+
         <div className="summary-grid">
           {currentSnapshot.map((item) => (
             <SummaryCard
@@ -130,10 +204,10 @@ export default function TourismOperatorDashboard() {
         <article className="insight-panel">
           <h3>Plain-English Operator Insight</h3>
           <p>
-            Demand is currently strong in this region. Visitors are booking
-            ahead and staying long enough to consider tours, dining and local
-            experiences. Operators may need to confirm casual staff, prepare
-            stock, and promote early-booking offers before the next busy period.
+            Demand is currently being interpreted for {selectedRegion}. A short
+            term rise in occupancy may suggest that operators need to review
+            staffing, stock, pricing and package offers. This is fallback text
+            until the AI insight endpoint is connected.
           </p>
         </article>
       </section>
@@ -178,7 +252,8 @@ export default function TourismOperatorDashboard() {
               <strong>Transactions:</strong> 57,000
             </p>
             <p className="muted">
-              More transactions may mean more staffing pressure.
+              Placeholder values. More transactions may mean more staffing
+              pressure.
             </p>
           </article>
         </div>
