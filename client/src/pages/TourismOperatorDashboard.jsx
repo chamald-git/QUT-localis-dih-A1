@@ -12,18 +12,18 @@ const regions = ['Cairns', 'Gold Coast', 'Noosa', 'Whitsundays'];
 const visitorSpending = [
   {
     label: 'Total Visitor Spend',
-    value: '$2.4M',
-    note: 'Placeholder until spend API is connected',
+    value: 'Example: $2.4M',
+    note: 'Mock value until spend API is connected',
   },
   {
     label: 'Spend per Visitor',
-    value: '$148',
-    note: 'Placeholder until spend API is connected',
+    value: 'Example: $148',
+    note: 'Mock value until spend API is connected',
   },
   {
     label: 'Spend per Transaction',
-    value: '$42',
-    note: 'Placeholder until spend API is connected',
+    value: 'Example: $42',
+    note: 'Mock value until spend API is connected',
   },
 ];
 
@@ -43,6 +43,24 @@ function SummaryCard({ label, value, note }) {
       <p className="card-note">{note}</p>
     </article>
   );
+}
+
+function formatDate(dateString) {
+  return new Intl.DateTimeFormat('en-AU', {
+    day: 'numeric',
+    month: 'short',
+    year: 'numeric',
+  }).format(new Date(dateString));
+}
+
+function formatOccupancyFromDecimal(decimalValue) {
+  const occupancyNumber = Number(decimalValue);
+
+  if (Number.isNaN(occupancyNumber)) {
+    return 'Unavailable';
+  }
+
+  return `${(occupancyNumber * 100).toFixed(1)}%`;
 }
 
 function getDemandNote(occupancyValue) {
@@ -66,26 +84,33 @@ function getDemandNote(occupancyValue) {
 export default function TourismOperatorDashboard() {
   const [selectedRegion, setSelectedRegion] = useState(mockUser.region);
   const [occupancySummary, setOccupancySummary] = useState(null);
+  const [occupancyRows, setOccupancyRows] = useState([]);
   const [occupancyError, setOccupancyError] = useState(null);
   const [occupancyLoading, setOccupancyLoading] = useState(true);
 
   useEffect(() => {
-    async function loadOccupancySummary() {
+    async function loadOccupancyData() {
       setOccupancyLoading(true);
       setOccupancyError(null);
 
       try {
-        const result = await api.getOccupancySummary(selectedRegion);
-        setOccupancySummary(result.data);
+        const [summaryResult, rowsResult] = await Promise.all([
+          api.getOccupancySummary(selectedRegion),
+          api.getOccupancyRows(selectedRegion, 5),
+        ]);
+
+        setOccupancySummary(summaryResult.data);
+        setOccupancyRows(rowsResult.data ?? []);
       } catch (err) {
         setOccupancySummary(null);
+        setOccupancyRows([]);
         setOccupancyError(err.message);
       } finally {
         setOccupancyLoading(false);
       }
     }
 
-    loadOccupancySummary();
+    loadOccupancyData();
   }, [selectedRegion]);
 
   const currentSnapshot = [
@@ -100,26 +125,28 @@ export default function TourismOperatorDashboard() {
     },
     {
       label: 'Average Daily Rate',
-      value: occupancySummary ? `$${Number(occupancySummary.adr).toFixed(0)}` : 'Loading...',
+      value: occupancySummary
+        ? `$${Number(occupancySummary.adr).toFixed(0)}`
+        : 'Loading...',
       note: occupancySummary
         ? `Based on ${occupancySummary.data_points} recent records`
         : 'Using live occupancy API',
     },
     {
-      label: 'Booking Window',
-      value: '32 days',
-      note: 'Placeholder until booking API is connected',
-    },
-    {
-      label: 'Average Stay',
-      value: '4.2 nights',
-      note: 'Placeholder until length-of-stay API is connected',
-    },
-    {
-      label: 'Staffing Pressure',
-      value: 'High',
-      note: 'Derived signal, placeholder for now',
-    },
+  label: 'Booking Window',
+  value: 'Example: 32 days',
+  note: 'Mock value until booking API is connected',
+},
+{
+  label: 'Average Stay',
+  value: 'Example: 4.2 nights',
+  note: 'Mock value until length-of-stay API is connected',
+},
+{
+  label: 'Staffing Pressure',
+  value: 'Example: High',
+  note: 'Derived signal, waiting on spend/booking data',
+},
   ];
 
   return (
@@ -186,6 +213,7 @@ export default function TourismOperatorDashboard() {
 
       <section className="dashboard-section">
         <h2>Current Snapshot</h2>
+
         {occupancyLoading && (
           <p className="muted">Loading live occupancy and ADR data...</p>
         )}
@@ -204,16 +232,17 @@ export default function TourismOperatorDashboard() {
         <article className="insight-panel">
           <h3>Plain-English Operator Insight</h3>
           <p>
-            Demand is currently being interpreted for {selectedRegion}. A short
-            term rise in occupancy may suggest that operators need to review
-            staffing, stock, pricing and package offers. This is fallback text
-            until the AI insight endpoint is connected.
+            Demand is currently being interpreted for {selectedRegion}. A
+            short-term rise in occupancy may suggest that operators need to
+            review staffing, stock, pricing and package offers. This is
+            fallback text until the AI insight endpoint is connected.
           </p>
         </article>
       </section>
 
       <section className="dashboard-section">
         <h2>Visitor Spending</h2>
+
         <div className="summary-grid three-columns">
           {visitorSpending.map((item) => (
             <SummaryCard
@@ -228,6 +257,7 @@ export default function TourismOperatorDashboard() {
         <div className="panel-grid">
           <article className="panel">
             <h3>Top Spend Categories</h3>
+
             <div className="bar-list">
               {spendCategories.map((category) => (
                 <div className="bar-row" key={category.label}>
@@ -246,10 +276,10 @@ export default function TourismOperatorDashboard() {
           <article className="panel">
             <h3>Visitor Activity</h3>
             <p>
-              <strong>Cards seen:</strong> 16,200
+              <strong>Cards seen:</strong> Example: 16,200
             </p>
             <p>
-              <strong>Transactions:</strong> 57,000
+              <strong>Transactions:</strong> Example: 57,000
             </p>
             <p className="muted">
               Placeholder values. More transactions may mean more staffing
@@ -265,8 +295,42 @@ export default function TourismOperatorDashboard() {
         <div className="panel-grid">
           <article className="panel chart-placeholder">
             <h3>Occupancy and ADR Trend</h3>
-            <p>Line chart: occupancy over time</p>
-            <p>Line chart: average daily rate over time</p>
+            <p className="muted">
+              Recent live occupancy and ADR rows for {selectedRegion}.
+            </p>
+
+            {occupancyLoading && (
+              <p className="muted">Loading recent trend data...</p>
+            )}
+
+            {!occupancyLoading && occupancyRows.length > 0 && (
+              <div className="mini-table-wrap">
+                <table className="mini-table">
+                  <thead>
+                    <tr>
+                      <th>Date</th>
+                      <th>Occupancy</th>
+                      <th>ADR</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {occupancyRows.map((row) => (
+                      <tr key={`${row.date}-${row.region}`}>
+                        <td>{formatDate(row.date)}</td>
+                        <td>{formatOccupancyFromDecimal(row.occupancy_pct)}</td>
+                        <td>${Number(row.adr).toFixed(0)}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            )}
+
+            {!occupancyLoading && occupancyRows.length === 0 && (
+              <p className="muted">
+                No recent occupancy rows found for this region.
+              </p>
+            )}
           </article>
 
           <article className="panel chart-placeholder">

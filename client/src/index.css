@@ -381,3 +381,32 @@ code {
     gap: 6px;
   }
 }
+
+.mini-table-wrap {
+  margin-top: 16px;
+  overflow-x: auto;
+}
+
+.mini-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+}
+
+.mini-table th,
+.mini-table td {
+  padding: 10px 8px;
+  border-bottom: 1px solid rgba(13, 59, 46, 0.12);
+  text-align: left;
+}
+
+.mini-table th {
+  color: var(--forest);
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.mini-table td {
+  color: var(--ink);
+}

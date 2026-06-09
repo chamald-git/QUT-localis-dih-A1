@@ -32,20 +32,19 @@ async function request(path, options = {}) {
 }
 
 export const api = {
-  /**
-   * GET /api/health → { status, db }
-   */
   getHealth() {
     return request('/api/health');
   },
 
-  /**
-   * GET /api/occupancy/summary?region=Noosa
-   * Returns headline occupancy and ADR values for the selected region.
-   */
   getOccupancySummary(region) {
     return request(
       `/api/occupancy/summary?region=${encodeURIComponent(region)}`
+    );
+  },
+
+  getOccupancyRows(region, limit = 5) {
+    return request(
+      `/api/occupancy?region=${encodeURIComponent(region)}&limit=${limit}`
     );
   },
 };
