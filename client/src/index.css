@@ -1,6 +1,8 @@
 :root {
   --forest: #0d3b2e;
+  --forest-soft: #dcebe5;
   --terracotta: #c84b2f;
+  --terracotta-soft: #f7e7e1;
   --light-green: #e8f2ee;
   --ink: #1a2420;
   --muted: #5c6b65;
@@ -8,6 +10,7 @@
   --warn: #b8860b;
   --error: #c0392b;
   --radius: 12px;
+
   font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
 }
 
@@ -17,9 +20,13 @@
 
 body {
   margin: 0;
-  background: var(--light-green);
   color: var(--ink);
+  background:
+    radial-gradient(circle at top left, rgba(200, 75, 47, 0.12), transparent 32rem),
+    linear-gradient(180deg, #f4faf7 0%, var(--light-green) 100%);
 }
+
+/* Existing Phase 0 health-check styles. Keeping these in case the team needs the health screen again. */
 
 .shell {
   max-width: 640px;
@@ -112,6 +119,7 @@ h1 {
 .status-ok {
   background: rgba(26, 122, 76, 0.08);
 }
+
 .status-ok .dot {
   background: var(--ok);
 }
@@ -119,6 +127,7 @@ h1 {
 .status-warn {
   background: rgba(184, 134, 11, 0.1);
 }
+
 .status-warn .dot {
   background: var(--warn);
 }
@@ -126,6 +135,7 @@ h1 {
 .status-error {
   background: rgba(192, 57, 43, 0.08);
 }
+
 .status-error .dot {
   background: var(--error);
 }
@@ -173,4 +183,344 @@ code {
 .foot {
   text-align: center;
   margin-top: 32px;
+}
+
+/* Tourism Operator Dashboard */
+
+/* Main page layout for the operator dashboard. */
+.dashboard-shell {
+  width: min(1180px, calc(100% - 32px));
+  margin: 0 auto;
+  padding: 40px 0 56px;
+}
+
+/* Top area with the page title and mock user details. */
+.dashboard-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 24px;
+  margin-bottom: 28px;
+  padding: 28px;
+  border: 1px solid rgba(13, 59, 46, 0.12);
+  border-radius: 24px;
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.96), rgba(232, 242, 238, 0.92)),
+    #fff;
+  box-shadow: 0 18px 40px rgba(13, 59, 46, 0.09);
+}
+
+.eyebrow {
+  margin: 0 0 6px;
+  color: var(--terracotta);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.dashboard-header h1 {
+  font-size: clamp(1.8rem, 4vw, 2.6rem);
+  line-height: 1.05;
+}
+
+/* Shows the current mock user role and region. */
+.user-pill {
+  display: grid;
+  gap: 4px;
+  min-width: 150px;
+  padding: 14px 16px;
+  border: 1px solid rgba(13, 59, 46, 0.18);
+  border-radius: var(--radius);
+  background: #fff;
+  box-shadow: 0 2px 16px rgba(13, 59, 46, 0.08);
+}
+
+.user-pill span {
+  color: var(--muted);
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.user-pill strong {
+  color: var(--forest);
+  font-size: 1.1rem;
+}
+
+/* Simple filters for the dashboard. Some are placeholders for now. */
+.filter-row {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+  margin-bottom: 28px;
+  padding: 18px;
+  border: 1px solid rgba(13, 59, 46, 0.1);
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.74);
+  box-shadow: 0 10px 28px rgba(13, 59, 46, 0.06);
+}
+
+.filter-row label {
+  display: grid;
+  gap: 8px;
+  color: var(--forest);
+  font-size: 0.9rem;
+  font-weight: 700;
+}
+
+.filter-row select {
+  width: 100%;
+  padding: 12px 14px;
+  border: 1px solid rgba(13, 59, 46, 0.2);
+  border-radius: var(--radius);
+  background: #fff;
+  color: var(--ink);
+  font: inherit;
+}
+
+.filter-row select:focus {
+  outline: 3px solid rgba(200, 75, 47, 0.18);
+  border-color: var(--terracotta);
+}
+
+/* Each main dashboard section starts with a clear heading. */
+.dashboard-section {
+  margin-top: 28px;
+}
+
+.dashboard-section h2 {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin: 0 0 14px;
+  color: var(--forest);
+  font-size: 1.25rem;
+}
+
+.dashboard-section h2::before {
+  content: '';
+  width: 10px;
+  height: 28px;
+  border-radius: 999px;
+  background: var(--terracotta);
+}
+
+/* Metric cards. The grid wraps neatly if there are more cards. */
+.summary-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+  gap: 16px;
+}
+
+.summary-grid.three-columns {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.summary-card,
+.panel,
+.insight-panel {
+  background: #fff;
+  border: 1px solid rgba(13, 59, 46, 0.12);
+  border-radius: var(--radius);
+  box-shadow: 0 2px 16px rgba(13, 59, 46, 0.08);
+}
+
+.summary-card {
+  padding: 20px;
+  transition:
+    transform 160ms ease,
+    box-shadow 160ms ease,
+    border-color 160ms ease;
+}
+
+.summary-card:hover {
+  transform: translateY(-2px);
+  border-color: rgba(200, 75, 47, 0.24);
+  box-shadow: 0 12px 26px rgba(13, 59, 46, 0.11);
+}
+
+.card-label {
+  margin: 0 0 10px;
+  color: var(--muted);
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.card-value {
+  display: block;
+  color: var(--forest);
+  font-size: 1.55rem;
+  line-height: 1.1;
+}
+
+.card-note {
+  margin: 10px 0 0;
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+/* Plain-English explanation panels. */
+.insight-panel {
+  margin-top: 16px;
+  padding: 22px;
+  border-left: 5px solid var(--terracotta);
+  background:
+    linear-gradient(90deg, rgba(247, 231, 225, 0.65), rgba(255, 255, 255, 1) 28%),
+    #fff;
+}
+
+.insight-panel h3,
+.panel h3 {
+  margin: 0 0 10px;
+  color: var(--forest);
+  font-size: 1rem;
+}
+
+.insight-panel p,
+.panel p {
+  margin: 0 0 8px;
+  line-height: 1.55;
+}
+
+/* Two-column panels for spend and plan-ahead sections. */
+.panel-grid {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  gap: 16px;
+  margin-top: 16px;
+}
+
+.panel {
+  padding: 22px;
+}
+
+/* Simple placeholder bars for spend categories. */
+.bar-list {
+  display: grid;
+  gap: 14px;
+  margin-top: 16px;
+}
+
+.bar-row {
+  display: grid;
+  grid-template-columns: 130px 1fr;
+  align-items: center;
+  gap: 12px;
+  font-size: 0.9rem;
+}
+
+.bar-track {
+  height: 12px;
+  overflow: hidden;
+  border-radius: 999px;
+  background: var(--light-green);
+}
+
+.bar-fill {
+  height: 100%;
+  border-radius: 999px;
+  background: linear-gradient(90deg, var(--forest), var(--terracotta));
+}
+
+/* Chart area for now. This can later become a real chart. */
+.chart-placeholder {
+  min-height: 180px;
+  background:
+    linear-gradient(180deg, rgba(13, 59, 46, 0.04), rgba(13, 59, 46, 0.02)),
+    #fff;
+}
+
+.chart-placeholder p {
+  color: var(--muted);
+}
+
+/* Small table showing recent live occupancy and ADR rows. */
+.mini-table-wrap {
+  max-height: 320px;
+  margin-top: 16px;
+  overflow: auto;
+  border: 1px solid rgba(13, 59, 46, 0.1);
+  border-radius: var(--radius);
+  background: #fff;
+}
+
+.mini-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+}
+
+.mini-table th,
+.mini-table td {
+  padding: 10px 8px;
+  border-bottom: 1px solid rgba(13, 59, 46, 0.12);
+  text-align: left;
+}
+
+.mini-table th {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  background: #fff;
+  color: var(--forest);
+  font-size: 0.78rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.mini-table tr:nth-child(even) td {
+  background: rgba(232, 242, 238, 0.34);
+}
+
+.mini-table td {
+  color: var(--ink);
+}
+
+/* Note to make clear what is live data and what is still example data. */
+.mvp-note {
+  margin-top: 28px;
+  padding: 18px 20px;
+  border: 1px dashed rgba(13, 59, 46, 0.35);
+  border-radius: var(--radius);
+  background: rgba(255, 255, 255, 0.72);
+}
+
+.mvp-note h2 {
+  margin: 0 0 8px;
+  color: var(--forest);
+  font-size: 1rem;
+}
+
+.mvp-note p {
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.55;
+}
+
+/* Smaller screens: stack everything so it stays readable. */
+@media (max-width: 860px) {
+  .dashboard-header {
+    display: grid;
+    grid-template-columns: 1fr;
+    padding: 22px;
+  }
+
+  .filter-row,
+  .summary-grid,
+  .summary-grid.three-columns,
+  .panel-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .user-pill {
+    width: 100%;
+  }
+
+  .bar-row {
+    grid-template-columns: 1fr;
+    gap: 6px;
+  }
 }

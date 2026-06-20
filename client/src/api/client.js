@@ -32,9 +32,6 @@ async function request(path, options = {}) {
 }
 
 export const api = {
-  /**
-   * GET /api/health → { status, db }
-   */
   getHealth() {
     return request('/api/health');
   },
@@ -46,6 +43,18 @@ export const api = {
   getInsight(persona) {
     return request(`/api/insights?persona=${encodeURIComponent(persona)}`).then(
       (body) => body.data
+    );
+  },
+
+  getOccupancySummary(region) {
+    return request(
+      `/api/occupancy/summary?region=${encodeURIComponent(region)}`
+    );
+  },
+
+  getOccupancyRows(region, limit = 5) {
+    return request(
+      `/api/occupancy?region=${encodeURIComponent(region)}&limit=${limit}`
     );
   },
 };

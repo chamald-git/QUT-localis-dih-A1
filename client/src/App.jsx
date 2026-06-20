@@ -2,12 +2,6 @@ import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { api } from './api/client.js';
 
-/**
- * Phase 0 landing screen. Its single job is to prove the full stack is wired:
- * React renders, calls the API through the Vite proxy, the Express server
- * answers, and MySQL is reachable. Once that green light shows, every later
- * DIH feature builds on a confirmed-working pipeline.
- */
 export default function App() {
   const [health, setHealth] = useState(null);
   const [error, setError] = useState(null);
@@ -90,9 +84,14 @@ export default function App() {
         </button>
       </section>
 
-      <Link className="btn" to="/insights">
-        View insights prototype →
-      </Link>
+      <nav className="links">
+        <Link className="btn" to="/insights">
+          View insights prototype →
+        </Link>
+        <Link className="btn" to="/operator">
+          Tourism operator dashboard →
+        </Link>
+      </nav>
 
       <footer className="foot muted">
         Localis Technologies Australia · IFQ717 Capstone
