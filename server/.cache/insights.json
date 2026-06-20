@@ -1,0 +1,6619 @@
+{
+  "admin": {
+    "at": 1780829699099,
+    "value": {
+      "persona": "admin",
+      "narrative": "Here's a quick look at the last 90 days of daily tourism occupancy data for Cairns, Gold Coast, Noosa, and Whitsundays. The data covers June 2nd to August 30th, 2024, showing daily occupancy percentages and average daily rates for each region.\n\nOverall, all regions show a general upward trend in occupancy through June and July, followed by some variation in August. Noosa and Whitsundays consistently show higher average daily rates (ADR) than Cairns and Gold Coast, indicating premium pricing or different market segments in those destinations.\n\nCairns experienced a steady rise in occupancy, peaking in mid-July around 75-80%, before a gradual decline through August. Gold Coast had more pronounced peaks and troughs, with high occupancy around early June, late July, and mid-August, often accompanied by higher ADR spikes. Noosa and Whitsundays both maintained solid occupancy levels through the period, frequently reaching over 70% in July and August, and consistently recorded the highest ADRs across all regions.\n\nNo obvious anomalies stand out, but the consistent higher ADR for Noosa and Whitsundays compared to Cairns and Gold Coast is worth keeping an eye on for strategic planning and understanding market positioning. The Gold Coast's more fluctuating occupancy might suggest a market more sensitive to specific events or holidays.",
+      "chartSpec": {
+        "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+        "data": {
+          "name": "table"
+        },
+        "mark": "line",
+        "encoding": {
+          "x": {
+            "field": "date",
+            "type": "temporal",
+            "title": "Date"
+          },
+          "y": {
+            "field": "occupancy_pct",
+            "type": "quantitative",
+            "title": "Occupancy Percentage",
+            "axis": {
+              "format": ".1%"
+            }
+          },
+          "color": {
+            "field": "region",
+            "type": "nominal",
+            "title": "Region"
+          }
+        },
+        "title": "Daily Occupancy Percentage by Region (June - August 2024)"
+      },
+      "data": [
+        {
+          "region": "Cairns",
+          "date": "2024-06-02T14:00:00.000Z",
+          "occupancy_pct": "0.5619",
+          "adr": "266.8060"
+        },
+        {
+          "region": "Cairns",
+          "date": "2024-06-03T14:00:00.000Z",
+          "occupancy_pct": "0.5609",
+          "adr": "266.7980"
+        },
+        {
+          "region": "Cairns",
+          "date": "2024-06-04T14:00:00.000Z",
+          "occupancy_pct": "0.5837",
+          "adr": "270.4645"
+        },
+        {
+          "region": "Cairns",
+          "date": "2024-06-05T14:00:00.000Z",
+          "occupancy_pct": "0.5957",
+          "adr": "270.0551"
+        },
+        {
+          "region": "Cairns",
+          "date": "2024-06-06T14:00:00.000Z",
+          "occupancy_pct": "0.6258",
+          "adr": "289.0781"
+        },
+        {
+          "region": "Cairns",
+          "date": "2024-06-07T14:00:00.000Z",
+          "occupancy_pct": "0.6362",
+          "adr": "286.4995"
+        },
+        {
+          "region": "Cairns",
+          "date": "2024-06-08T14:00:00.000Z",
+          "occupancy_pct": "0.6042",
+          "adr": "281.4861"
+        },
+        {
+          "region": "Cairns",
+          "date": "2024-06-09T14:00:00.000Z",
+          "occupancy_pct": "0.5654",
+          "adr": "278.8645"
+        },
+        {
+          "region": "Cairns",
+          "date": "2024-06-10T14:00:00.000Z",
+          "occupancy_pct": "0.5652",
+          "adr": "282.4293"
+        },
+        {
+          "region": "Cairns",
+          "date": "2024-06-11T14:00:00.000Z",
+          "occupancy_pct": "0.6023",
+          "adr": "279.7182"
+        },
+        {
+          "region": "Cairns",
+          "date": "2024-06-12T14:00:00.000Z",
+          "occupancy_pct": "0.6548",
+          "adr": "286.3322"
+        },
+        {
+          "region": "Cairns",
+          "date": "2024-06-13T14:00:00.000Z",
+          "occupancy_pct": "0.7160",
+          "adr": "302.3559"
+        },
+        {
+          "region": "Cairns",
+          "date": "2024-06-14T14:00:00.000Z",
+          "occupancy_pct": "0.7345",
+          "adr": "303.5791"
+        },
+        {
+          "region": "Cairns",
+          "date": "2024-06-15T14:00:00.000Z",
+          "occupancy_pct": "0.7214",
+          "adr": "305.2955"
+        },
+        {
+          "region": "Cairns",
+          "date": "2024-06-16T14:00:00.000Z",
+          "occupancy_pct": "0.6547",
+          "adr": "297.1870"
+        },
+        {
+          "region": "Cairns",
+          "date": "2024-06-17T14:00:00.000Z",
+          "occupancy_pct": "0.6106",
+          "adr": "286.4993"
+        },
+        {
+          "region": "Cairns",
+          "date": "2024-06-18T14:00:00.000Z",
+          "occupancy_pct": "0.6321",
+          "adr": "289.0599"
+        },
+        {
+          "region": "Cairns",
+          "date": "2024-06-19T14:00:00.000Z",
+          "occupancy_pct": "0.6266",
+          "adr": "287.7301"
+        },
+        {
+          "region": "Cairns",
+          "date": "2024-06-20T14:00:00.000Z",
+          "occupancy_pct": "0.6552",
+          "adr": "294.2456"
+        },
+        {
+          "region": "Cairns",
+          "date": "2024-06-21T14:00:00.000Z",
+          "occupancy_pct": "0.6952",
+          "adr": "300.3504"
+        },
+        {
+          "region": "Cairns",
+          "date": "2024-06-22T14:00:00.000Z",
+          "occupancy_pct": "0.6788",
+          "adr": "301.7812"
+        },
+        {
+          "region": "Cairns",
+          "date": "2024-06-23T14:00:00.000Z",
+          "occupancy_pct": "0.6743",
+          "adr": "299.2134"
+        },
+        {
+          "region": "Cairns",
+          "date": "2024-06-24T14:00:00.000Z",
+          "occupancy_pct": "0.6896",
+          "adr": "300.6210"
+        },
+        {
+          "region": "Cairns",
+          "date": "2024-06-25T14:00:00.000Z",
+          "occupancy_pct": "0.7127",
+          "adr": "303.9198"
+        },
+        {
+          "region": "Cairns",
+          "date": "2024-06-26T14:00:00.000Z",
+          "occupancy_pct": "0.7241",
+          "adr": "301.2325"
+        },
+        {
+          "region": "Cairns",
+          "date": "2024-06-27T14:00:00.000Z",
+          "occupancy_pct": "0.7292",
+          "adr": "305.4485"
+        },
+        {
+          "region": "Cairns",
+          "date": "2024-06-28T14:00:00.000Z",
+          "occupancy_pct": "0.7379",
+          "adr": "305.7486"
+        },
+        {
+          "region": "Cairns",
+          "date": "2024-06-29T14:00:00.000Z",
+          "occupancy_pct": "0.7257",
+          "adr": "309.2905"
+        },
+        {
+          "region": "Cairns",
+          "date": "2024-06-30T14:00:00.000Z",
+          "occupancy_pct": "0.7153",
+          "adr": "313.8286"
+        },
+        {
+          "region": "Cairns",
+          "date": "2024-07-01T14:00:00.000Z",
+          "occupancy_pct": "0.7230",
+          "adr": "311.6223"
+        },
+        {
+          "region": "Cairns",
+          "date": "2024-07-02T14:00:00.000Z",
+          "occupancy_pct": "0.7446",
+          "adr": "312.4237"
+        },
+        {
+          "region": "Cairns",
+          "date": "2024-07-03T14:00:00.000Z",
+          "occupancy_pct": "0.7556",
+          "adr": "309.3721"
+        },
+        {
+          "region": "Cairns",
+          "date": "2024-07-04T14:00:00.000Z",
+          "occupancy_pct": "0.7567",
+          "adr": "314.5027"
+        },
+        {
+          "region": "Cairns",
+          "date": "2024-07-05T14:00:00.000Z",
+          "occupancy_pct": "0.7611",
+          "adr": "311.6790"
+        },
+        {
+          "region": "Cairns",
+          "date": "2024-07-06T14:00:00.000Z",
+          "occupancy_pct": "0.7298",
+          "adr": "310.8331"
+        },
+        {
+          "region": "Cairns",
+          "date": "2024-07-07T14:00:00.000Z",
+          "occupancy_pct": "0.7434",
+          "adr": "311.7421"
+        },
+        {
+          "region": "Cairns",
+          "date": "2024-07-08T14:00:00.000Z",
+          "occupancy_pct": "0.7436",
+          "adr": "310.3338"
+        },
+        {
+          "region": "Cairns",
+          "date": "2024-07-09T14:00:00.000Z",
+          "occupancy_pct": "0.7664",
+          "adr": "310.6273"
+        },
+        {
+          "region": "Cairns",
+          "date": "2024-07-10T14:00:00.000Z",
+          "occupancy_pct": "0.7723",
+          "adr": "310.2056"
+        },
+        {
+          "region": "Cairns",
+          "date": "2024-07-11T14:00:00.000Z",
+          "occupancy_pct": "0.7930",
+          "adr": "310.9300"
+        },
+        {
+          "region": "Cairns",
+          "date": "2024-07-12T14:00:00.000Z",
+          "occupancy_pct": "0.8145",
+          "adr": "314.1281"
+        },
+        {
+          "region": "Cairns",
+          "date": "2024-07-13T14:00:00.000Z",
+          "occupancy_pct": "0.7914",
+          "adr": "312.8297"
+        },
+        {
+          "region": "Cairns",
+          "date": "2024-07-14T14:00:00.000Z",
+          "occupancy_pct": "0.7774",
+          "adr": "308.1131"
+        },
+        {
+          "region": "Cairns",
+          "date": "2024-07-15T14:00:00.000Z",
+          "occupancy_pct": "0.7746",
+          "adr": "307.8138"
+        },
+        {
+          "region": "Cairns",
+          "date": "2024-07-16T14:00:00.000Z",
+          "occupancy_pct": "0.7674",
+          "adr": "307.0894"
+        },
+        {
+          "region": "Cairns",
+          "date": "2024-07-17T14:00:00.000Z",
+          "occupancy_pct": "0.7695",
+          "adr": "307.3842"
+        },
+        {
+          "region": "Cairns",
+          "date": "2024-07-18T14:00:00.000Z",
+          "occupancy_pct": "0.7795",
+          "adr": "310.2092"
+        },
+        {
+          "region": "Cairns",
+          "date": "2024-07-19T14:00:00.000Z",
+          "occupancy_pct": "0.7682",
+          "adr": "309.8693"
+        },
+        {
+          "region": "Cairns",
+          "date": "2024-07-20T14:00:00.000Z",
+          "occupancy_pct": "0.7438",
+          "adr": "309.1221"
+        },
+        {
+          "region": "Cairns",
+          "date": "2024-07-21T14:00:00.000Z",
+          "occupancy_pct": "0.7151",
+          "adr": "309.3192"
+        },
+        {
+          "region": "Cairns",
+          "date": "2024-07-22T14:00:00.000Z",
+          "occupancy_pct": "0.7129",
+          "adr": "305.1309"
+        },
+        {
+          "region": "Cairns",
+          "date": "2024-07-23T14:00:00.000Z",
+          "occupancy_pct": "0.7233",
+          "adr": "304.2915"
+        },
+        {
+          "region": "Cairns",
+          "date": "2024-07-24T14:00:00.000Z",
+          "occupancy_pct": "0.7554",
+          "adr": "304.0546"
+        },
+        {
+          "region": "Cairns",
+          "date": "2024-07-25T14:00:00.000Z",
+          "occupancy_pct": "0.7883",
+          "adr": "308.2965"
+        },
+        {
+          "region": "Cairns",
+          "date": "2024-07-26T14:00:00.000Z",
+          "occupancy_pct": "0.7779",
+          "adr": "308.6613"
+        },
+        {
+          "region": "Cairns",
+          "date": "2024-07-27T14:00:00.000Z",
+          "occupancy_pct": "0.7289",
+          "adr": "302.9524"
+        },
+        {
+          "region": "Cairns",
+          "date": "2024-07-28T14:00:00.000Z",
+          "occupancy_pct": "0.6959",
+          "adr": "295.4294"
+        },
+        {
+          "region": "Cairns",
+          "date": "2024-07-29T14:00:00.000Z",
+          "occupancy_pct": "0.6759",
+          "adr": "296.7079"
+        },
+        {
+          "region": "Cairns",
+          "date": "2024-07-30T14:00:00.000Z",
+          "occupancy_pct": "0.6756",
+          "adr": "299.9469"
+        },
+        {
+          "region": "Cairns",
+          "date": "2024-07-31T14:00:00.000Z",
+          "occupancy_pct": "0.6955",
+          "adr": "301.4541"
+        },
+        {
+          "region": "Cairns",
+          "date": "2024-08-01T14:00:00.000Z",
+          "occupancy_pct": "0.7337",
+          "adr": "305.3289"
+        },
+        {
+          "region": "Cairns",
+          "date": "2024-08-02T14:00:00.000Z",
+          "occupancy_pct": "0.7484",
+          "adr": "307.0324"
+        },
+        {
+          "region": "Cairns",
+          "date": "2024-08-03T14:00:00.000Z",
+          "occupancy_pct": "0.7177",
+          "adr": "302.2445"
+        },
+        {
+          "region": "Cairns",
+          "date": "2024-08-04T14:00:00.000Z",
+          "occupancy_pct": "0.7109",
+          "adr": "298.7706"
+        },
+        {
+          "region": "Cairns",
+          "date": "2024-08-05T14:00:00.000Z",
+          "occupancy_pct": "0.7066",
+          "adr": "294.7501"
+        },
+        {
+          "region": "Cairns",
+          "date": "2024-08-06T14:00:00.000Z",
+          "occupancy_pct": "0.7257",
+          "adr": "297.9063"
+        },
+        {
+          "region": "Cairns",
+          "date": "2024-08-07T14:00:00.000Z",
+          "occupancy_pct": "0.7312",
+          "adr": "297.9089"
+        },
+        {
+          "region": "Cairns",
+          "date": "2024-08-08T14:00:00.000Z",
+          "occupancy_pct": "0.7502",
+          "adr": "301.9876"
+        },
+        {
+          "region": "Cairns",
+          "date": "2024-08-09T14:00:00.000Z",
+          "occupancy_pct": "0.7504",
+          "adr": "305.8575"
+        },
+        {
+          "region": "Cairns",
+          "date": "2024-08-10T14:00:00.000Z",
+          "occupancy_pct": "0.7363",
+          "adr": "301.7991"
+        },
+        {
+          "region": "Cairns",
+          "date": "2024-08-11T14:00:00.000Z",
+          "occupancy_pct": "0.7313",
+          "adr": "299.8060"
+        },
+        {
+          "region": "Cairns",
+          "date": "2024-08-12T14:00:00.000Z",
+          "occupancy_pct": "0.7446",
+          "adr": "296.8633"
+        },
+        {
+          "region": "Cairns",
+          "date": "2024-08-13T14:00:00.000Z",
+          "occupancy_pct": "0.7548",
+          "adr": "296.1990"
+        },
+        {
+          "region": "Cairns",
+          "date": "2024-08-14T14:00:00.000Z",
+          "occupancy_pct": "0.7649",
+          "adr": "295.2631"
+        },
+        {
+          "region": "Cairns",
+          "date": "2024-08-15T14:00:00.000Z",
+          "occupancy_pct": "0.7841",
+          "adr": "305.2804"
+        },
+        {
+          "region": "Cairns",
+          "date": "2024-08-16T14:00:00.000Z",
+          "occupancy_pct": "0.7683",
+          "adr": "307.5360"
+        },
+        {
+          "region": "Cairns",
+          "date": "2024-08-17T14:00:00.000Z",
+          "occupancy_pct": "0.7445",
+          "adr": "303.3526"
+        },
+        {
+          "region": "Cairns",
+          "date": "2024-08-18T14:00:00.000Z",
+          "occupancy_pct": "0.7197",
+          "adr": "299.6758"
+        },
+        {
+          "region": "Cairns",
+          "date": "2024-08-19T14:00:00.000Z",
+          "occupancy_pct": "0.7027",
+          "adr": "292.7396"
+        },
+        {
+          "region": "Cairns",
+          "date": "2024-08-20T14:00:00.000Z",
+          "occupancy_pct": "0.7123",
+          "adr": "294.1686"
+        },
+        {
+          "region": "Cairns",
+          "date": "2024-08-21T14:00:00.000Z",
+          "occupancy_pct": "0.7187",
+          "adr": "292.3876"
+        },
+        {
+          "region": "Cairns",
+          "date": "2024-08-22T14:00:00.000Z",
+          "occupancy_pct": "0.7389",
+          "adr": "292.5274"
+        },
+        {
+          "region": "Cairns",
+          "date": "2024-08-23T14:00:00.000Z",
+          "occupancy_pct": "0.7450",
+          "adr": "295.2769"
+        },
+        {
+          "region": "Cairns",
+          "date": "2024-08-24T14:00:00.000Z",
+          "occupancy_pct": "0.6934",
+          "adr": "294.9103"
+        },
+        {
+          "region": "Cairns",
+          "date": "2024-08-25T14:00:00.000Z",
+          "occupancy_pct": "0.6565",
+          "adr": "288.2841"
+        },
+        {
+          "region": "Cairns",
+          "date": "2024-08-26T14:00:00.000Z",
+          "occupancy_pct": "0.6426",
+          "adr": "285.2883"
+        },
+        {
+          "region": "Cairns",
+          "date": "2024-08-27T14:00:00.000Z",
+          "occupancy_pct": "0.6455",
+          "adr": "285.3970"
+        },
+        {
+          "region": "Cairns",
+          "date": "2024-08-28T14:00:00.000Z",
+          "occupancy_pct": "0.6636",
+          "adr": "288.8554"
+        },
+        {
+          "region": "Cairns",
+          "date": "2024-08-29T14:00:00.000Z",
+          "occupancy_pct": "0.6675",
+          "adr": "289.0835"
+        },
+        {
+          "region": "Cairns",
+          "date": "2024-08-30T14:00:00.000Z",
+          "occupancy_pct": "0.6658",
+          "adr": "291.0571"
+        },
+        {
+          "region": "Gold Coast",
+          "date": "2024-06-02T14:00:00.000Z",
+          "occupancy_pct": "0.4578",
+          "adr": "283.0020"
+        },
+        {
+          "region": "Gold Coast",
+          "date": "2024-06-03T14:00:00.000Z",
+          "occupancy_pct": "0.4616",
+          "adr": "279.9807"
+        },
+        {
+          "region": "Gold Coast",
+          "date": "2024-06-04T14:00:00.000Z",
+          "occupancy_pct": "0.4830",
+          "adr": "281.1528"
+        },
+        {
+          "region": "Gold Coast",
+          "date": "2024-06-05T14:00:00.000Z",
+          "occupancy_pct": "0.5364",
+          "adr": "285.8232"
+        },
+        {
+          "region": "Gold Coast",
+          "date": "2024-06-06T14:00:00.000Z",
+          "occupancy_pct": "0.6194",
+          "adr": "330.0044"
+        },
+        {
+          "region": "Gold Coast",
+          "date": "2024-06-07T14:00:00.000Z",
+          "occupancy_pct": "0.6630",
+          "adr": "331.5978"
+        },
+        {
+          "region": "Gold Coast",
+          "date": "2024-06-08T14:00:00.000Z",
+          "occupancy_pct": "0.5757",
+          "adr": "308.4864"
+        },
+        {
+          "region": "Gold Coast",
+          "date": "2024-06-09T14:00:00.000Z",
+          "occupancy_pct": "0.5072",
+          "adr": "292.0328"
+        },
+        {
+          "region": "Gold Coast",
+          "date": "2024-06-10T14:00:00.000Z",
+          "occupancy_pct": "0.4913",
+          "adr": "285.4465"
+        },
+        {
+          "region": "Gold Coast",
+          "date": "2024-06-11T14:00:00.000Z",
+          "occupancy_pct": "0.4991",
+          "adr": "283.4705"
+        },
+        {
+          "region": "Gold Coast",
+          "date": "2024-06-12T14:00:00.000Z",
+          "occupancy_pct": "0.5233",
+          "adr": "285.3374"
+        },
+        {
+          "region": "Gold Coast",
+          "date": "2024-06-13T14:00:00.000Z",
+          "occupancy_pct": "0.5863",
+          "adr": "323.1101"
+        },
+        {
+          "region": "Gold Coast",
+          "date": "2024-06-14T14:00:00.000Z",
+          "occupancy_pct": "0.6189",
+          "adr": "323.1052"
+        },
+        {
+          "region": "Gold Coast",
+          "date": "2024-06-15T14:00:00.000Z",
+          "occupancy_pct": "0.5344",
+          "adr": "299.7886"
+        },
+        {
+          "region": "Gold Coast",
+          "date": "2024-06-16T14:00:00.000Z",
+          "occupancy_pct": "0.5011",
+          "adr": "289.6460"
+        },
+        {
+          "region": "Gold Coast",
+          "date": "2024-06-17T14:00:00.000Z",
+          "occupancy_pct": "0.4988",
+          "adr": "283.8122"
+        },
+        {
+          "region": "Gold Coast",
+          "date": "2024-06-18T14:00:00.000Z",
+          "occupancy_pct": "0.5122",
+          "adr": "284.1288"
+        },
+        {
+          "region": "Gold Coast",
+          "date": "2024-06-19T14:00:00.000Z",
+          "occupancy_pct": "0.5401",
+          "adr": "285.3340"
+        },
+        {
+          "region": "Gold Coast",
+          "date": "2024-06-20T14:00:00.000Z",
+          "occupancy_pct": "0.5943",
+          "adr": "337.4122"
+        },
+        {
+          "region": "Gold Coast",
+          "date": "2024-06-21T14:00:00.000Z",
+          "occupancy_pct": "0.6177",
+          "adr": "336.3107"
+        },
+        {
+          "region": "Gold Coast",
+          "date": "2024-06-22T14:00:00.000Z",
+          "occupancy_pct": "0.5491",
+          "adr": "320.9897"
+        },
+        {
+          "region": "Gold Coast",
+          "date": "2024-06-23T14:00:00.000Z",
+          "occupancy_pct": "0.5059",
+          "adr": "313.7807"
+        },
+        {
+          "region": "Gold Coast",
+          "date": "2024-06-24T14:00:00.000Z",
+          "occupancy_pct": "0.5108",
+          "adr": "313.8399"
+        },
+        {
+          "region": "Gold Coast",
+          "date": "2024-06-25T14:00:00.000Z",
+          "occupancy_pct": "0.5185",
+          "adr": "315.6342"
+        },
+        {
+          "region": "Gold Coast",
+          "date": "2024-06-26T14:00:00.000Z",
+          "occupancy_pct": "0.5447",
+          "adr": "318.9244"
+        },
+        {
+          "region": "Gold Coast",
+          "date": "2024-06-27T14:00:00.000Z",
+          "occupancy_pct": "0.6005",
+          "adr": "346.2186"
+        },
+        {
+          "region": "Gold Coast",
+          "date": "2024-06-28T14:00:00.000Z",
+          "occupancy_pct": "0.6381",
+          "adr": "349.7532"
+        },
+        {
+          "region": "Gold Coast",
+          "date": "2024-06-29T14:00:00.000Z",
+          "occupancy_pct": "0.5492",
+          "adr": "333.7797"
+        },
+        {
+          "region": "Gold Coast",
+          "date": "2024-06-30T14:00:00.000Z",
+          "occupancy_pct": "0.5325",
+          "adr": "332.7245"
+        },
+        {
+          "region": "Gold Coast",
+          "date": "2024-07-01T14:00:00.000Z",
+          "occupancy_pct": "0.5410",
+          "adr": "332.5973"
+        },
+        {
+          "region": "Gold Coast",
+          "date": "2024-07-02T14:00:00.000Z",
+          "occupancy_pct": "0.5660",
+          "adr": "333.0415"
+        },
+        {
+          "region": "Gold Coast",
+          "date": "2024-07-03T14:00:00.000Z",
+          "occupancy_pct": "0.6140",
+          "adr": "340.2887"
+        },
+        {
+          "region": "Gold Coast",
+          "date": "2024-07-04T14:00:00.000Z",
+          "occupancy_pct": "0.7331",
+          "adr": "391.8125"
+        },
+        {
+          "region": "Gold Coast",
+          "date": "2024-07-05T14:00:00.000Z",
+          "occupancy_pct": "0.7745",
+          "adr": "396.1158"
+        },
+        {
+          "region": "Gold Coast",
+          "date": "2024-07-06T14:00:00.000Z",
+          "occupancy_pct": "0.6839",
+          "adr": "380.7020"
+        },
+        {
+          "region": "Gold Coast",
+          "date": "2024-07-07T14:00:00.000Z",
+          "occupancy_pct": "0.6138",
+          "adr": "352.9092"
+        },
+        {
+          "region": "Gold Coast",
+          "date": "2024-07-08T14:00:00.000Z",
+          "occupancy_pct": "0.6064",
+          "adr": "341.0723"
+        },
+        {
+          "region": "Gold Coast",
+          "date": "2024-07-09T14:00:00.000Z",
+          "occupancy_pct": "0.6206",
+          "adr": "338.6032"
+        },
+        {
+          "region": "Gold Coast",
+          "date": "2024-07-10T14:00:00.000Z",
+          "occupancy_pct": "0.6420",
+          "adr": "335.8285"
+        },
+        {
+          "region": "Gold Coast",
+          "date": "2024-07-11T14:00:00.000Z",
+          "occupancy_pct": "0.6850",
+          "adr": "351.6896"
+        },
+        {
+          "region": "Gold Coast",
+          "date": "2024-07-12T14:00:00.000Z",
+          "occupancy_pct": "0.7145",
+          "adr": "351.5988"
+        },
+        {
+          "region": "Gold Coast",
+          "date": "2024-07-13T14:00:00.000Z",
+          "occupancy_pct": "0.6433",
+          "adr": "331.6798"
+        },
+        {
+          "region": "Gold Coast",
+          "date": "2024-07-14T14:00:00.000Z",
+          "occupancy_pct": "0.6122",
+          "adr": "319.4825"
+        },
+        {
+          "region": "Gold Coast",
+          "date": "2024-07-15T14:00:00.000Z",
+          "occupancy_pct": "0.6003",
+          "adr": "316.8652"
+        },
+        {
+          "region": "Gold Coast",
+          "date": "2024-07-16T14:00:00.000Z",
+          "occupancy_pct": "0.5943",
+          "adr": "311.8351"
+        },
+        {
+          "region": "Gold Coast",
+          "date": "2024-07-17T14:00:00.000Z",
+          "occupancy_pct": "0.6126",
+          "adr": "312.5842"
+        },
+        {
+          "region": "Gold Coast",
+          "date": "2024-07-18T14:00:00.000Z",
+          "occupancy_pct": "0.6586",
+          "adr": "332.3925"
+        },
+        {
+          "region": "Gold Coast",
+          "date": "2024-07-19T14:00:00.000Z",
+          "occupancy_pct": "0.6577",
+          "adr": "329.3285"
+        },
+        {
+          "region": "Gold Coast",
+          "date": "2024-07-20T14:00:00.000Z",
+          "occupancy_pct": "0.5673",
+          "adr": "306.2073"
+        },
+        {
+          "region": "Gold Coast",
+          "date": "2024-07-21T14:00:00.000Z",
+          "occupancy_pct": "0.5350",
+          "adr": "288.1134"
+        },
+        {
+          "region": "Gold Coast",
+          "date": "2024-07-22T14:00:00.000Z",
+          "occupancy_pct": "0.5361",
+          "adr": "286.0594"
+        },
+        {
+          "region": "Gold Coast",
+          "date": "2024-07-23T14:00:00.000Z",
+          "occupancy_pct": "0.5549",
+          "adr": "285.4268"
+        },
+        {
+          "region": "Gold Coast",
+          "date": "2024-07-24T14:00:00.000Z",
+          "occupancy_pct": "0.5944",
+          "adr": "289.8737"
+        },
+        {
+          "region": "Gold Coast",
+          "date": "2024-07-25T14:00:00.000Z",
+          "occupancy_pct": "0.6779",
+          "adr": "325.6732"
+        },
+        {
+          "region": "Gold Coast",
+          "date": "2024-07-26T14:00:00.000Z",
+          "occupancy_pct": "0.7050",
+          "adr": "326.0137"
+        },
+        {
+          "region": "Gold Coast",
+          "date": "2024-07-27T14:00:00.000Z",
+          "occupancy_pct": "0.5981",
+          "adr": "298.4045"
+        },
+        {
+          "region": "Gold Coast",
+          "date": "2024-07-28T14:00:00.000Z",
+          "occupancy_pct": "0.5636",
+          "adr": "282.8426"
+        },
+        {
+          "region": "Gold Coast",
+          "date": "2024-07-29T14:00:00.000Z",
+          "occupancy_pct": "0.5532",
+          "adr": "280.3446"
+        },
+        {
+          "region": "Gold Coast",
+          "date": "2024-07-30T14:00:00.000Z",
+          "occupancy_pct": "0.5562",
+          "adr": "278.0206"
+        },
+        {
+          "region": "Gold Coast",
+          "date": "2024-07-31T14:00:00.000Z",
+          "occupancy_pct": "0.5787",
+          "adr": "283.7576"
+        },
+        {
+          "region": "Gold Coast",
+          "date": "2024-08-01T14:00:00.000Z",
+          "occupancy_pct": "0.6573",
+          "adr": "322.2469"
+        },
+        {
+          "region": "Gold Coast",
+          "date": "2024-08-02T14:00:00.000Z",
+          "occupancy_pct": "0.6777",
+          "adr": "320.7381"
+        },
+        {
+          "region": "Gold Coast",
+          "date": "2024-08-03T14:00:00.000Z",
+          "occupancy_pct": "0.5790",
+          "adr": "293.4827"
+        },
+        {
+          "region": "Gold Coast",
+          "date": "2024-08-04T14:00:00.000Z",
+          "occupancy_pct": "0.5444",
+          "adr": "283.0234"
+        },
+        {
+          "region": "Gold Coast",
+          "date": "2024-08-05T14:00:00.000Z",
+          "occupancy_pct": "0.5462",
+          "adr": "281.6362"
+        },
+        {
+          "region": "Gold Coast",
+          "date": "2024-08-06T14:00:00.000Z",
+          "occupancy_pct": "0.5525",
+          "adr": "283.0497"
+        },
+        {
+          "region": "Gold Coast",
+          "date": "2024-08-07T14:00:00.000Z",
+          "occupancy_pct": "0.5956",
+          "adr": "286.2059"
+        },
+        {
+          "region": "Gold Coast",
+          "date": "2024-08-08T14:00:00.000Z",
+          "occupancy_pct": "0.6612",
+          "adr": "323.2216"
+        },
+        {
+          "region": "Gold Coast",
+          "date": "2024-08-09T14:00:00.000Z",
+          "occupancy_pct": "0.6926",
+          "adr": "324.4042"
+        },
+        {
+          "region": "Gold Coast",
+          "date": "2024-08-10T14:00:00.000Z",
+          "occupancy_pct": "0.5898",
+          "adr": "301.2925"
+        },
+        {
+          "region": "Gold Coast",
+          "date": "2024-08-11T14:00:00.000Z",
+          "occupancy_pct": "0.5499",
+          "adr": "290.3156"
+        },
+        {
+          "region": "Gold Coast",
+          "date": "2024-08-12T14:00:00.000Z",
+          "occupancy_pct": "0.5517",
+          "adr": "288.1452"
+        },
+        {
+          "region": "Gold Coast",
+          "date": "2024-08-13T14:00:00.000Z",
+          "occupancy_pct": "0.5660",
+          "adr": "290.3653"
+        },
+        {
+          "region": "Gold Coast",
+          "date": "2024-08-14T14:00:00.000Z",
+          "occupancy_pct": "0.6004",
+          "adr": "298.5850"
+        },
+        {
+          "region": "Gold Coast",
+          "date": "2024-08-15T14:00:00.000Z",
+          "occupancy_pct": "0.7102",
+          "adr": "364.5845"
+        },
+        {
+          "region": "Gold Coast",
+          "date": "2024-08-16T14:00:00.000Z",
+          "occupancy_pct": "0.7328",
+          "adr": "366.7503"
+        },
+        {
+          "region": "Gold Coast",
+          "date": "2024-08-17T14:00:00.000Z",
+          "occupancy_pct": "0.6110",
+          "adr": "337.0173"
+        },
+        {
+          "region": "Gold Coast",
+          "date": "2024-08-18T14:00:00.000Z",
+          "occupancy_pct": "0.5517",
+          "adr": "301.6353"
+        },
+        {
+          "region": "Gold Coast",
+          "date": "2024-08-19T14:00:00.000Z",
+          "occupancy_pct": "0.5512",
+          "adr": "292.0207"
+        },
+        {
+          "region": "Gold Coast",
+          "date": "2024-08-20T14:00:00.000Z",
+          "occupancy_pct": "0.5808",
+          "adr": "291.5887"
+        },
+        {
+          "region": "Gold Coast",
+          "date": "2024-08-21T14:00:00.000Z",
+          "occupancy_pct": "0.6035",
+          "adr": "293.7945"
+        },
+        {
+          "region": "Gold Coast",
+          "date": "2024-08-22T14:00:00.000Z",
+          "occupancy_pct": "0.6626",
+          "adr": "326.0687"
+        },
+        {
+          "region": "Gold Coast",
+          "date": "2024-08-23T14:00:00.000Z",
+          "occupancy_pct": "0.6902",
+          "adr": "326.3663"
+        },
+        {
+          "region": "Gold Coast",
+          "date": "2024-08-24T14:00:00.000Z",
+          "occupancy_pct": "0.5994",
+          "adr": "302.3741"
+        },
+        {
+          "region": "Gold Coast",
+          "date": "2024-08-25T14:00:00.000Z",
+          "occupancy_pct": "0.5546",
+          "adr": "285.5256"
+        },
+        {
+          "region": "Gold Coast",
+          "date": "2024-08-26T14:00:00.000Z",
+          "occupancy_pct": "0.5575",
+          "adr": "282.2661"
+        },
+        {
+          "region": "Gold Coast",
+          "date": "2024-08-27T14:00:00.000Z",
+          "occupancy_pct": "0.5650",
+          "adr": "283.2459"
+        },
+        {
+          "region": "Gold Coast",
+          "date": "2024-08-28T14:00:00.000Z",
+          "occupancy_pct": "0.5973",
+          "adr": "286.6873"
+        },
+        {
+          "region": "Gold Coast",
+          "date": "2024-08-29T14:00:00.000Z",
+          "occupancy_pct": "0.6630",
+          "adr": "322.5828"
+        },
+        {
+          "region": "Gold Coast",
+          "date": "2024-08-30T14:00:00.000Z",
+          "occupancy_pct": "0.6791",
+          "adr": "322.1542"
+        },
+        {
+          "region": "Noosa",
+          "date": "2024-06-02T14:00:00.000Z",
+          "occupancy_pct": "0.4341",
+          "adr": "344.3379"
+        },
+        {
+          "region": "Noosa",
+          "date": "2024-06-03T14:00:00.000Z",
+          "occupancy_pct": "0.4227",
+          "adr": "345.4773"
+        },
+        {
+          "region": "Noosa",
+          "date": "2024-06-04T14:00:00.000Z",
+          "occupancy_pct": "0.4451",
+          "adr": "347.0576"
+        },
+        {
+          "region": "Noosa",
+          "date": "2024-06-05T14:00:00.000Z",
+          "occupancy_pct": "0.4708",
+          "adr": "345.0047"
+        },
+        {
+          "region": "Noosa",
+          "date": "2024-06-06T14:00:00.000Z",
+          "occupancy_pct": "0.5234",
+          "adr": "360.1745"
+        },
+        {
+          "region": "Noosa",
+          "date": "2024-06-07T14:00:00.000Z",
+          "occupancy_pct": "0.5735",
+          "adr": "361.9386"
+        },
+        {
+          "region": "Noosa",
+          "date": "2024-06-08T14:00:00.000Z",
+          "occupancy_pct": "0.5237",
+          "adr": "357.0898"
+        },
+        {
+          "region": "Noosa",
+          "date": "2024-06-09T14:00:00.000Z",
+          "occupancy_pct": "0.4799",
+          "adr": "353.2030"
+        },
+        {
+          "region": "Noosa",
+          "date": "2024-06-10T14:00:00.000Z",
+          "occupancy_pct": "0.4593",
+          "adr": "346.9800"
+        },
+        {
+          "region": "Noosa",
+          "date": "2024-06-11T14:00:00.000Z",
+          "occupancy_pct": "0.4601",
+          "adr": "351.9440"
+        },
+        {
+          "region": "Noosa",
+          "date": "2024-06-12T14:00:00.000Z",
+          "occupancy_pct": "0.4895",
+          "adr": "350.8232"
+        },
+        {
+          "region": "Noosa",
+          "date": "2024-06-13T14:00:00.000Z",
+          "occupancy_pct": "0.5240",
+          "adr": "361.5127"
+        },
+        {
+          "region": "Noosa",
+          "date": "2024-06-14T14:00:00.000Z",
+          "occupancy_pct": "0.5889",
+          "adr": "369.3770"
+        },
+        {
+          "region": "Noosa",
+          "date": "2024-06-15T14:00:00.000Z",
+          "occupancy_pct": "0.5012",
+          "adr": "362.5852"
+        },
+        {
+          "region": "Noosa",
+          "date": "2024-06-16T14:00:00.000Z",
+          "occupancy_pct": "0.4888",
+          "adr": "363.0540"
+        },
+        {
+          "region": "Noosa",
+          "date": "2024-06-17T14:00:00.000Z",
+          "occupancy_pct": "0.4663",
+          "adr": "355.2548"
+        },
+        {
+          "region": "Noosa",
+          "date": "2024-06-18T14:00:00.000Z",
+          "occupancy_pct": "0.4673",
+          "adr": "356.5811"
+        },
+        {
+          "region": "Noosa",
+          "date": "2024-06-19T14:00:00.000Z",
+          "occupancy_pct": "0.4731",
+          "adr": "357.8166"
+        },
+        {
+          "region": "Noosa",
+          "date": "2024-06-20T14:00:00.000Z",
+          "occupancy_pct": "0.5170",
+          "adr": "377.6342"
+        },
+        {
+          "region": "Noosa",
+          "date": "2024-06-21T14:00:00.000Z",
+          "occupancy_pct": "0.5390",
+          "adr": "376.6862"
+        },
+        {
+          "region": "Noosa",
+          "date": "2024-06-22T14:00:00.000Z",
+          "occupancy_pct": "0.5058",
+          "adr": "378.3217"
+        },
+        {
+          "region": "Noosa",
+          "date": "2024-06-23T14:00:00.000Z",
+          "occupancy_pct": "0.5037",
+          "adr": "377.7817"
+        },
+        {
+          "region": "Noosa",
+          "date": "2024-06-24T14:00:00.000Z",
+          "occupancy_pct": "0.5071",
+          "adr": "380.4143"
+        },
+        {
+          "region": "Noosa",
+          "date": "2024-06-25T14:00:00.000Z",
+          "occupancy_pct": "0.5084",
+          "adr": "379.1825"
+        },
+        {
+          "region": "Noosa",
+          "date": "2024-06-26T14:00:00.000Z",
+          "occupancy_pct": "0.5331",
+          "adr": "379.9226"
+        },
+        {
+          "region": "Noosa",
+          "date": "2024-06-27T14:00:00.000Z",
+          "occupancy_pct": "0.5849",
+          "adr": "388.9418"
+        },
+        {
+          "region": "Noosa",
+          "date": "2024-06-28T14:00:00.000Z",
+          "occupancy_pct": "0.6147",
+          "adr": "391.1545"
+        },
+        {
+          "region": "Noosa",
+          "date": "2024-06-29T14:00:00.000Z",
+          "occupancy_pct": "0.5717",
+          "adr": "396.1865"
+        },
+        {
+          "region": "Noosa",
+          "date": "2024-06-30T14:00:00.000Z",
+          "occupancy_pct": "0.5774",
+          "adr": "400.5119"
+        },
+        {
+          "region": "Noosa",
+          "date": "2024-07-01T14:00:00.000Z",
+          "occupancy_pct": "0.5719",
+          "adr": "397.8091"
+        },
+        {
+          "region": "Noosa",
+          "date": "2024-07-02T14:00:00.000Z",
+          "occupancy_pct": "0.5964",
+          "adr": "394.3296"
+        },
+        {
+          "region": "Noosa",
+          "date": "2024-07-03T14:00:00.000Z",
+          "occupancy_pct": "0.6179",
+          "adr": "392.5924"
+        },
+        {
+          "region": "Noosa",
+          "date": "2024-07-04T14:00:00.000Z",
+          "occupancy_pct": "0.6369",
+          "adr": "401.8875"
+        },
+        {
+          "region": "Noosa",
+          "date": "2024-07-05T14:00:00.000Z",
+          "occupancy_pct": "0.6540",
+          "adr": "400.5440"
+        },
+        {
+          "region": "Noosa",
+          "date": "2024-07-06T14:00:00.000Z",
+          "occupancy_pct": "0.5759",
+          "adr": "399.1503"
+        },
+        {
+          "region": "Noosa",
+          "date": "2024-07-07T14:00:00.000Z",
+          "occupancy_pct": "0.5769",
+          "adr": "393.2405"
+        },
+        {
+          "region": "Noosa",
+          "date": "2024-07-08T14:00:00.000Z",
+          "occupancy_pct": "0.5907",
+          "adr": "391.1673"
+        },
+        {
+          "region": "Noosa",
+          "date": "2024-07-09T14:00:00.000Z",
+          "occupancy_pct": "0.6090",
+          "adr": "386.3344"
+        },
+        {
+          "region": "Noosa",
+          "date": "2024-07-10T14:00:00.000Z",
+          "occupancy_pct": "0.6171",
+          "adr": "390.2624"
+        },
+        {
+          "region": "Noosa",
+          "date": "2024-07-11T14:00:00.000Z",
+          "occupancy_pct": "0.6754",
+          "adr": "393.9117"
+        },
+        {
+          "region": "Noosa",
+          "date": "2024-07-12T14:00:00.000Z",
+          "occupancy_pct": "0.7005",
+          "adr": "389.4878"
+        },
+        {
+          "region": "Noosa",
+          "date": "2024-07-13T14:00:00.000Z",
+          "occupancy_pct": "0.6279",
+          "adr": "389.5750"
+        },
+        {
+          "region": "Noosa",
+          "date": "2024-07-14T14:00:00.000Z",
+          "occupancy_pct": "0.6032",
+          "adr": "387.4850"
+        },
+        {
+          "region": "Noosa",
+          "date": "2024-07-15T14:00:00.000Z",
+          "occupancy_pct": "0.6040",
+          "adr": "378.9513"
+        },
+        {
+          "region": "Noosa",
+          "date": "2024-07-16T14:00:00.000Z",
+          "occupancy_pct": "0.6379",
+          "adr": "378.7362"
+        },
+        {
+          "region": "Noosa",
+          "date": "2024-07-17T14:00:00.000Z",
+          "occupancy_pct": "0.6739",
+          "adr": "382.8588"
+        },
+        {
+          "region": "Noosa",
+          "date": "2024-07-18T14:00:00.000Z",
+          "occupancy_pct": "0.6832",
+          "adr": "381.5131"
+        },
+        {
+          "region": "Noosa",
+          "date": "2024-07-19T14:00:00.000Z",
+          "occupancy_pct": "0.6647",
+          "adr": "373.2157"
+        },
+        {
+          "region": "Noosa",
+          "date": "2024-07-20T14:00:00.000Z",
+          "occupancy_pct": "0.5831",
+          "adr": "370.3563"
+        },
+        {
+          "region": "Noosa",
+          "date": "2024-07-21T14:00:00.000Z",
+          "occupancy_pct": "0.5609",
+          "adr": "357.0458"
+        },
+        {
+          "region": "Noosa",
+          "date": "2024-07-22T14:00:00.000Z",
+          "occupancy_pct": "0.5801",
+          "adr": "359.1962"
+        },
+        {
+          "region": "Noosa",
+          "date": "2024-07-23T14:00:00.000Z",
+          "occupancy_pct": "0.5645",
+          "adr": "355.5192"
+        },
+        {
+          "region": "Noosa",
+          "date": "2024-07-24T14:00:00.000Z",
+          "occupancy_pct": "0.6061",
+          "adr": "356.1053"
+        },
+        {
+          "region": "Noosa",
+          "date": "2024-07-25T14:00:00.000Z",
+          "occupancy_pct": "0.6731",
+          "adr": "363.0715"
+        },
+        {
+          "region": "Noosa",
+          "date": "2024-07-26T14:00:00.000Z",
+          "occupancy_pct": "0.6881",
+          "adr": "360.5882"
+        },
+        {
+          "region": "Noosa",
+          "date": "2024-07-27T14:00:00.000Z",
+          "occupancy_pct": "0.6039",
+          "adr": "355.8974"
+        },
+        {
+          "region": "Noosa",
+          "date": "2024-07-28T14:00:00.000Z",
+          "occupancy_pct": "0.5672",
+          "adr": "350.5546"
+        },
+        {
+          "region": "Noosa",
+          "date": "2024-07-29T14:00:00.000Z",
+          "occupancy_pct": "0.5547",
+          "adr": "349.4780"
+        },
+        {
+          "region": "Noosa",
+          "date": "2024-07-30T14:00:00.000Z",
+          "occupancy_pct": "0.5531",
+          "adr": "347.9609"
+        },
+        {
+          "region": "Noosa",
+          "date": "2024-07-31T14:00:00.000Z",
+          "occupancy_pct": "0.5937",
+          "adr": "345.4940"
+        },
+        {
+          "region": "Noosa",
+          "date": "2024-08-01T14:00:00.000Z",
+          "occupancy_pct": "0.6510",
+          "adr": "359.2800"
+        },
+        {
+          "region": "Noosa",
+          "date": "2024-08-02T14:00:00.000Z",
+          "occupancy_pct": "0.6735",
+          "adr": "358.0181"
+        },
+        {
+          "region": "Noosa",
+          "date": "2024-08-03T14:00:00.000Z",
+          "occupancy_pct": "0.5925",
+          "adr": "356.0440"
+        },
+        {
+          "region": "Noosa",
+          "date": "2024-08-04T14:00:00.000Z",
+          "occupancy_pct": "0.5573",
+          "adr": "354.5274"
+        },
+        {
+          "region": "Noosa",
+          "date": "2024-08-05T14:00:00.000Z",
+          "occupancy_pct": "0.5584",
+          "adr": "346.5209"
+        },
+        {
+          "region": "Noosa",
+          "date": "2024-08-06T14:00:00.000Z",
+          "occupancy_pct": "0.5571",
+          "adr": "344.5285"
+        },
+        {
+          "region": "Noosa",
+          "date": "2024-08-07T14:00:00.000Z",
+          "occupancy_pct": "0.5911",
+          "adr": "346.1734"
+        },
+        {
+          "region": "Noosa",
+          "date": "2024-08-08T14:00:00.000Z",
+          "occupancy_pct": "0.6822",
+          "adr": "366.0277"
+        },
+        {
+          "region": "Noosa",
+          "date": "2024-08-09T14:00:00.000Z",
+          "occupancy_pct": "0.7301",
+          "adr": "363.5952"
+        },
+        {
+          "region": "Noosa",
+          "date": "2024-08-10T14:00:00.000Z",
+          "occupancy_pct": "0.6433",
+          "adr": "351.9067"
+        },
+        {
+          "region": "Noosa",
+          "date": "2024-08-11T14:00:00.000Z",
+          "occupancy_pct": "0.6166",
+          "adr": "349.5866"
+        },
+        {
+          "region": "Noosa",
+          "date": "2024-08-12T14:00:00.000Z",
+          "occupancy_pct": "0.6002",
+          "adr": "345.6765"
+        },
+        {
+          "region": "Noosa",
+          "date": "2024-08-13T14:00:00.000Z",
+          "occupancy_pct": "0.6253",
+          "adr": "347.4847"
+        },
+        {
+          "region": "Noosa",
+          "date": "2024-08-14T14:00:00.000Z",
+          "occupancy_pct": "0.6378",
+          "adr": "351.7588"
+        },
+        {
+          "region": "Noosa",
+          "date": "2024-08-15T14:00:00.000Z",
+          "occupancy_pct": "0.7040",
+          "adr": "363.7553"
+        },
+        {
+          "region": "Noosa",
+          "date": "2024-08-16T14:00:00.000Z",
+          "occupancy_pct": "0.7383",
+          "adr": "367.2357"
+        },
+        {
+          "region": "Noosa",
+          "date": "2024-08-17T14:00:00.000Z",
+          "occupancy_pct": "0.6218",
+          "adr": "359.0840"
+        },
+        {
+          "region": "Noosa",
+          "date": "2024-08-18T14:00:00.000Z",
+          "occupancy_pct": "0.5875",
+          "adr": "350.1774"
+        },
+        {
+          "region": "Noosa",
+          "date": "2024-08-19T14:00:00.000Z",
+          "occupancy_pct": "0.5776",
+          "adr": "345.3714"
+        },
+        {
+          "region": "Noosa",
+          "date": "2024-08-20T14:00:00.000Z",
+          "occupancy_pct": "0.6108",
+          "adr": "348.6238"
+        },
+        {
+          "region": "Noosa",
+          "date": "2024-08-21T14:00:00.000Z",
+          "occupancy_pct": "0.6233",
+          "adr": "348.5164"
+        },
+        {
+          "region": "Noosa",
+          "date": "2024-08-22T14:00:00.000Z",
+          "occupancy_pct": "0.6776",
+          "adr": "365.7338"
+        },
+        {
+          "region": "Noosa",
+          "date": "2024-08-23T14:00:00.000Z",
+          "occupancy_pct": "0.6835",
+          "adr": "364.1307"
+        },
+        {
+          "region": "Noosa",
+          "date": "2024-08-24T14:00:00.000Z",
+          "occupancy_pct": "0.6177",
+          "adr": "358.7967"
+        },
+        {
+          "region": "Noosa",
+          "date": "2024-08-25T14:00:00.000Z",
+          "occupancy_pct": "0.5678",
+          "adr": "354.1551"
+        },
+        {
+          "region": "Noosa",
+          "date": "2024-08-26T14:00:00.000Z",
+          "occupancy_pct": "0.5525",
+          "adr": "354.0285"
+        },
+        {
+          "region": "Noosa",
+          "date": "2024-08-27T14:00:00.000Z",
+          "occupancy_pct": "0.5561",
+          "adr": "351.9899"
+        },
+        {
+          "region": "Noosa",
+          "date": "2024-08-28T14:00:00.000Z",
+          "occupancy_pct": "0.5938",
+          "adr": "350.7600"
+        },
+        {
+          "region": "Noosa",
+          "date": "2024-08-29T14:00:00.000Z",
+          "occupancy_pct": "0.6832",
+          "adr": "366.8853"
+        },
+        {
+          "region": "Noosa",
+          "date": "2024-08-30T14:00:00.000Z",
+          "occupancy_pct": "0.6913",
+          "adr": "365.7773"
+        },
+        {
+          "region": "Whitsundays",
+          "date": "2024-06-02T14:00:00.000Z",
+          "occupancy_pct": "0.4297",
+          "adr": "347.4605"
+        },
+        {
+          "region": "Whitsundays",
+          "date": "2024-06-03T14:00:00.000Z",
+          "occupancy_pct": "0.4348",
+          "adr": "350.9730"
+        },
+        {
+          "region": "Whitsundays",
+          "date": "2024-06-04T14:00:00.000Z",
+          "occupancy_pct": "0.4563",
+          "adr": "353.7331"
+        },
+        {
+          "region": "Whitsundays",
+          "date": "2024-06-05T14:00:00.000Z",
+          "occupancy_pct": "0.4891",
+          "adr": "366.1562"
+        },
+        {
+          "region": "Whitsundays",
+          "date": "2024-06-06T14:00:00.000Z",
+          "occupancy_pct": "0.5712",
+          "adr": "378.6481"
+        },
+        {
+          "region": "Whitsundays",
+          "date": "2024-06-07T14:00:00.000Z",
+          "occupancy_pct": "0.6206",
+          "adr": "385.1163"
+        },
+        {
+          "region": "Whitsundays",
+          "date": "2024-06-08T14:00:00.000Z",
+          "occupancy_pct": "0.5764",
+          "adr": "384.1089"
+        },
+        {
+          "region": "Whitsundays",
+          "date": "2024-06-09T14:00:00.000Z",
+          "occupancy_pct": "0.5254",
+          "adr": "373.2060"
+        },
+        {
+          "region": "Whitsundays",
+          "date": "2024-06-10T14:00:00.000Z",
+          "occupancy_pct": "0.5062",
+          "adr": "372.4553"
+        },
+        {
+          "region": "Whitsundays",
+          "date": "2024-06-11T14:00:00.000Z",
+          "occupancy_pct": "0.4917",
+          "adr": "359.0892"
+        },
+        {
+          "region": "Whitsundays",
+          "date": "2024-06-12T14:00:00.000Z",
+          "occupancy_pct": "0.5092",
+          "adr": "364.8311"
+        },
+        {
+          "region": "Whitsundays",
+          "date": "2024-06-13T14:00:00.000Z",
+          "occupancy_pct": "0.5806",
+          "adr": "371.6562"
+        },
+        {
+          "region": "Whitsundays",
+          "date": "2024-06-14T14:00:00.000Z",
+          "occupancy_pct": "0.6000",
+          "adr": "373.9272"
+        },
+        {
+          "region": "Whitsundays",
+          "date": "2024-06-15T14:00:00.000Z",
+          "occupancy_pct": "0.5477",
+          "adr": "372.8217"
+        },
+        {
+          "region": "Whitsundays",
+          "date": "2024-06-16T14:00:00.000Z",
+          "occupancy_pct": "0.5041",
+          "adr": "378.6764"
+        },
+        {
+          "region": "Whitsundays",
+          "date": "2024-06-17T14:00:00.000Z",
+          "occupancy_pct": "0.5062",
+          "adr": "369.6171"
+        },
+        {
+          "region": "Whitsundays",
+          "date": "2024-06-18T14:00:00.000Z",
+          "occupancy_pct": "0.5250",
+          "adr": "368.3305"
+        },
+        {
+          "region": "Whitsundays",
+          "date": "2024-06-19T14:00:00.000Z",
+          "occupancy_pct": "0.5376",
+          "adr": "372.0023"
+        },
+        {
+          "region": "Whitsundays",
+          "date": "2024-06-20T14:00:00.000Z",
+          "occupancy_pct": "0.6021",
+          "adr": "382.6005"
+        },
+        {
+          "region": "Whitsundays",
+          "date": "2024-06-21T14:00:00.000Z",
+          "occupancy_pct": "0.6260",
+          "adr": "386.9903"
+        },
+        {
+          "region": "Whitsundays",
+          "date": "2024-06-22T14:00:00.000Z",
+          "occupancy_pct": "0.5740",
+          "adr": "391.1439"
+        },
+        {
+          "region": "Whitsundays",
+          "date": "2024-06-23T14:00:00.000Z",
+          "occupancy_pct": "0.5482",
+          "adr": "394.4521"
+        },
+        {
+          "region": "Whitsundays",
+          "date": "2024-06-24T14:00:00.000Z",
+          "occupancy_pct": "0.5405",
+          "adr": "394.3373"
+        },
+        {
+          "region": "Whitsundays",
+          "date": "2024-06-25T14:00:00.000Z",
+          "occupancy_pct": "0.5326",
+          "adr": "385.9837"
+        },
+        {
+          "region": "Whitsundays",
+          "date": "2024-06-26T14:00:00.000Z",
+          "occupancy_pct": "0.5791",
+          "adr": "381.9473"
+        },
+        {
+          "region": "Whitsundays",
+          "date": "2024-06-27T14:00:00.000Z",
+          "occupancy_pct": "0.6366",
+          "adr": "378.9144"
+        },
+        {
+          "region": "Whitsundays",
+          "date": "2024-06-28T14:00:00.000Z",
+          "occupancy_pct": "0.6666",
+          "adr": "373.8628"
+        },
+        {
+          "region": "Whitsundays",
+          "date": "2024-06-29T14:00:00.000Z",
+          "occupancy_pct": "0.6412",
+          "adr": "391.9370"
+        },
+        {
+          "region": "Whitsundays",
+          "date": "2024-06-30T14:00:00.000Z",
+          "occupancy_pct": "0.6287",
+          "adr": "401.4746"
+        },
+        {
+          "region": "Whitsundays",
+          "date": "2024-07-01T14:00:00.000Z",
+          "occupancy_pct": "0.6269",
+          "adr": "399.9533"
+        },
+        {
+          "region": "Whitsundays",
+          "date": "2024-07-02T14:00:00.000Z",
+          "occupancy_pct": "0.6418",
+          "adr": "396.7699"
+        },
+        {
+          "region": "Whitsundays",
+          "date": "2024-07-03T14:00:00.000Z",
+          "occupancy_pct": "0.6807",
+          "adr": "395.2810"
+        },
+        {
+          "region": "Whitsundays",
+          "date": "2024-07-04T14:00:00.000Z",
+          "occupancy_pct": "0.6891",
+          "adr": "394.7866"
+        },
+        {
+          "region": "Whitsundays",
+          "date": "2024-07-05T14:00:00.000Z",
+          "occupancy_pct": "0.7002",
+          "adr": "393.6076"
+        },
+        {
+          "region": "Whitsundays",
+          "date": "2024-07-06T14:00:00.000Z",
+          "occupancy_pct": "0.6415",
+          "adr": "401.7812"
+        },
+        {
+          "region": "Whitsundays",
+          "date": "2024-07-07T14:00:00.000Z",
+          "occupancy_pct": "0.6441",
+          "adr": "407.2441"
+        },
+        {
+          "region": "Whitsundays",
+          "date": "2024-07-08T14:00:00.000Z",
+          "occupancy_pct": "0.6319",
+          "adr": "405.8777"
+        },
+        {
+          "region": "Whitsundays",
+          "date": "2024-07-09T14:00:00.000Z",
+          "occupancy_pct": "0.6714",
+          "adr": "410.8592"
+        },
+        {
+          "region": "Whitsundays",
+          "date": "2024-07-10T14:00:00.000Z",
+          "occupancy_pct": "0.7105",
+          "adr": "401.9849"
+        },
+        {
+          "region": "Whitsundays",
+          "date": "2024-07-11T14:00:00.000Z",
+          "occupancy_pct": "0.7392",
+          "adr": "396.3978"
+        },
+        {
+          "region": "Whitsundays",
+          "date": "2024-07-12T14:00:00.000Z",
+          "occupancy_pct": "0.7035",
+          "adr": "396.8300"
+        },
+        {
+          "region": "Whitsundays",
+          "date": "2024-07-13T14:00:00.000Z",
+          "occupancy_pct": "0.6451",
+          "adr": "401.7415"
+        },
+        {
+          "region": "Whitsundays",
+          "date": "2024-07-14T14:00:00.000Z",
+          "occupancy_pct": "0.6280",
+          "adr": "398.2670"
+        },
+        {
+          "region": "Whitsundays",
+          "date": "2024-07-15T14:00:00.000Z",
+          "occupancy_pct": "0.6311",
+          "adr": "391.2520"
+        },
+        {
+          "region": "Whitsundays",
+          "date": "2024-07-16T14:00:00.000Z",
+          "occupancy_pct": "0.6627",
+          "adr": "395.0477"
+        },
+        {
+          "region": "Whitsundays",
+          "date": "2024-07-17T14:00:00.000Z",
+          "occupancy_pct": "0.6936",
+          "adr": "398.6583"
+        },
+        {
+          "region": "Whitsundays",
+          "date": "2024-07-18T14:00:00.000Z",
+          "occupancy_pct": "0.7108",
+          "adr": "385.0602"
+        },
+        {
+          "region": "Whitsundays",
+          "date": "2024-07-19T14:00:00.000Z",
+          "occupancy_pct": "0.7215",
+          "adr": "373.1156"
+        },
+        {
+          "region": "Whitsundays",
+          "date": "2024-07-20T14:00:00.000Z",
+          "occupancy_pct": "0.6374",
+          "adr": "371.0134"
+        },
+        {
+          "region": "Whitsundays",
+          "date": "2024-07-21T14:00:00.000Z",
+          "occupancy_pct": "0.6318",
+          "adr": "369.3628"
+        },
+        {
+          "region": "Whitsundays",
+          "date": "2024-07-22T14:00:00.000Z",
+          "occupancy_pct": "0.6320",
+          "adr": "373.4009"
+        },
+        {
+          "region": "Whitsundays",
+          "date": "2024-07-23T14:00:00.000Z",
+          "occupancy_pct": "0.6634",
+          "adr": "378.2789"
+        },
+        {
+          "region": "Whitsundays",
+          "date": "2024-07-24T14:00:00.000Z",
+          "occupancy_pct": "0.6726",
+          "adr": "378.6417"
+        },
+        {
+          "region": "Whitsundays",
+          "date": "2024-07-25T14:00:00.000Z",
+          "occupancy_pct": "0.7162",
+          "adr": "370.8333"
+        },
+        {
+          "region": "Whitsundays",
+          "date": "2024-07-26T14:00:00.000Z",
+          "occupancy_pct": "0.7258",
+          "adr": "376.6949"
+        },
+        {
+          "region": "Whitsundays",
+          "date": "2024-07-27T14:00:00.000Z",
+          "occupancy_pct": "0.6226",
+          "adr": "376.5871"
+        },
+        {
+          "region": "Whitsundays",
+          "date": "2024-07-28T14:00:00.000Z",
+          "occupancy_pct": "0.5894",
+          "adr": "382.7869"
+        },
+        {
+          "region": "Whitsundays",
+          "date": "2024-07-29T14:00:00.000Z",
+          "occupancy_pct": "0.5511",
+          "adr": "379.8699"
+        },
+        {
+          "region": "Whitsundays",
+          "date": "2024-07-30T14:00:00.000Z",
+          "occupancy_pct": "0.5458",
+          "adr": "376.6934"
+        },
+        {
+          "region": "Whitsundays",
+          "date": "2024-07-31T14:00:00.000Z",
+          "occupancy_pct": "0.5793",
+          "adr": "382.8040"
+        },
+        {
+          "region": "Whitsundays",
+          "date": "2024-08-01T14:00:00.000Z",
+          "occupancy_pct": "0.6642",
+          "adr": "391.9350"
+        },
+        {
+          "region": "Whitsundays",
+          "date": "2024-08-02T14:00:00.000Z",
+          "occupancy_pct": "0.6841",
+          "adr": "388.8227"
+        },
+        {
+          "region": "Whitsundays",
+          "date": "2024-08-03T14:00:00.000Z",
+          "occupancy_pct": "0.6206",
+          "adr": "389.8016"
+        },
+        {
+          "region": "Whitsundays",
+          "date": "2024-08-04T14:00:00.000Z",
+          "occupancy_pct": "0.5980",
+          "adr": "378.8475"
+        },
+        {
+          "region": "Whitsundays",
+          "date": "2024-08-05T14:00:00.000Z",
+          "occupancy_pct": "0.5929",
+          "adr": "383.5353"
+        },
+        {
+          "region": "Whitsundays",
+          "date": "2024-08-06T14:00:00.000Z",
+          "occupancy_pct": "0.6174",
+          "adr": "378.9455"
+        },
+        {
+          "region": "Whitsundays",
+          "date": "2024-08-07T14:00:00.000Z",
+          "occupancy_pct": "0.6612",
+          "adr": "383.1510"
+        },
+        {
+          "region": "Whitsundays",
+          "date": "2024-08-08T14:00:00.000Z",
+          "occupancy_pct": "0.7284",
+          "adr": "389.4972"
+        },
+        {
+          "region": "Whitsundays",
+          "date": "2024-08-09T14:00:00.000Z",
+          "occupancy_pct": "0.7557",
+          "adr": "386.4752"
+        },
+        {
+          "region": "Whitsundays",
+          "date": "2024-08-10T14:00:00.000Z",
+          "occupancy_pct": "0.7121",
+          "adr": "388.6419"
+        },
+        {
+          "region": "Whitsundays",
+          "date": "2024-08-11T14:00:00.000Z",
+          "occupancy_pct": "0.6473",
+          "adr": "394.8678"
+        },
+        {
+          "region": "Whitsundays",
+          "date": "2024-08-12T14:00:00.000Z",
+          "occupancy_pct": "0.6351",
+          "adr": "392.3851"
+        },
+        {
+          "region": "Whitsundays",
+          "date": "2024-08-13T14:00:00.000Z",
+          "occupancy_pct": "0.6383",
+          "adr": "389.4958"
+        },
+        {
+          "region": "Whitsundays",
+          "date": "2024-08-14T14:00:00.000Z",
+          "occupancy_pct": "0.6450",
+          "adr": "380.1438"
+        },
+        {
+          "region": "Whitsundays",
+          "date": "2024-08-15T14:00:00.000Z",
+          "occupancy_pct": "0.7388",
+          "adr": "384.7778"
+        },
+        {
+          "region": "Whitsundays",
+          "date": "2024-08-16T14:00:00.000Z",
+          "occupancy_pct": "0.7780",
+          "adr": "379.2602"
+        },
+        {
+          "region": "Whitsundays",
+          "date": "2024-08-17T14:00:00.000Z",
+          "occupancy_pct": "0.6857",
+          "adr": "388.3654"
+        },
+        {
+          "region": "Whitsundays",
+          "date": "2024-08-18T14:00:00.000Z",
+          "occupancy_pct": "0.6597",
+          "adr": "390.0071"
+        },
+        {
+          "region": "Whitsundays",
+          "date": "2024-08-19T14:00:00.000Z",
+          "occupancy_pct": "0.6273",
+          "adr": "395.0408"
+        },
+        {
+          "region": "Whitsundays",
+          "date": "2024-08-20T14:00:00.000Z",
+          "occupancy_pct": "0.6826",
+          "adr": "386.7782"
+        },
+        {
+          "region": "Whitsundays",
+          "date": "2024-08-21T14:00:00.000Z",
+          "occupancy_pct": "0.6923",
+          "adr": "389.9398"
+        },
+        {
+          "region": "Whitsundays",
+          "date": "2024-08-22T14:00:00.000Z",
+          "occupancy_pct": "0.7486",
+          "adr": "383.5502"
+        },
+        {
+          "region": "Whitsundays",
+          "date": "2024-08-23T14:00:00.000Z",
+          "occupancy_pct": "0.7350",
+          "adr": "381.8303"
+        },
+        {
+          "region": "Whitsundays",
+          "date": "2024-08-24T14:00:00.000Z",
+          "occupancy_pct": "0.5890",
+          "adr": "353.3080"
+        },
+        {
+          "region": "Whitsundays",
+          "date": "2024-08-25T14:00:00.000Z",
+          "occupancy_pct": "0.5234",
+          "adr": "364.1741"
+        },
+        {
+          "region": "Whitsundays",
+          "date": "2024-08-26T14:00:00.000Z",
+          "occupancy_pct": "0.5099",
+          "adr": "368.4123"
+        },
+        {
+          "region": "Whitsundays",
+          "date": "2024-08-27T14:00:00.000Z",
+          "occupancy_pct": "0.5398",
+          "adr": "374.2376"
+        },
+        {
+          "region": "Whitsundays",
+          "date": "2024-08-28T14:00:00.000Z",
+          "occupancy_pct": "0.5956",
+          "adr": "376.7826"
+        },
+        {
+          "region": "Whitsundays",
+          "date": "2024-08-29T14:00:00.000Z",
+          "occupancy_pct": "0.6631",
+          "adr": "377.4696"
+        },
+        {
+          "region": "Whitsundays",
+          "date": "2024-08-30T14:00:00.000Z",
+          "occupancy_pct": "0.6903",
+          "adr": "394.2782"
+        }
+      ]
+    }
+  },
+  "government": {
+    "at": 1780829994025,
+    "value": {
+      "persona": "government",
+      "narrative": "Over the last three months, Queensland's key tourism regions have shown strong performance, particularly during the peak winter holiday period in July. We've observed a general increase in hotel occupancy from June, reaching peaks in mid-July, followed by a slight moderation in August.\n\nLooking at occupancy rates, Cairns, Whitsundays, and Noosa experienced the highest peak occupancies, often surpassing 70% and even reaching over 80% in Cairns during mid-July. The Gold Coast, while still performing well, generally had slightly lower peak occupancy rates compared to these tropical destinations, often staying below 70%.\n\nWhen it comes to the average daily rate, Noosa and Whitsundays stand out, consistently commanding the highest prices for accommodation, frequently above $350 and peaking well over $400. The Gold Coast also achieved high rates, especially on weekends, sometimes reaching almost $400. Cairns, while having strong occupancy, generally offered more competitive average daily rates, typically between $270 and $310.",
+      "chartSpec": {
+        "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+        "description": "Daily Hotel Occupancy Trends by Region for June-August 2024.",
+        "data": {
+          "name": "table"
+        },
+        "mark": "line",
+        "title": "Daily Hotel Occupancy Trends by Region (June-August 2024)",
+        "encoding": {
+          "x": {
+            "field": "date",
+            "type": "temporal",
+            "title": "Date",
+            "axis": {
+              "format": "%b %d"
+            }
+          },
+          "y": {
+            "field": "occupancy_pct",
+            "type": "quantitative",
+            "title": "Occupancy Percentage",
+            "axis": {
+              "format": ".0%"
+            }
+          },
+          "color": {
+            "field": "region",
+            "type": "nominal",
+            "title": "Region"
+          },
+          "tooltip": [
+            {
+              "field": "date",
+              "type": "temporal",
+              "title": "Date",
+              "format": "%Y-%m-%d"
+            },
+            {
+              "field": "region",
+              "type": "nominal",
+              "title": "Region"
+            },
+            {
+              "field": "occupancy_pct",
+              "type": "quantitative",
+              "title": "Occupancy Percentage",
+              "format": ".1%"
+            },
+            {
+              "field": "adr",
+              "type": "quantitative",
+              "title": "Average Daily Rate (AUD)",
+              "format": "$,.2f"
+            }
+          ]
+        }
+      },
+      "data": [
+        {
+          "region": "Cairns",
+          "date": "2024-06-02T14:00:00.000Z",
+          "occupancy_pct": "0.5619",
+          "adr": "266.8060"
+        },
+        {
+          "region": "Cairns",
+          "date": "2024-06-03T14:00:00.000Z",
+          "occupancy_pct": "0.5609",
+          "adr": "266.7980"
+        },
+        {
+          "region": "Cairns",
+          "date": "2024-06-04T14:00:00.000Z",
+          "occupancy_pct": "0.5837",
+          "adr": "270.4645"
+        },
+        {
+          "region": "Cairns",
+          "date": "2024-06-05T14:00:00.000Z",
+          "occupancy_pct": "0.5957",
+          "adr": "270.0551"
+        },
+        {
+          "region": "Cairns",
+          "date": "2024-06-06T14:00:00.000Z",
+          "occupancy_pct": "0.6258",
+          "adr": "289.0781"
+        },
+        {
+          "region": "Cairns",
+          "date": "2024-06-07T14:00:00.000Z",
+          "occupancy_pct": "0.6362",
+          "adr": "286.4995"
+        },
+        {
+          "region": "Cairns",
+          "date": "2024-06-08T14:00:00.000Z",
+          "occupancy_pct": "0.6042",
+          "adr": "281.4861"
+        },
+        {
+          "region": "Cairns",
+          "date": "2024-06-09T14:00:00.000Z",
+          "occupancy_pct": "0.5654",
+          "adr": "278.8645"
+        },
+        {
+          "region": "Cairns",
+          "date": "2024-06-10T14:00:00.000Z",
+          "occupancy_pct": "0.5652",
+          "adr": "282.4293"
+        },
+        {
+          "region": "Cairns",
+          "date": "2024-06-11T14:00:00.000Z",
+          "occupancy_pct": "0.6023",
+          "adr": "279.7182"
+        },
+        {
+          "region": "Cairns",
+          "date": "2024-06-12T14:00:00.000Z",
+          "occupancy_pct": "0.6548",
+          "adr": "286.3322"
+        },
+        {
+          "region": "Cairns",
+          "date": "2024-06-13T14:00:00.000Z",
+          "occupancy_pct": "0.7160",
+          "adr": "302.3559"
+        },
+        {
+          "region": "Cairns",
+          "date": "2024-06-14T14:00:00.000Z",
+          "occupancy_pct": "0.7345",
+          "adr": "303.5791"
+        },
+        {
+          "region": "Cairns",
+          "date": "2024-06-15T14:00:00.000Z",
+          "occupancy_pct": "0.7214",
+          "adr": "305.2955"
+        },
+        {
+          "region": "Cairns",
+          "date": "2024-06-16T14:00:00.000Z",
+          "occupancy_pct": "0.6547",
+          "adr": "297.1870"
+        },
+        {
+          "region": "Cairns",
+          "date": "2024-06-17T14:00:00.000Z",
+          "occupancy_pct": "0.6106",
+          "adr": "286.4993"
+        },
+        {
+          "region": "Cairns",
+          "date": "2024-06-18T14:00:00.000Z",
+          "occupancy_pct": "0.6321",
+          "adr": "289.0599"
+        },
+        {
+          "region": "Cairns",
+          "date": "2024-06-19T14:00:00.000Z",
+          "occupancy_pct": "0.6266",
+          "adr": "287.7301"
+        },
+        {
+          "region": "Cairns",
+          "date": "2024-06-20T14:00:00.000Z",
+          "occupancy_pct": "0.6552",
+          "adr": "294.2456"
+        },
+        {
+          "region": "Cairns",
+          "date": "2024-06-21T14:00:00.000Z",
+          "occupancy_pct": "0.6952",
+          "adr": "300.3504"
+        },
+        {
+          "region": "Cairns",
+          "date": "2024-06-22T14:00:00.000Z",
+          "occupancy_pct": "0.6788",
+          "adr": "301.7812"
+        },
+        {
+          "region": "Cairns",
+          "date": "2024-06-23T14:00:00.000Z",
+          "occupancy_pct": "0.6743",
+          "adr": "299.2134"
+        },
+        {
+          "region": "Cairns",
+          "date": "2024-06-24T14:00:00.000Z",
+          "occupancy_pct": "0.6896",
+          "adr": "300.6210"
+        },
+        {
+          "region": "Cairns",
+          "date": "2024-06-25T14:00:00.000Z",
+          "occupancy_pct": "0.7127",
+          "adr": "303.9198"
+        },
+        {
+          "region": "Cairns",
+          "date": "2024-06-26T14:00:00.000Z",
+          "occupancy_pct": "0.7241",
+          "adr": "301.2325"
+        },
+        {
+          "region": "Cairns",
+          "date": "2024-06-27T14:00:00.000Z",
+          "occupancy_pct": "0.7292",
+          "adr": "305.4485"
+        },
+        {
+          "region": "Cairns",
+          "date": "2024-06-28T14:00:00.000Z",
+          "occupancy_pct": "0.7379",
+          "adr": "305.7486"
+        },
+        {
+          "region": "Cairns",
+          "date": "2024-06-29T14:00:00.000Z",
+          "occupancy_pct": "0.7257",
+          "adr": "309.2905"
+        },
+        {
+          "region": "Cairns",
+          "date": "2024-06-30T14:00:00.000Z",
+          "occupancy_pct": "0.7153",
+          "adr": "313.8286"
+        },
+        {
+          "region": "Cairns",
+          "date": "2024-07-01T14:00:00.000Z",
+          "occupancy_pct": "0.7230",
+          "adr": "311.6223"
+        },
+        {
+          "region": "Cairns",
+          "date": "2024-07-02T14:00:00.000Z",
+          "occupancy_pct": "0.7446",
+          "adr": "312.4237"
+        },
+        {
+          "region": "Cairns",
+          "date": "2024-07-03T14:00:00.000Z",
+          "occupancy_pct": "0.7556",
+          "adr": "309.3721"
+        },
+        {
+          "region": "Cairns",
+          "date": "2024-07-04T14:00:00.000Z",
+          "occupancy_pct": "0.7567",
+          "adr": "314.5027"
+        },
+        {
+          "region": "Cairns",
+          "date": "2024-07-05T14:00:00.000Z",
+          "occupancy_pct": "0.7611",
+          "adr": "311.6790"
+        },
+        {
+          "region": "Cairns",
+          "date": "2024-07-06T14:00:00.000Z",
+          "occupancy_pct": "0.7298",
+          "adr": "310.8331"
+        },
+        {
+          "region": "Cairns",
+          "date": "2024-07-07T14:00:00.000Z",
+          "occupancy_pct": "0.7434",
+          "adr": "311.7421"
+        },
+        {
+          "region": "Cairns",
+          "date": "2024-07-08T14:00:00.000Z",
+          "occupancy_pct": "0.7436",
+          "adr": "310.3338"
+        },
+        {
+          "region": "Cairns",
+          "date": "2024-07-09T14:00:00.000Z",
+          "occupancy_pct": "0.7664",
+          "adr": "310.6273"
+        },
+        {
+          "region": "Cairns",
+          "date": "2024-07-10T14:00:00.000Z",
+          "occupancy_pct": "0.7723",
+          "adr": "310.2056"
+        },
+        {
+          "region": "Cairns",
+          "date": "2024-07-11T14:00:00.000Z",
+          "occupancy_pct": "0.7930",
+          "adr": "310.9300"
+        },
+        {
+          "region": "Cairns",
+          "date": "2024-07-12T14:00:00.000Z",
+          "occupancy_pct": "0.8145",
+          "adr": "314.1281"
+        },
+        {
+          "region": "Cairns",
+          "date": "2024-07-13T14:00:00.000Z",
+          "occupancy_pct": "0.7914",
+          "adr": "312.8297"
+        },
+        {
+          "region": "Cairns",
+          "date": "2024-07-14T14:00:00.000Z",
+          "occupancy_pct": "0.7774",
+          "adr": "308.1131"
+        },
+        {
+          "region": "Cairns",
+          "date": "2024-07-15T14:00:00.000Z",
+          "occupancy_pct": "0.7746",
+          "adr": "307.8138"
+        },
+        {
+          "region": "Cairns",
+          "date": "2024-07-16T14:00:00.000Z",
+          "occupancy_pct": "0.7674",
+          "adr": "307.0894"
+        },
+        {
+          "region": "Cairns",
+          "date": "2024-07-17T14:00:00.000Z",
+          "occupancy_pct": "0.7695",
+          "adr": "307.3842"
+        },
+        {
+          "region": "Cairns",
+          "date": "2024-07-18T14:00:00.000Z",
+          "occupancy_pct": "0.7795",
+          "adr": "310.2092"
+        },
+        {
+          "region": "Cairns",
+          "date": "2024-07-19T14:00:00.000Z",
+          "occupancy_pct": "0.7682",
+          "adr": "309.8693"
+        },
+        {
+          "region": "Cairns",
+          "date": "2024-07-20T14:00:00.000Z",
+          "occupancy_pct": "0.7438",
+          "adr": "309.1221"
+        },
+        {
+          "region": "Cairns",
+          "date": "2024-07-21T14:00:00.000Z",
+          "occupancy_pct": "0.7151",
+          "adr": "309.3192"
+        },
+        {
+          "region": "Cairns",
+          "date": "2024-07-22T14:00:00.000Z",
+          "occupancy_pct": "0.7129",
+          "adr": "305.1309"
+        },
+        {
+          "region": "Cairns",
+          "date": "2024-07-23T14:00:00.000Z",
+          "occupancy_pct": "0.7233",
+          "adr": "304.2915"
+        },
+        {
+          "region": "Cairns",
+          "date": "2024-07-24T14:00:00.000Z",
+          "occupancy_pct": "0.7554",
+          "adr": "304.0546"
+        },
+        {
+          "region": "Cairns",
+          "date": "2024-07-25T14:00:00.000Z",
+          "occupancy_pct": "0.7883",
+          "adr": "308.2965"
+        },
+        {
+          "region": "Cairns",
+          "date": "2024-07-26T14:00:00.000Z",
+          "occupancy_pct": "0.7779",
+          "adr": "308.6613"
+        },
+        {
+          "region": "Cairns",
+          "date": "2024-07-27T14:00:00.000Z",
+          "occupancy_pct": "0.7289",
+          "adr": "302.9524"
+        },
+        {
+          "region": "Cairns",
+          "date": "2024-07-28T14:00:00.000Z",
+          "occupancy_pct": "0.6959",
+          "adr": "295.4294"
+        },
+        {
+          "region": "Cairns",
+          "date": "2024-07-29T14:00:00.000Z",
+          "occupancy_pct": "0.6759",
+          "adr": "296.7079"
+        },
+        {
+          "region": "Cairns",
+          "date": "2024-07-30T14:00:00.000Z",
+          "occupancy_pct": "0.6756",
+          "adr": "299.9469"
+        },
+        {
+          "region": "Cairns",
+          "date": "2024-07-31T14:00:00.000Z",
+          "occupancy_pct": "0.6955",
+          "adr": "301.4541"
+        },
+        {
+          "region": "Cairns",
+          "date": "2024-08-01T14:00:00.000Z",
+          "occupancy_pct": "0.7337",
+          "adr": "305.3289"
+        },
+        {
+          "region": "Cairns",
+          "date": "2024-08-02T14:00:00.000Z",
+          "occupancy_pct": "0.7484",
+          "adr": "307.0324"
+        },
+        {
+          "region": "Cairns",
+          "date": "2024-08-03T14:00:00.000Z",
+          "occupancy_pct": "0.7177",
+          "adr": "302.2445"
+        },
+        {
+          "region": "Cairns",
+          "date": "2024-08-04T14:00:00.000Z",
+          "occupancy_pct": "0.7109",
+          "adr": "298.7706"
+        },
+        {
+          "region": "Cairns",
+          "date": "2024-08-05T14:00:00.000Z",
+          "occupancy_pct": "0.7066",
+          "adr": "294.7501"
+        },
+        {
+          "region": "Cairns",
+          "date": "2024-08-06T14:00:00.000Z",
+          "occupancy_pct": "0.7257",
+          "adr": "297.9063"
+        },
+        {
+          "region": "Cairns",
+          "date": "2024-08-07T14:00:00.000Z",
+          "occupancy_pct": "0.7312",
+          "adr": "297.9089"
+        },
+        {
+          "region": "Cairns",
+          "date": "2024-08-08T14:00:00.000Z",
+          "occupancy_pct": "0.7502",
+          "adr": "301.9876"
+        },
+        {
+          "region": "Cairns",
+          "date": "2024-08-09T14:00:00.000Z",
+          "occupancy_pct": "0.7504",
+          "adr": "305.8575"
+        },
+        {
+          "region": "Cairns",
+          "date": "2024-08-10T14:00:00.000Z",
+          "occupancy_pct": "0.7363",
+          "adr": "301.7991"
+        },
+        {
+          "region": "Cairns",
+          "date": "2024-08-11T14:00:00.000Z",
+          "occupancy_pct": "0.7313",
+          "adr": "299.8060"
+        },
+        {
+          "region": "Cairns",
+          "date": "2024-08-12T14:00:00.000Z",
+          "occupancy_pct": "0.7446",
+          "adr": "296.8633"
+        },
+        {
+          "region": "Cairns",
+          "date": "2024-08-13T14:00:00.000Z",
+          "occupancy_pct": "0.7548",
+          "adr": "296.1990"
+        },
+        {
+          "region": "Cairns",
+          "date": "2024-08-14T14:00:00.000Z",
+          "occupancy_pct": "0.7649",
+          "adr": "295.2631"
+        },
+        {
+          "region": "Cairns",
+          "date": "2024-08-15T14:00:00.000Z",
+          "occupancy_pct": "0.7841",
+          "adr": "305.2804"
+        },
+        {
+          "region": "Cairns",
+          "date": "2024-08-16T14:00:00.000Z",
+          "occupancy_pct": "0.7683",
+          "adr": "307.5360"
+        },
+        {
+          "region": "Cairns",
+          "date": "2024-08-17T14:00:00.000Z",
+          "occupancy_pct": "0.7445",
+          "adr": "303.3526"
+        },
+        {
+          "region": "Cairns",
+          "date": "2024-08-18T14:00:00.000Z",
+          "occupancy_pct": "0.7197",
+          "adr": "299.6758"
+        },
+        {
+          "region": "Cairns",
+          "date": "2024-08-19T14:00:00.000Z",
+          "occupancy_pct": "0.7027",
+          "adr": "292.7396"
+        },
+        {
+          "region": "Cairns",
+          "date": "2024-08-20T14:00:00.000Z",
+          "occupancy_pct": "0.7123",
+          "adr": "294.1686"
+        },
+        {
+          "region": "Cairns",
+          "date": "2024-08-21T14:00:00.000Z",
+          "occupancy_pct": "0.7187",
+          "adr": "292.3876"
+        },
+        {
+          "region": "Cairns",
+          "date": "2024-08-22T14:00:00.000Z",
+          "occupancy_pct": "0.7389",
+          "adr": "292.5274"
+        },
+        {
+          "region": "Cairns",
+          "date": "2024-08-23T14:00:00.000Z",
+          "occupancy_pct": "0.7450",
+          "adr": "295.2769"
+        },
+        {
+          "region": "Cairns",
+          "date": "2024-08-24T14:00:00.000Z",
+          "occupancy_pct": "0.6934",
+          "adr": "294.9103"
+        },
+        {
+          "region": "Cairns",
+          "date": "2024-08-25T14:00:00.000Z",
+          "occupancy_pct": "0.6565",
+          "adr": "288.2841"
+        },
+        {
+          "region": "Cairns",
+          "date": "2024-08-26T14:00:00.000Z",
+          "occupancy_pct": "0.6426",
+          "adr": "285.2883"
+        },
+        {
+          "region": "Cairns",
+          "date": "2024-08-27T14:00:00.000Z",
+          "occupancy_pct": "0.6455",
+          "adr": "285.3970"
+        },
+        {
+          "region": "Cairns",
+          "date": "2024-08-28T14:00:00.000Z",
+          "occupancy_pct": "0.6636",
+          "adr": "288.8554"
+        },
+        {
+          "region": "Cairns",
+          "date": "2024-08-29T14:00:00.000Z",
+          "occupancy_pct": "0.6675",
+          "adr": "289.0835"
+        },
+        {
+          "region": "Cairns",
+          "date": "2024-08-30T14:00:00.000Z",
+          "occupancy_pct": "0.6658",
+          "adr": "291.0571"
+        },
+        {
+          "region": "Gold Coast",
+          "date": "2024-06-02T14:00:00.000Z",
+          "occupancy_pct": "0.4578",
+          "adr": "283.0020"
+        },
+        {
+          "region": "Gold Coast",
+          "date": "2024-06-03T14:00:00.000Z",
+          "occupancy_pct": "0.4616",
+          "adr": "279.9807"
+        },
+        {
+          "region": "Gold Coast",
+          "date": "2024-06-04T14:00:00.000Z",
+          "occupancy_pct": "0.4830",
+          "adr": "281.1528"
+        },
+        {
+          "region": "Gold Coast",
+          "date": "2024-06-05T14:00:00.000Z",
+          "occupancy_pct": "0.5364",
+          "adr": "285.8232"
+        },
+        {
+          "region": "Gold Coast",
+          "date": "2024-06-06T14:00:00.000Z",
+          "occupancy_pct": "0.6194",
+          "adr": "330.0044"
+        },
+        {
+          "region": "Gold Coast",
+          "date": "2024-06-07T14:00:00.000Z",
+          "occupancy_pct": "0.6630",
+          "adr": "331.5978"
+        },
+        {
+          "region": "Gold Coast",
+          "date": "2024-06-08T14:00:00.000Z",
+          "occupancy_pct": "0.5757",
+          "adr": "308.4864"
+        },
+        {
+          "region": "Gold Coast",
+          "date": "2024-06-09T14:00:00.000Z",
+          "occupancy_pct": "0.5072",
+          "adr": "292.0328"
+        },
+        {
+          "region": "Gold Coast",
+          "date": "2024-06-10T14:00:00.000Z",
+          "occupancy_pct": "0.4913",
+          "adr": "285.4465"
+        },
+        {
+          "region": "Gold Coast",
+          "date": "2024-06-11T14:00:00.000Z",
+          "occupancy_pct": "0.4991",
+          "adr": "283.4705"
+        },
+        {
+          "region": "Gold Coast",
+          "date": "2024-06-12T14:00:00.000Z",
+          "occupancy_pct": "0.5233",
+          "adr": "285.3374"
+        },
+        {
+          "region": "Gold Coast",
+          "date": "2024-06-13T14:00:00.000Z",
+          "occupancy_pct": "0.5863",
+          "adr": "323.1101"
+        },
+        {
+          "region": "Gold Coast",
+          "date": "2024-06-14T14:00:00.000Z",
+          "occupancy_pct": "0.6189",
+          "adr": "323.1052"
+        },
+        {
+          "region": "Gold Coast",
+          "date": "2024-06-15T14:00:00.000Z",
+          "occupancy_pct": "0.5344",
+          "adr": "299.7886"
+        },
+        {
+          "region": "Gold Coast",
+          "date": "2024-06-16T14:00:00.000Z",
+          "occupancy_pct": "0.5011",
+          "adr": "289.6460"
+        },
+        {
+          "region": "Gold Coast",
+          "date": "2024-06-17T14:00:00.000Z",
+          "occupancy_pct": "0.4988",
+          "adr": "283.8122"
+        },
+        {
+          "region": "Gold Coast",
+          "date": "2024-06-18T14:00:00.000Z",
+          "occupancy_pct": "0.5122",
+          "adr": "284.1288"
+        },
+        {
+          "region": "Gold Coast",
+          "date": "2024-06-19T14:00:00.000Z",
+          "occupancy_pct": "0.5401",
+          "adr": "285.3340"
+        },
+        {
+          "region": "Gold Coast",
+          "date": "2024-06-20T14:00:00.000Z",
+          "occupancy_pct": "0.5943",
+          "adr": "337.4122"
+        },
+        {
+          "region": "Gold Coast",
+          "date": "2024-06-21T14:00:00.000Z",
+          "occupancy_pct": "0.6177",
+          "adr": "336.3107"
+        },
+        {
+          "region": "Gold Coast",
+          "date": "2024-06-22T14:00:00.000Z",
+          "occupancy_pct": "0.5491",
+          "adr": "320.9897"
+        },
+        {
+          "region": "Gold Coast",
+          "date": "2024-06-23T14:00:00.000Z",
+          "occupancy_pct": "0.5059",
+          "adr": "313.7807"
+        },
+        {
+          "region": "Gold Coast",
+          "date": "2024-06-24T14:00:00.000Z",
+          "occupancy_pct": "0.5108",
+          "adr": "313.8399"
+        },
+        {
+          "region": "Gold Coast",
+          "date": "2024-06-25T14:00:00.000Z",
+          "occupancy_pct": "0.5185",
+          "adr": "315.6342"
+        },
+        {
+          "region": "Gold Coast",
+          "date": "2024-06-26T14:00:00.000Z",
+          "occupancy_pct": "0.5447",
+          "adr": "318.9244"
+        },
+        {
+          "region": "Gold Coast",
+          "date": "2024-06-27T14:00:00.000Z",
+          "occupancy_pct": "0.6005",
+          "adr": "346.2186"
+        },
+        {
+          "region": "Gold Coast",
+          "date": "2024-06-28T14:00:00.000Z",
+          "occupancy_pct": "0.6381",
+          "adr": "349.7532"
+        },
+        {
+          "region": "Gold Coast",
+          "date": "2024-06-29T14:00:00.000Z",
+          "occupancy_pct": "0.5492",
+          "adr": "333.7797"
+        },
+        {
+          "region": "Gold Coast",
+          "date": "2024-06-30T14:00:00.000Z",
+          "occupancy_pct": "0.5325",
+          "adr": "332.7245"
+        },
+        {
+          "region": "Gold Coast",
+          "date": "2024-07-01T14:00:00.000Z",
+          "occupancy_pct": "0.5410",
+          "adr": "332.5973"
+        },
+        {
+          "region": "Gold Coast",
+          "date": "2024-07-02T14:00:00.000Z",
+          "occupancy_pct": "0.5660",
+          "adr": "333.0415"
+        },
+        {
+          "region": "Gold Coast",
+          "date": "2024-07-03T14:00:00.000Z",
+          "occupancy_pct": "0.6140",
+          "adr": "340.2887"
+        },
+        {
+          "region": "Gold Coast",
+          "date": "2024-07-04T14:00:00.000Z",
+          "occupancy_pct": "0.7331",
+          "adr": "391.8125"
+        },
+        {
+          "region": "Gold Coast",
+          "date": "2024-07-05T14:00:00.000Z",
+          "occupancy_pct": "0.7745",
+          "adr": "396.1158"
+        },
+        {
+          "region": "Gold Coast",
+          "date": "2024-07-06T14:00:00.000Z",
+          "occupancy_pct": "0.6839",
+          "adr": "380.7020"
+        },
+        {
+          "region": "Gold Coast",
+          "date": "2024-07-07T14:00:00.000Z",
+          "occupancy_pct": "0.6138",
+          "adr": "352.9092"
+        },
+        {
+          "region": "Gold Coast",
+          "date": "2024-07-08T14:00:00.000Z",
+          "occupancy_pct": "0.6064",
+          "adr": "341.0723"
+        },
+        {
+          "region": "Gold Coast",
+          "date": "2024-07-09T14:00:00.000Z",
+          "occupancy_pct": "0.6206",
+          "adr": "338.6032"
+        },
+        {
+          "region": "Gold Coast",
+          "date": "2024-07-10T14:00:00.000Z",
+          "occupancy_pct": "0.6420",
+          "adr": "335.8285"
+        },
+        {
+          "region": "Gold Coast",
+          "date": "2024-07-11T14:00:00.000Z",
+          "occupancy_pct": "0.6850",
+          "adr": "351.6896"
+        },
+        {
+          "region": "Gold Coast",
+          "date": "2024-07-12T14:00:00.000Z",
+          "occupancy_pct": "0.7145",
+          "adr": "351.5988"
+        },
+        {
+          "region": "Gold Coast",
+          "date": "2024-07-13T14:00:00.000Z",
+          "occupancy_pct": "0.6433",
+          "adr": "331.6798"
+        },
+        {
+          "region": "Gold Coast",
+          "date": "2024-07-14T14:00:00.000Z",
+          "occupancy_pct": "0.6122",
+          "adr": "319.4825"
+        },
+        {
+          "region": "Gold Coast",
+          "date": "2024-07-15T14:00:00.000Z",
+          "occupancy_pct": "0.6003",
+          "adr": "316.8652"
+        },
+        {
+          "region": "Gold Coast",
+          "date": "2024-07-16T14:00:00.000Z",
+          "occupancy_pct": "0.5943",
+          "adr": "311.8351"
+        },
+        {
+          "region": "Gold Coast",
+          "date": "2024-07-17T14:00:00.000Z",
+          "occupancy_pct": "0.6126",
+          "adr": "312.5842"
+        },
+        {
+          "region": "Gold Coast",
+          "date": "2024-07-18T14:00:00.000Z",
+          "occupancy_pct": "0.6586",
+          "adr": "332.3925"
+        },
+        {
+          "region": "Gold Coast",
+          "date": "2024-07-19T14:00:00.000Z",
+          "occupancy_pct": "0.6577",
+          "adr": "329.3285"
+        },
+        {
+          "region": "Gold Coast",
+          "date": "2024-07-20T14:00:00.000Z",
+          "occupancy_pct": "0.5673",
+          "adr": "306.2073"
+        },
+        {
+          "region": "Gold Coast",
+          "date": "2024-07-21T14:00:00.000Z",
+          "occupancy_pct": "0.5350",
+          "adr": "288.1134"
+        },
+        {
+          "region": "Gold Coast",
+          "date": "2024-07-22T14:00:00.000Z",
+          "occupancy_pct": "0.5361",
+          "adr": "286.0594"
+        },
+        {
+          "region": "Gold Coast",
+          "date": "2024-07-23T14:00:00.000Z",
+          "occupancy_pct": "0.5549",
+          "adr": "285.4268"
+        },
+        {
+          "region": "Gold Coast",
+          "date": "2024-07-24T14:00:00.000Z",
+          "occupancy_pct": "0.5944",
+          "adr": "289.8737"
+        },
+        {
+          "region": "Gold Coast",
+          "date": "2024-07-25T14:00:00.000Z",
+          "occupancy_pct": "0.6779",
+          "adr": "325.6732"
+        },
+        {
+          "region": "Gold Coast",
+          "date": "2024-07-26T14:00:00.000Z",
+          "occupancy_pct": "0.7050",
+          "adr": "326.0137"
+        },
+        {
+          "region": "Gold Coast",
+          "date": "2024-07-27T14:00:00.000Z",
+          "occupancy_pct": "0.5981",
+          "adr": "298.4045"
+        },
+        {
+          "region": "Gold Coast",
+          "date": "2024-07-28T14:00:00.000Z",
+          "occupancy_pct": "0.5636",
+          "adr": "282.8426"
+        },
+        {
+          "region": "Gold Coast",
+          "date": "2024-07-29T14:00:00.000Z",
+          "occupancy_pct": "0.5532",
+          "adr": "280.3446"
+        },
+        {
+          "region": "Gold Coast",
+          "date": "2024-07-30T14:00:00.000Z",
+          "occupancy_pct": "0.5562",
+          "adr": "278.0206"
+        },
+        {
+          "region": "Gold Coast",
+          "date": "2024-07-31T14:00:00.000Z",
+          "occupancy_pct": "0.5787",
+          "adr": "283.7576"
+        },
+        {
+          "region": "Gold Coast",
+          "date": "2024-08-01T14:00:00.000Z",
+          "occupancy_pct": "0.6573",
+          "adr": "322.2469"
+        },
+        {
+          "region": "Gold Coast",
+          "date": "2024-08-02T14:00:00.000Z",
+          "occupancy_pct": "0.6777",
+          "adr": "320.7381"
+        },
+        {
+          "region": "Gold Coast",
+          "date": "2024-08-03T14:00:00.000Z",
+          "occupancy_pct": "0.5790",
+          "adr": "293.4827"
+        },
+        {
+          "region": "Gold Coast",
+          "date": "2024-08-04T14:00:00.000Z",
+          "occupancy_pct": "0.5444",
+          "adr": "283.0234"
+        },
+        {
+          "region": "Gold Coast",
+          "date": "2024-08-05T14:00:00.000Z",
+          "occupancy_pct": "0.5462",
+          "adr": "281.6362"
+        },
+        {
+          "region": "Gold Coast",
+          "date": "2024-08-06T14:00:00.000Z",
+          "occupancy_pct": "0.5525",
+          "adr": "283.0497"
+        },
+        {
+          "region": "Gold Coast",
+          "date": "2024-08-07T14:00:00.000Z",
+          "occupancy_pct": "0.5956",
+          "adr": "286.2059"
+        },
+        {
+          "region": "Gold Coast",
+          "date": "2024-08-08T14:00:00.000Z",
+          "occupancy_pct": "0.6612",
+          "adr": "323.2216"
+        },
+        {
+          "region": "Gold Coast",
+          "date": "2024-08-09T14:00:00.000Z",
+          "occupancy_pct": "0.6926",
+          "adr": "324.4042"
+        },
+        {
+          "region": "Gold Coast",
+          "date": "2024-08-10T14:00:00.000Z",
+          "occupancy_pct": "0.5898",
+          "adr": "301.2925"
+        },
+        {
+          "region": "Gold Coast",
+          "date": "2024-08-11T14:00:00.000Z",
+          "occupancy_pct": "0.5499",
+          "adr": "290.3156"
+        },
+        {
+          "region": "Gold Coast",
+          "date": "2024-08-12T14:00:00.000Z",
+          "occupancy_pct": "0.5517",
+          "adr": "288.1452"
+        },
+        {
+          "region": "Gold Coast",
+          "date": "2024-08-13T14:00:00.000Z",
+          "occupancy_pct": "0.5660",
+          "adr": "290.3653"
+        },
+        {
+          "region": "Gold Coast",
+          "date": "2024-08-14T14:00:00.000Z",
+          "occupancy_pct": "0.6004",
+          "adr": "298.5850"
+        },
+        {
+          "region": "Gold Coast",
+          "date": "2024-08-15T14:00:00.000Z",
+          "occupancy_pct": "0.7102",
+          "adr": "364.5845"
+        },
+        {
+          "region": "Gold Coast",
+          "date": "2024-08-16T14:00:00.000Z",
+          "occupancy_pct": "0.7328",
+          "adr": "366.7503"
+        },
+        {
+          "region": "Gold Coast",
+          "date": "2024-08-17T14:00:00.000Z",
+          "occupancy_pct": "0.6110",
+          "adr": "337.0173"
+        },
+        {
+          "region": "Gold Coast",
+          "date": "2024-08-18T14:00:00.000Z",
+          "occupancy_pct": "0.5517",
+          "adr": "301.6353"
+        },
+        {
+          "region": "Gold Coast",
+          "date": "2024-08-19T14:00:00.000Z",
+          "occupancy_pct": "0.5512",
+          "adr": "292.0207"
+        },
+        {
+          "region": "Gold Coast",
+          "date": "2024-08-20T14:00:00.000Z",
+          "occupancy_pct": "0.5808",
+          "adr": "291.5887"
+        },
+        {
+          "region": "Gold Coast",
+          "date": "2024-08-21T14:00:00.000Z",
+          "occupancy_pct": "0.6035",
+          "adr": "293.7945"
+        },
+        {
+          "region": "Gold Coast",
+          "date": "2024-08-22T14:00:00.000Z",
+          "occupancy_pct": "0.6626",
+          "adr": "326.0687"
+        },
+        {
+          "region": "Gold Coast",
+          "date": "2024-08-23T14:00:00.000Z",
+          "occupancy_pct": "0.6902",
+          "adr": "326.3663"
+        },
+        {
+          "region": "Gold Coast",
+          "date": "2024-08-24T14:00:00.000Z",
+          "occupancy_pct": "0.5994",
+          "adr": "302.3741"
+        },
+        {
+          "region": "Gold Coast",
+          "date": "2024-08-25T14:00:00.000Z",
+          "occupancy_pct": "0.5546",
+          "adr": "285.5256"
+        },
+        {
+          "region": "Gold Coast",
+          "date": "2024-08-26T14:00:00.000Z",
+          "occupancy_pct": "0.5575",
+          "adr": "282.2661"
+        },
+        {
+          "region": "Gold Coast",
+          "date": "2024-08-27T14:00:00.000Z",
+          "occupancy_pct": "0.5650",
+          "adr": "283.2459"
+        },
+        {
+          "region": "Gold Coast",
+          "date": "2024-08-28T14:00:00.000Z",
+          "occupancy_pct": "0.5973",
+          "adr": "286.6873"
+        },
+        {
+          "region": "Gold Coast",
+          "date": "2024-08-29T14:00:00.000Z",
+          "occupancy_pct": "0.6630",
+          "adr": "322.5828"
+        },
+        {
+          "region": "Gold Coast",
+          "date": "2024-08-30T14:00:00.000Z",
+          "occupancy_pct": "0.6791",
+          "adr": "322.1542"
+        },
+        {
+          "region": "Noosa",
+          "date": "2024-06-02T14:00:00.000Z",
+          "occupancy_pct": "0.4341",
+          "adr": "344.3379"
+        },
+        {
+          "region": "Noosa",
+          "date": "2024-06-03T14:00:00.000Z",
+          "occupancy_pct": "0.4227",
+          "adr": "345.4773"
+        },
+        {
+          "region": "Noosa",
+          "date": "2024-06-04T14:00:00.000Z",
+          "occupancy_pct": "0.4451",
+          "adr": "347.0576"
+        },
+        {
+          "region": "Noosa",
+          "date": "2024-06-05T14:00:00.000Z",
+          "occupancy_pct": "0.4708",
+          "adr": "345.0047"
+        },
+        {
+          "region": "Noosa",
+          "date": "2024-06-06T14:00:00.000Z",
+          "occupancy_pct": "0.5234",
+          "adr": "360.1745"
+        },
+        {
+          "region": "Noosa",
+          "date": "2024-06-07T14:00:00.000Z",
+          "occupancy_pct": "0.5735",
+          "adr": "361.9386"
+        },
+        {
+          "region": "Noosa",
+          "date": "2024-06-08T14:00:00.000Z",
+          "occupancy_pct": "0.5237",
+          "adr": "357.0898"
+        },
+        {
+          "region": "Noosa",
+          "date": "2024-06-09T14:00:00.000Z",
+          "occupancy_pct": "0.4799",
+          "adr": "353.2030"
+        },
+        {
+          "region": "Noosa",
+          "date": "2024-06-10T14:00:00.000Z",
+          "occupancy_pct": "0.4593",
+          "adr": "346.9800"
+        },
+        {
+          "region": "Noosa",
+          "date": "2024-06-11T14:00:00.000Z",
+          "occupancy_pct": "0.4601",
+          "adr": "351.9440"
+        },
+        {
+          "region": "Noosa",
+          "date": "2024-06-12T14:00:00.000Z",
+          "occupancy_pct": "0.4895",
+          "adr": "350.8232"
+        },
+        {
+          "region": "Noosa",
+          "date": "2024-06-13T14:00:00.000Z",
+          "occupancy_pct": "0.5240",
+          "adr": "361.5127"
+        },
+        {
+          "region": "Noosa",
+          "date": "2024-06-14T14:00:00.000Z",
+          "occupancy_pct": "0.5889",
+          "adr": "369.3770"
+        },
+        {
+          "region": "Noosa",
+          "date": "2024-06-15T14:00:00.000Z",
+          "occupancy_pct": "0.5012",
+          "adr": "362.5852"
+        },
+        {
+          "region": "Noosa",
+          "date": "2024-06-16T14:00:00.000Z",
+          "occupancy_pct": "0.4888",
+          "adr": "363.0540"
+        },
+        {
+          "region": "Noosa",
+          "date": "2024-06-17T14:00:00.000Z",
+          "occupancy_pct": "0.4663",
+          "adr": "355.2548"
+        },
+        {
+          "region": "Noosa",
+          "date": "2024-06-18T14:00:00.000Z",
+          "occupancy_pct": "0.4673",
+          "adr": "356.5811"
+        },
+        {
+          "region": "Noosa",
+          "date": "2024-06-19T14:00:00.000Z",
+          "occupancy_pct": "0.4731",
+          "adr": "357.8166"
+        },
+        {
+          "region": "Noosa",
+          "date": "2024-06-20T14:00:00.000Z",
+          "occupancy_pct": "0.5170",
+          "adr": "377.6342"
+        },
+        {
+          "region": "Noosa",
+          "date": "2024-06-21T14:00:00.000Z",
+          "occupancy_pct": "0.5390",
+          "adr": "376.6862"
+        },
+        {
+          "region": "Noosa",
+          "date": "2024-06-22T14:00:00.000Z",
+          "occupancy_pct": "0.5058",
+          "adr": "378.3217"
+        },
+        {
+          "region": "Noosa",
+          "date": "2024-06-23T14:00:00.000Z",
+          "occupancy_pct": "0.5037",
+          "adr": "377.7817"
+        },
+        {
+          "region": "Noosa",
+          "date": "2024-06-24T14:00:00.000Z",
+          "occupancy_pct": "0.5071",
+          "adr": "380.4143"
+        },
+        {
+          "region": "Noosa",
+          "date": "2024-06-25T14:00:00.000Z",
+          "occupancy_pct": "0.5084",
+          "adr": "379.1825"
+        },
+        {
+          "region": "Noosa",
+          "date": "2024-06-26T14:00:00.000Z",
+          "occupancy_pct": "0.5331",
+          "adr": "379.9226"
+        },
+        {
+          "region": "Noosa",
+          "date": "2024-06-27T14:00:00.000Z",
+          "occupancy_pct": "0.5849",
+          "adr": "388.9418"
+        },
+        {
+          "region": "Noosa",
+          "date": "2024-06-28T14:00:00.000Z",
+          "occupancy_pct": "0.6147",
+          "adr": "391.1545"
+        },
+        {
+          "region": "Noosa",
+          "date": "2024-06-29T14:00:00.000Z",
+          "occupancy_pct": "0.5717",
+          "adr": "396.1865"
+        },
+        {
+          "region": "Noosa",
+          "date": "2024-06-30T14:00:00.000Z",
+          "occupancy_pct": "0.5774",
+          "adr": "400.5119"
+        },
+        {
+          "region": "Noosa",
+          "date": "2024-07-01T14:00:00.000Z",
+          "occupancy_pct": "0.5719",
+          "adr": "397.8091"
+        },
+        {
+          "region": "Noosa",
+          "date": "2024-07-02T14:00:00.000Z",
+          "occupancy_pct": "0.5964",
+          "adr": "394.3296"
+        },
+        {
+          "region": "Noosa",
+          "date": "2024-07-03T14:00:00.000Z",
+          "occupancy_pct": "0.6179",
+          "adr": "392.5924"
+        },
+        {
+          "region": "Noosa",
+          "date": "2024-07-04T14:00:00.000Z",
+          "occupancy_pct": "0.6369",
+          "adr": "401.8875"
+        },
+        {
+          "region": "Noosa",
+          "date": "2024-07-05T14:00:00.000Z",
+          "occupancy_pct": "0.6540",
+          "adr": "400.5440"
+        },
+        {
+          "region": "Noosa",
+          "date": "2024-07-06T14:00:00.000Z",
+          "occupancy_pct": "0.5759",
+          "adr": "399.1503"
+        },
+        {
+          "region": "Noosa",
+          "date": "2024-07-07T14:00:00.000Z",
+          "occupancy_pct": "0.5769",
+          "adr": "393.2405"
+        },
+        {
+          "region": "Noosa",
+          "date": "2024-07-08T14:00:00.000Z",
+          "occupancy_pct": "0.5907",
+          "adr": "391.1673"
+        },
+        {
+          "region": "Noosa",
+          "date": "2024-07-09T14:00:00.000Z",
+          "occupancy_pct": "0.6090",
+          "adr": "386.3344"
+        },
+        {
+          "region": "Noosa",
+          "date": "2024-07-10T14:00:00.000Z",
+          "occupancy_pct": "0.6171",
+          "adr": "390.2624"
+        },
+        {
+          "region": "Noosa",
+          "date": "2024-07-11T14:00:00.000Z",
+          "occupancy_pct": "0.6754",
+          "adr": "393.9117"
+        },
+        {
+          "region": "Noosa",
+          "date": "2024-07-12T14:00:00.000Z",
+          "occupancy_pct": "0.7005",
+          "adr": "389.4878"
+        },
+        {
+          "region": "Noosa",
+          "date": "2024-07-13T14:00:00.000Z",
+          "occupancy_pct": "0.6279",
+          "adr": "389.5750"
+        },
+        {
+          "region": "Noosa",
+          "date": "2024-07-14T14:00:00.000Z",
+          "occupancy_pct": "0.6032",
+          "adr": "387.4850"
+        },
+        {
+          "region": "Noosa",
+          "date": "2024-07-15T14:00:00.000Z",
+          "occupancy_pct": "0.6040",
+          "adr": "378.9513"
+        },
+        {
+          "region": "Noosa",
+          "date": "2024-07-16T14:00:00.000Z",
+          "occupancy_pct": "0.6379",
+          "adr": "378.7362"
+        },
+        {
+          "region": "Noosa",
+          "date": "2024-07-17T14:00:00.000Z",
+          "occupancy_pct": "0.6739",
+          "adr": "382.8588"
+        },
+        {
+          "region": "Noosa",
+          "date": "2024-07-18T14:00:00.000Z",
+          "occupancy_pct": "0.6832",
+          "adr": "381.5131"
+        },
+        {
+          "region": "Noosa",
+          "date": "2024-07-19T14:00:00.000Z",
+          "occupancy_pct": "0.6647",
+          "adr": "373.2157"
+        },
+        {
+          "region": "Noosa",
+          "date": "2024-07-20T14:00:00.000Z",
+          "occupancy_pct": "0.5831",
+          "adr": "370.3563"
+        },
+        {
+          "region": "Noosa",
+          "date": "2024-07-21T14:00:00.000Z",
+          "occupancy_pct": "0.5609",
+          "adr": "357.0458"
+        },
+        {
+          "region": "Noosa",
+          "date": "2024-07-22T14:00:00.000Z",
+          "occupancy_pct": "0.5801",
+          "adr": "359.1962"
+        },
+        {
+          "region": "Noosa",
+          "date": "2024-07-23T14:00:00.000Z",
+          "occupancy_pct": "0.5645",
+          "adr": "355.5192"
+        },
+        {
+          "region": "Noosa",
+          "date": "2024-07-24T14:00:00.000Z",
+          "occupancy_pct": "0.6061",
+          "adr": "356.1053"
+        },
+        {
+          "region": "Noosa",
+          "date": "2024-07-25T14:00:00.000Z",
+          "occupancy_pct": "0.6731",
+          "adr": "363.0715"
+        },
+        {
+          "region": "Noosa",
+          "date": "2024-07-26T14:00:00.000Z",
+          "occupancy_pct": "0.6881",
+          "adr": "360.5882"
+        },
+        {
+          "region": "Noosa",
+          "date": "2024-07-27T14:00:00.000Z",
+          "occupancy_pct": "0.6039",
+          "adr": "355.8974"
+        },
+        {
+          "region": "Noosa",
+          "date": "2024-07-28T14:00:00.000Z",
+          "occupancy_pct": "0.5672",
+          "adr": "350.5546"
+        },
+        {
+          "region": "Noosa",
+          "date": "2024-07-29T14:00:00.000Z",
+          "occupancy_pct": "0.5547",
+          "adr": "349.4780"
+        },
+        {
+          "region": "Noosa",
+          "date": "2024-07-30T14:00:00.000Z",
+          "occupancy_pct": "0.5531",
+          "adr": "347.9609"
+        },
+        {
+          "region": "Noosa",
+          "date": "2024-07-31T14:00:00.000Z",
+          "occupancy_pct": "0.5937",
+          "adr": "345.4940"
+        },
+        {
+          "region": "Noosa",
+          "date": "2024-08-01T14:00:00.000Z",
+          "occupancy_pct": "0.6510",
+          "adr": "359.2800"
+        },
+        {
+          "region": "Noosa",
+          "date": "2024-08-02T14:00:00.000Z",
+          "occupancy_pct": "0.6735",
+          "adr": "358.0181"
+        },
+        {
+          "region": "Noosa",
+          "date": "2024-08-03T14:00:00.000Z",
+          "occupancy_pct": "0.5925",
+          "adr": "356.0440"
+        },
+        {
+          "region": "Noosa",
+          "date": "2024-08-04T14:00:00.000Z",
+          "occupancy_pct": "0.5573",
+          "adr": "354.5274"
+        },
+        {
+          "region": "Noosa",
+          "date": "2024-08-05T14:00:00.000Z",
+          "occupancy_pct": "0.5584",
+          "adr": "346.5209"
+        },
+        {
+          "region": "Noosa",
+          "date": "2024-08-06T14:00:00.000Z",
+          "occupancy_pct": "0.5571",
+          "adr": "344.5285"
+        },
+        {
+          "region": "Noosa",
+          "date": "2024-08-07T14:00:00.000Z",
+          "occupancy_pct": "0.5911",
+          "adr": "346.1734"
+        },
+        {
+          "region": "Noosa",
+          "date": "2024-08-08T14:00:00.000Z",
+          "occupancy_pct": "0.6822",
+          "adr": "366.0277"
+        },
+        {
+          "region": "Noosa",
+          "date": "2024-08-09T14:00:00.000Z",
+          "occupancy_pct": "0.7301",
+          "adr": "363.5952"
+        },
+        {
+          "region": "Noosa",
+          "date": "2024-08-10T14:00:00.000Z",
+          "occupancy_pct": "0.6433",
+          "adr": "351.9067"
+        },
+        {
+          "region": "Noosa",
+          "date": "2024-08-11T14:00:00.000Z",
+          "occupancy_pct": "0.6166",
+          "adr": "349.5866"
+        },
+        {
+          "region": "Noosa",
+          "date": "2024-08-12T14:00:00.000Z",
+          "occupancy_pct": "0.6002",
+          "adr": "345.6765"
+        },
+        {
+          "region": "Noosa",
+          "date": "2024-08-13T14:00:00.000Z",
+          "occupancy_pct": "0.6253",
+          "adr": "347.4847"
+        },
+        {
+          "region": "Noosa",
+          "date": "2024-08-14T14:00:00.000Z",
+          "occupancy_pct": "0.6378",
+          "adr": "351.7588"
+        },
+        {
+          "region": "Noosa",
+          "date": "2024-08-15T14:00:00.000Z",
+          "occupancy_pct": "0.7040",
+          "adr": "363.7553"
+        },
+        {
+          "region": "Noosa",
+          "date": "2024-08-16T14:00:00.000Z",
+          "occupancy_pct": "0.7383",
+          "adr": "367.2357"
+        },
+        {
+          "region": "Noosa",
+          "date": "2024-08-17T14:00:00.000Z",
+          "occupancy_pct": "0.6218",
+          "adr": "359.0840"
+        },
+        {
+          "region": "Noosa",
+          "date": "2024-08-18T14:00:00.000Z",
+          "occupancy_pct": "0.5875",
+          "adr": "350.1774"
+        },
+        {
+          "region": "Noosa",
+          "date": "2024-08-19T14:00:00.000Z",
+          "occupancy_pct": "0.5776",
+          "adr": "345.3714"
+        },
+        {
+          "region": "Noosa",
+          "date": "2024-08-20T14:00:00.000Z",
+          "occupancy_pct": "0.6108",
+          "adr": "348.6238"
+        },
+        {
+          "region": "Noosa",
+          "date": "2024-08-21T14:00:00.000Z",
+          "occupancy_pct": "0.6233",
+          "adr": "348.5164"
+        },
+        {
+          "region": "Noosa",
+          "date": "2024-08-22T14:00:00.000Z",
+          "occupancy_pct": "0.6776",
+          "adr": "365.7338"
+        },
+        {
+          "region": "Noosa",
+          "date": "2024-08-23T14:00:00.000Z",
+          "occupancy_pct": "0.6835",
+          "adr": "364.1307"
+        },
+        {
+          "region": "Noosa",
+          "date": "2024-08-24T14:00:00.000Z",
+          "occupancy_pct": "0.6177",
+          "adr": "358.7967"
+        },
+        {
+          "region": "Noosa",
+          "date": "2024-08-25T14:00:00.000Z",
+          "occupancy_pct": "0.5678",
+          "adr": "354.1551"
+        },
+        {
+          "region": "Noosa",
+          "date": "2024-08-26T14:00:00.000Z",
+          "occupancy_pct": "0.5525",
+          "adr": "354.0285"
+        },
+        {
+          "region": "Noosa",
+          "date": "2024-08-27T14:00:00.000Z",
+          "occupancy_pct": "0.5561",
+          "adr": "351.9899"
+        },
+        {
+          "region": "Noosa",
+          "date": "2024-08-28T14:00:00.000Z",
+          "occupancy_pct": "0.5938",
+          "adr": "350.7600"
+        },
+        {
+          "region": "Noosa",
+          "date": "2024-08-29T14:00:00.000Z",
+          "occupancy_pct": "0.6832",
+          "adr": "366.8853"
+        },
+        {
+          "region": "Noosa",
+          "date": "2024-08-30T14:00:00.000Z",
+          "occupancy_pct": "0.6913",
+          "adr": "365.7773"
+        },
+        {
+          "region": "Whitsundays",
+          "date": "2024-06-02T14:00:00.000Z",
+          "occupancy_pct": "0.4297",
+          "adr": "347.4605"
+        },
+        {
+          "region": "Whitsundays",
+          "date": "2024-06-03T14:00:00.000Z",
+          "occupancy_pct": "0.4348",
+          "adr": "350.9730"
+        },
+        {
+          "region": "Whitsundays",
+          "date": "2024-06-04T14:00:00.000Z",
+          "occupancy_pct": "0.4563",
+          "adr": "353.7331"
+        },
+        {
+          "region": "Whitsundays",
+          "date": "2024-06-05T14:00:00.000Z",
+          "occupancy_pct": "0.4891",
+          "adr": "366.1562"
+        },
+        {
+          "region": "Whitsundays",
+          "date": "2024-06-06T14:00:00.000Z",
+          "occupancy_pct": "0.5712",
+          "adr": "378.6481"
+        },
+        {
+          "region": "Whitsundays",
+          "date": "2024-06-07T14:00:00.000Z",
+          "occupancy_pct": "0.6206",
+          "adr": "385.1163"
+        },
+        {
+          "region": "Whitsundays",
+          "date": "2024-06-08T14:00:00.000Z",
+          "occupancy_pct": "0.5764",
+          "adr": "384.1089"
+        },
+        {
+          "region": "Whitsundays",
+          "date": "2024-06-09T14:00:00.000Z",
+          "occupancy_pct": "0.5254",
+          "adr": "373.2060"
+        },
+        {
+          "region": "Whitsundays",
+          "date": "2024-06-10T14:00:00.000Z",
+          "occupancy_pct": "0.5062",
+          "adr": "372.4553"
+        },
+        {
+          "region": "Whitsundays",
+          "date": "2024-06-11T14:00:00.000Z",
+          "occupancy_pct": "0.4917",
+          "adr": "359.0892"
+        },
+        {
+          "region": "Whitsundays",
+          "date": "2024-06-12T14:00:00.000Z",
+          "occupancy_pct": "0.5092",
+          "adr": "364.8311"
+        },
+        {
+          "region": "Whitsundays",
+          "date": "2024-06-13T14:00:00.000Z",
+          "occupancy_pct": "0.5806",
+          "adr": "371.6562"
+        },
+        {
+          "region": "Whitsundays",
+          "date": "2024-06-14T14:00:00.000Z",
+          "occupancy_pct": "0.6000",
+          "adr": "373.9272"
+        },
+        {
+          "region": "Whitsundays",
+          "date": "2024-06-15T14:00:00.000Z",
+          "occupancy_pct": "0.5477",
+          "adr": "372.8217"
+        },
+        {
+          "region": "Whitsundays",
+          "date": "2024-06-16T14:00:00.000Z",
+          "occupancy_pct": "0.5041",
+          "adr": "378.6764"
+        },
+        {
+          "region": "Whitsundays",
+          "date": "2024-06-17T14:00:00.000Z",
+          "occupancy_pct": "0.5062",
+          "adr": "369.6171"
+        },
+        {
+          "region": "Whitsundays",
+          "date": "2024-06-18T14:00:00.000Z",
+          "occupancy_pct": "0.5250",
+          "adr": "368.3305"
+        },
+        {
+          "region": "Whitsundays",
+          "date": "2024-06-19T14:00:00.000Z",
+          "occupancy_pct": "0.5376",
+          "adr": "372.0023"
+        },
+        {
+          "region": "Whitsundays",
+          "date": "2024-06-20T14:00:00.000Z",
+          "occupancy_pct": "0.6021",
+          "adr": "382.6005"
+        },
+        {
+          "region": "Whitsundays",
+          "date": "2024-06-21T14:00:00.000Z",
+          "occupancy_pct": "0.6260",
+          "adr": "386.9903"
+        },
+        {
+          "region": "Whitsundays",
+          "date": "2024-06-22T14:00:00.000Z",
+          "occupancy_pct": "0.5740",
+          "adr": "391.1439"
+        },
+        {
+          "region": "Whitsundays",
+          "date": "2024-06-23T14:00:00.000Z",
+          "occupancy_pct": "0.5482",
+          "adr": "394.4521"
+        },
+        {
+          "region": "Whitsundays",
+          "date": "2024-06-24T14:00:00.000Z",
+          "occupancy_pct": "0.5405",
+          "adr": "394.3373"
+        },
+        {
+          "region": "Whitsundays",
+          "date": "2024-06-25T14:00:00.000Z",
+          "occupancy_pct": "0.5326",
+          "adr": "385.9837"
+        },
+        {
+          "region": "Whitsundays",
+          "date": "2024-06-26T14:00:00.000Z",
+          "occupancy_pct": "0.5791",
+          "adr": "381.9473"
+        },
+        {
+          "region": "Whitsundays",
+          "date": "2024-06-27T14:00:00.000Z",
+          "occupancy_pct": "0.6366",
+          "adr": "378.9144"
+        },
+        {
+          "region": "Whitsundays",
+          "date": "2024-06-28T14:00:00.000Z",
+          "occupancy_pct": "0.6666",
+          "adr": "373.8628"
+        },
+        {
+          "region": "Whitsundays",
+          "date": "2024-06-29T14:00:00.000Z",
+          "occupancy_pct": "0.6412",
+          "adr": "391.9370"
+        },
+        {
+          "region": "Whitsundays",
+          "date": "2024-06-30T14:00:00.000Z",
+          "occupancy_pct": "0.6287",
+          "adr": "401.4746"
+        },
+        {
+          "region": "Whitsundays",
+          "date": "2024-07-01T14:00:00.000Z",
+          "occupancy_pct": "0.6269",
+          "adr": "399.9533"
+        },
+        {
+          "region": "Whitsundays",
+          "date": "2024-07-02T14:00:00.000Z",
+          "occupancy_pct": "0.6418",
+          "adr": "396.7699"
+        },
+        {
+          "region": "Whitsundays",
+          "date": "2024-07-03T14:00:00.000Z",
+          "occupancy_pct": "0.6807",
+          "adr": "395.2810"
+        },
+        {
+          "region": "Whitsundays",
+          "date": "2024-07-04T14:00:00.000Z",
+          "occupancy_pct": "0.6891",
+          "adr": "394.7866"
+        },
+        {
+          "region": "Whitsundays",
+          "date": "2024-07-05T14:00:00.000Z",
+          "occupancy_pct": "0.7002",
+          "adr": "393.6076"
+        },
+        {
+          "region": "Whitsundays",
+          "date": "2024-07-06T14:00:00.000Z",
+          "occupancy_pct": "0.6415",
+          "adr": "401.7812"
+        },
+        {
+          "region": "Whitsundays",
+          "date": "2024-07-07T14:00:00.000Z",
+          "occupancy_pct": "0.6441",
+          "adr": "407.2441"
+        },
+        {
+          "region": "Whitsundays",
+          "date": "2024-07-08T14:00:00.000Z",
+          "occupancy_pct": "0.6319",
+          "adr": "405.8777"
+        },
+        {
+          "region": "Whitsundays",
+          "date": "2024-07-09T14:00:00.000Z",
+          "occupancy_pct": "0.6714",
+          "adr": "410.8592"
+        },
+        {
+          "region": "Whitsundays",
+          "date": "2024-07-10T14:00:00.000Z",
+          "occupancy_pct": "0.7105",
+          "adr": "401.9849"
+        },
+        {
+          "region": "Whitsundays",
+          "date": "2024-07-11T14:00:00.000Z",
+          "occupancy_pct": "0.7392",
+          "adr": "396.3978"
+        },
+        {
+          "region": "Whitsundays",
+          "date": "2024-07-12T14:00:00.000Z",
+          "occupancy_pct": "0.7035",
+          "adr": "396.8300"
+        },
+        {
+          "region": "Whitsundays",
+          "date": "2024-07-13T14:00:00.000Z",
+          "occupancy_pct": "0.6451",
+          "adr": "401.7415"
+        },
+        {
+          "region": "Whitsundays",
+          "date": "2024-07-14T14:00:00.000Z",
+          "occupancy_pct": "0.6280",
+          "adr": "398.2670"
+        },
+        {
+          "region": "Whitsundays",
+          "date": "2024-07-15T14:00:00.000Z",
+          "occupancy_pct": "0.6311",
+          "adr": "391.2520"
+        },
+        {
+          "region": "Whitsundays",
+          "date": "2024-07-16T14:00:00.000Z",
+          "occupancy_pct": "0.6627",
+          "adr": "395.0477"
+        },
+        {
+          "region": "Whitsundays",
+          "date": "2024-07-17T14:00:00.000Z",
+          "occupancy_pct": "0.6936",
+          "adr": "398.6583"
+        },
+        {
+          "region": "Whitsundays",
+          "date": "2024-07-18T14:00:00.000Z",
+          "occupancy_pct": "0.7108",
+          "adr": "385.0602"
+        },
+        {
+          "region": "Whitsundays",
+          "date": "2024-07-19T14:00:00.000Z",
+          "occupancy_pct": "0.7215",
+          "adr": "373.1156"
+        },
+        {
+          "region": "Whitsundays",
+          "date": "2024-07-20T14:00:00.000Z",
+          "occupancy_pct": "0.6374",
+          "adr": "371.0134"
+        },
+        {
+          "region": "Whitsundays",
+          "date": "2024-07-21T14:00:00.000Z",
+          "occupancy_pct": "0.6318",
+          "adr": "369.3628"
+        },
+        {
+          "region": "Whitsundays",
+          "date": "2024-07-22T14:00:00.000Z",
+          "occupancy_pct": "0.6320",
+          "adr": "373.4009"
+        },
+        {
+          "region": "Whitsundays",
+          "date": "2024-07-23T14:00:00.000Z",
+          "occupancy_pct": "0.6634",
+          "adr": "378.2789"
+        },
+        {
+          "region": "Whitsundays",
+          "date": "2024-07-24T14:00:00.000Z",
+          "occupancy_pct": "0.6726",
+          "adr": "378.6417"
+        },
+        {
+          "region": "Whitsundays",
+          "date": "2024-07-25T14:00:00.000Z",
+          "occupancy_pct": "0.7162",
+          "adr": "370.8333"
+        },
+        {
+          "region": "Whitsundays",
+          "date": "2024-07-26T14:00:00.000Z",
+          "occupancy_pct": "0.7258",
+          "adr": "376.6949"
+        },
+        {
+          "region": "Whitsundays",
+          "date": "2024-07-27T14:00:00.000Z",
+          "occupancy_pct": "0.6226",
+          "adr": "376.5871"
+        },
+        {
+          "region": "Whitsundays",
+          "date": "2024-07-28T14:00:00.000Z",
+          "occupancy_pct": "0.5894",
+          "adr": "382.7869"
+        },
+        {
+          "region": "Whitsundays",
+          "date": "2024-07-29T14:00:00.000Z",
+          "occupancy_pct": "0.5511",
+          "adr": "379.8699"
+        },
+        {
+          "region": "Whitsundays",
+          "date": "2024-07-30T14:00:00.000Z",
+          "occupancy_pct": "0.5458",
+          "adr": "376.6934"
+        },
+        {
+          "region": "Whitsundays",
+          "date": "2024-07-31T14:00:00.000Z",
+          "occupancy_pct": "0.5793",
+          "adr": "382.8040"
+        },
+        {
+          "region": "Whitsundays",
+          "date": "2024-08-01T14:00:00.000Z",
+          "occupancy_pct": "0.6642",
+          "adr": "391.9350"
+        },
+        {
+          "region": "Whitsundays",
+          "date": "2024-08-02T14:00:00.000Z",
+          "occupancy_pct": "0.6841",
+          "adr": "388.8227"
+        },
+        {
+          "region": "Whitsundays",
+          "date": "2024-08-03T14:00:00.000Z",
+          "occupancy_pct": "0.6206",
+          "adr": "389.8016"
+        },
+        {
+          "region": "Whitsundays",
+          "date": "2024-08-04T14:00:00.000Z",
+          "occupancy_pct": "0.5980",
+          "adr": "378.8475"
+        },
+        {
+          "region": "Whitsundays",
+          "date": "2024-08-05T14:00:00.000Z",
+          "occupancy_pct": "0.5929",
+          "adr": "383.5353"
+        },
+        {
+          "region": "Whitsundays",
+          "date": "2024-08-06T14:00:00.000Z",
+          "occupancy_pct": "0.6174",
+          "adr": "378.9455"
+        },
+        {
+          "region": "Whitsundays",
+          "date": "2024-08-07T14:00:00.000Z",
+          "occupancy_pct": "0.6612",
+          "adr": "383.1510"
+        },
+        {
+          "region": "Whitsundays",
+          "date": "2024-08-08T14:00:00.000Z",
+          "occupancy_pct": "0.7284",
+          "adr": "389.4972"
+        },
+        {
+          "region": "Whitsundays",
+          "date": "2024-08-09T14:00:00.000Z",
+          "occupancy_pct": "0.7557",
+          "adr": "386.4752"
+        },
+        {
+          "region": "Whitsundays",
+          "date": "2024-08-10T14:00:00.000Z",
+          "occupancy_pct": "0.7121",
+          "adr": "388.6419"
+        },
+        {
+          "region": "Whitsundays",
+          "date": "2024-08-11T14:00:00.000Z",
+          "occupancy_pct": "0.6473",
+          "adr": "394.8678"
+        },
+        {
+          "region": "Whitsundays",
+          "date": "2024-08-12T14:00:00.000Z",
+          "occupancy_pct": "0.6351",
+          "adr": "392.3851"
+        },
+        {
+          "region": "Whitsundays",
+          "date": "2024-08-13T14:00:00.000Z",
+          "occupancy_pct": "0.6383",
+          "adr": "389.4958"
+        },
+        {
+          "region": "Whitsundays",
+          "date": "2024-08-14T14:00:00.000Z",
+          "occupancy_pct": "0.6450",
+          "adr": "380.1438"
+        },
+        {
+          "region": "Whitsundays",
+          "date": "2024-08-15T14:00:00.000Z",
+          "occupancy_pct": "0.7388",
+          "adr": "384.7778"
+        },
+        {
+          "region": "Whitsundays",
+          "date": "2024-08-16T14:00:00.000Z",
+          "occupancy_pct": "0.7780",
+          "adr": "379.2602"
+        },
+        {
+          "region": "Whitsundays",
+          "date": "2024-08-17T14:00:00.000Z",
+          "occupancy_pct": "0.6857",
+          "adr": "388.3654"
+        },
+        {
+          "region": "Whitsundays",
+          "date": "2024-08-18T14:00:00.000Z",
+          "occupancy_pct": "0.6597",
+          "adr": "390.0071"
+        },
+        {
+          "region": "Whitsundays",
+          "date": "2024-08-19T14:00:00.000Z",
+          "occupancy_pct": "0.6273",
+          "adr": "395.0408"
+        },
+        {
+          "region": "Whitsundays",
+          "date": "2024-08-20T14:00:00.000Z",
+          "occupancy_pct": "0.6826",
+          "adr": "386.7782"
+        },
+        {
+          "region": "Whitsundays",
+          "date": "2024-08-21T14:00:00.000Z",
+          "occupancy_pct": "0.6923",
+          "adr": "389.9398"
+        },
+        {
+          "region": "Whitsundays",
+          "date": "2024-08-22T14:00:00.000Z",
+          "occupancy_pct": "0.7486",
+          "adr": "383.5502"
+        },
+        {
+          "region": "Whitsundays",
+          "date": "2024-08-23T14:00:00.000Z",
+          "occupancy_pct": "0.7350",
+          "adr": "381.8303"
+        },
+        {
+          "region": "Whitsundays",
+          "date": "2024-08-24T14:00:00.000Z",
+          "occupancy_pct": "0.5890",
+          "adr": "353.3080"
+        },
+        {
+          "region": "Whitsundays",
+          "date": "2024-08-25T14:00:00.000Z",
+          "occupancy_pct": "0.5234",
+          "adr": "364.1741"
+        },
+        {
+          "region": "Whitsundays",
+          "date": "2024-08-26T14:00:00.000Z",
+          "occupancy_pct": "0.5099",
+          "adr": "368.4123"
+        },
+        {
+          "region": "Whitsundays",
+          "date": "2024-08-27T14:00:00.000Z",
+          "occupancy_pct": "0.5398",
+          "adr": "374.2376"
+        },
+        {
+          "region": "Whitsundays",
+          "date": "2024-08-28T14:00:00.000Z",
+          "occupancy_pct": "0.5956",
+          "adr": "376.7826"
+        },
+        {
+          "region": "Whitsundays",
+          "date": "2024-08-29T14:00:00.000Z",
+          "occupancy_pct": "0.6631",
+          "adr": "377.4696"
+        },
+        {
+          "region": "Whitsundays",
+          "date": "2024-08-30T14:00:00.000Z",
+          "occupancy_pct": "0.6903",
+          "adr": "394.2782"
+        }
+      ]
+    }
+  },
+  "operator": {
+    "at": 1780830005699,
+    "value": {
+      "persona": "operator",
+      "narrative": "Looking at the past three months, tourism across Queensland has seen a healthy winter and early spring period. July was a standout month for most regions, showing the highest occupancy rates and strong average daily rates.\n\nWhen we compare regions, Noosa and Whitsundays consistently command the highest prices, with average daily rates (ADR) often exceeding $350 and even climbing above $400. This suggests a premium market that's willing to pay for these destinations. Cairns also performed well, particularly in mid-July, where it achieved the highest occupancy percentage among all regions, though its ADR tends to hover around the $300 mark. The Gold Coast shows more variability; while its baseline occupancy and ADR can be lower, it experienced significant spikes in both, indicating strong demand during specific events or weekends.\n\nFor your pricing decisions, consider the strong market position of Noosa and Whitsundays, which allows for premium rates. In Cairns, focus on maximizing occupancy during strong demand periods and subtly testing higher rates as demand strengthens. For the Gold Coast, identifying and capitalizing on those specific peak demand days is crucial for optimizing your revenue, as these periods allow for significant rate increases. Overall, the data points to a generally robust market from June to August, with July being the peak performing month.",
+      "chartSpec": {
+        "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+        "data": {
+          "name": "table"
+        },
+        "mark": "line",
+        "encoding": {
+          "x": {
+            "field": "date",
+            "type": "temporal",
+            "title": "Date"
+          },
+          "y": {
+            "field": "adr",
+            "type": "quantitative",
+            "title": "Average Daily Rate (AUD)"
+          },
+          "color": {
+            "field": "region",
+            "type": "nominal",
+            "title": "Region"
+          }
+        },
+        "title": "Average Daily Rate (ADR) by Region (June-August 2024)"
+      },
+      "data": [
+        {
+          "region": "Cairns",
+          "date": "2024-06-02T14:00:00.000Z",
+          "occupancy_pct": "0.5619",
+          "adr": "266.8060"
+        },
+        {
+          "region": "Cairns",
+          "date": "2024-06-03T14:00:00.000Z",
+          "occupancy_pct": "0.5609",
+          "adr": "266.7980"
+        },
+        {
+          "region": "Cairns",
+          "date": "2024-06-04T14:00:00.000Z",
+          "occupancy_pct": "0.5837",
+          "adr": "270.4645"
+        },
+        {
+          "region": "Cairns",
+          "date": "2024-06-05T14:00:00.000Z",
+          "occupancy_pct": "0.5957",
+          "adr": "270.0551"
+        },
+        {
+          "region": "Cairns",
+          "date": "2024-06-06T14:00:00.000Z",
+          "occupancy_pct": "0.6258",
+          "adr": "289.0781"
+        },
+        {
+          "region": "Cairns",
+          "date": "2024-06-07T14:00:00.000Z",
+          "occupancy_pct": "0.6362",
+          "adr": "286.4995"
+        },
+        {
+          "region": "Cairns",
+          "date": "2024-06-08T14:00:00.000Z",
+          "occupancy_pct": "0.6042",
+          "adr": "281.4861"
+        },
+        {
+          "region": "Cairns",
+          "date": "2024-06-09T14:00:00.000Z",
+          "occupancy_pct": "0.5654",
+          "adr": "278.8645"
+        },
+        {
+          "region": "Cairns",
+          "date": "2024-06-10T14:00:00.000Z",
+          "occupancy_pct": "0.5652",
+          "adr": "282.4293"
+        },
+        {
+          "region": "Cairns",
+          "date": "2024-06-11T14:00:00.000Z",
+          "occupancy_pct": "0.6023",
+          "adr": "279.7182"
+        },
+        {
+          "region": "Cairns",
+          "date": "2024-06-12T14:00:00.000Z",
+          "occupancy_pct": "0.6548",
+          "adr": "286.3322"
+        },
+        {
+          "region": "Cairns",
+          "date": "2024-06-13T14:00:00.000Z",
+          "occupancy_pct": "0.7160",
+          "adr": "302.3559"
+        },
+        {
+          "region": "Cairns",
+          "date": "2024-06-14T14:00:00.000Z",
+          "occupancy_pct": "0.7345",
+          "adr": "303.5791"
+        },
+        {
+          "region": "Cairns",
+          "date": "2024-06-15T14:00:00.000Z",
+          "occupancy_pct": "0.7214",
+          "adr": "305.2955"
+        },
+        {
+          "region": "Cairns",
+          "date": "2024-06-16T14:00:00.000Z",
+          "occupancy_pct": "0.6547",
+          "adr": "297.1870"
+        },
+        {
+          "region": "Cairns",
+          "date": "2024-06-17T14:00:00.000Z",
+          "occupancy_pct": "0.6106",
+          "adr": "286.4993"
+        },
+        {
+          "region": "Cairns",
+          "date": "2024-06-18T14:00:00.000Z",
+          "occupancy_pct": "0.6321",
+          "adr": "289.0599"
+        },
+        {
+          "region": "Cairns",
+          "date": "2024-06-19T14:00:00.000Z",
+          "occupancy_pct": "0.6266",
+          "adr": "287.7301"
+        },
+        {
+          "region": "Cairns",
+          "date": "2024-06-20T14:00:00.000Z",
+          "occupancy_pct": "0.6552",
+          "adr": "294.2456"
+        },
+        {
+          "region": "Cairns",
+          "date": "2024-06-21T14:00:00.000Z",
+          "occupancy_pct": "0.6952",
+          "adr": "300.3504"
+        },
+        {
+          "region": "Cairns",
+          "date": "2024-06-22T14:00:00.000Z",
+          "occupancy_pct": "0.6788",
+          "adr": "301.7812"
+        },
+        {
+          "region": "Cairns",
+          "date": "2024-06-23T14:00:00.000Z",
+          "occupancy_pct": "0.6743",
+          "adr": "299.2134"
+        },
+        {
+          "region": "Cairns",
+          "date": "2024-06-24T14:00:00.000Z",
+          "occupancy_pct": "0.6896",
+          "adr": "300.6210"
+        },
+        {
+          "region": "Cairns",
+          "date": "2024-06-25T14:00:00.000Z",
+          "occupancy_pct": "0.7127",
+          "adr": "303.9198"
+        },
+        {
+          "region": "Cairns",
+          "date": "2024-06-26T14:00:00.000Z",
+          "occupancy_pct": "0.7241",
+          "adr": "301.2325"
+        },
+        {
+          "region": "Cairns",
+          "date": "2024-06-27T14:00:00.000Z",
+          "occupancy_pct": "0.7292",
+          "adr": "305.4485"
+        },
+        {
+          "region": "Cairns",
+          "date": "2024-06-28T14:00:00.000Z",
+          "occupancy_pct": "0.7379",
+          "adr": "305.7486"
+        },
+        {
+          "region": "Cairns",
+          "date": "2024-06-29T14:00:00.000Z",
+          "occupancy_pct": "0.7257",
+          "adr": "309.2905"
+        },
+        {
+          "region": "Cairns",
+          "date": "2024-06-30T14:00:00.000Z",
+          "occupancy_pct": "0.7153",
+          "adr": "313.8286"
+        },
+        {
+          "region": "Cairns",
+          "date": "2024-07-01T14:00:00.000Z",
+          "occupancy_pct": "0.7230",
+          "adr": "311.6223"
+        },
+        {
+          "region": "Cairns",
+          "date": "2024-07-02T14:00:00.000Z",
+          "occupancy_pct": "0.7446",
+          "adr": "312.4237"
+        },
+        {
+          "region": "Cairns",
+          "date": "2024-07-03T14:00:00.000Z",
+          "occupancy_pct": "0.7556",
+          "adr": "309.3721"
+        },
+        {
+          "region": "Cairns",
+          "date": "2024-07-04T14:00:00.000Z",
+          "occupancy_pct": "0.7567",
+          "adr": "314.5027"
+        },
+        {
+          "region": "Cairns",
+          "date": "2024-07-05T14:00:00.000Z",
+          "occupancy_pct": "0.7611",
+          "adr": "311.6790"
+        },
+        {
+          "region": "Cairns",
+          "date": "2024-07-06T14:00:00.000Z",
+          "occupancy_pct": "0.7298",
+          "adr": "310.8331"
+        },
+        {
+          "region": "Cairns",
+          "date": "2024-07-07T14:00:00.000Z",
+          "occupancy_pct": "0.7434",
+          "adr": "311.7421"
+        },
+        {
+          "region": "Cairns",
+          "date": "2024-07-08T14:00:00.000Z",
+          "occupancy_pct": "0.7436",
+          "adr": "310.3338"
+        },
+        {
+          "region": "Cairns",
+          "date": "2024-07-09T14:00:00.000Z",
+          "occupancy_pct": "0.7664",
+          "adr": "310.6273"
+        },
+        {
+          "region": "Cairns",
+          "date": "2024-07-10T14:00:00.000Z",
+          "occupancy_pct": "0.7723",
+          "adr": "310.2056"
+        },
+        {
+          "region": "Cairns",
+          "date": "2024-07-11T14:00:00.000Z",
+          "occupancy_pct": "0.7930",
+          "adr": "310.9300"
+        },
+        {
+          "region": "Cairns",
+          "date": "2024-07-12T14:00:00.000Z",
+          "occupancy_pct": "0.8145",
+          "adr": "314.1281"
+        },
+        {
+          "region": "Cairns",
+          "date": "2024-07-13T14:00:00.000Z",
+          "occupancy_pct": "0.7914",
+          "adr": "312.8297"
+        },
+        {
+          "region": "Cairns",
+          "date": "2024-07-14T14:00:00.000Z",
+          "occupancy_pct": "0.7774",
+          "adr": "308.1131"
+        },
+        {
+          "region": "Cairns",
+          "date": "2024-07-15T14:00:00.000Z",
+          "occupancy_pct": "0.7746",
+          "adr": "307.8138"
+        },
+        {
+          "region": "Cairns",
+          "date": "2024-07-16T14:00:00.000Z",
+          "occupancy_pct": "0.7674",
+          "adr": "307.0894"
+        },
+        {
+          "region": "Cairns",
+          "date": "2024-07-17T14:00:00.000Z",
+          "occupancy_pct": "0.7695",
+          "adr": "307.3842"
+        },
+        {
+          "region": "Cairns",
+          "date": "2024-07-18T14:00:00.000Z",
+          "occupancy_pct": "0.7795",
+          "adr": "310.2092"
+        },
+        {
+          "region": "Cairns",
+          "date": "2024-07-19T14:00:00.000Z",
+          "occupancy_pct": "0.7682",
+          "adr": "309.8693"
+        },
+        {
+          "region": "Cairns",
+          "date": "2024-07-20T14:00:00.000Z",
+          "occupancy_pct": "0.7438",
+          "adr": "309.1221"
+        },
+        {
+          "region": "Cairns",
+          "date": "2024-07-21T14:00:00.000Z",
+          "occupancy_pct": "0.7151",
+          "adr": "309.3192"
+        },
+        {
+          "region": "Cairns",
+          "date": "2024-07-22T14:00:00.000Z",
+          "occupancy_pct": "0.7129",
+          "adr": "305.1309"
+        },
+        {
+          "region": "Cairns",
+          "date": "2024-07-23T14:00:00.000Z",
+          "occupancy_pct": "0.7233",
+          "adr": "304.2915"
+        },
+        {
+          "region": "Cairns",
+          "date": "2024-07-24T14:00:00.000Z",
+          "occupancy_pct": "0.7554",
+          "adr": "304.0546"
+        },
+        {
+          "region": "Cairns",
+          "date": "2024-07-25T14:00:00.000Z",
+          "occupancy_pct": "0.7883",
+          "adr": "308.2965"
+        },
+        {
+          "region": "Cairns",
+          "date": "2024-07-26T14:00:00.000Z",
+          "occupancy_pct": "0.7779",
+          "adr": "308.6613"
+        },
+        {
+          "region": "Cairns",
+          "date": "2024-07-27T14:00:00.000Z",
+          "occupancy_pct": "0.7289",
+          "adr": "302.9524"
+        },
+        {
+          "region": "Cairns",
+          "date": "2024-07-28T14:00:00.000Z",
+          "occupancy_pct": "0.6959",
+          "adr": "295.4294"
+        },
+        {
+          "region": "Cairns",
+          "date": "2024-07-29T14:00:00.000Z",
+          "occupancy_pct": "0.6759",
+          "adr": "296.7079"
+        },
+        {
+          "region": "Cairns",
+          "date": "2024-07-30T14:00:00.000Z",
+          "occupancy_pct": "0.6756",
+          "adr": "299.9469"
+        },
+        {
+          "region": "Cairns",
+          "date": "2024-07-31T14:00:00.000Z",
+          "occupancy_pct": "0.6955",
+          "adr": "301.4541"
+        },
+        {
+          "region": "Cairns",
+          "date": "2024-08-01T14:00:00.000Z",
+          "occupancy_pct": "0.7337",
+          "adr": "305.3289"
+        },
+        {
+          "region": "Cairns",
+          "date": "2024-08-02T14:00:00.000Z",
+          "occupancy_pct": "0.7484",
+          "adr": "307.0324"
+        },
+        {
+          "region": "Cairns",
+          "date": "2024-08-03T14:00:00.000Z",
+          "occupancy_pct": "0.7177",
+          "adr": "302.2445"
+        },
+        {
+          "region": "Cairns",
+          "date": "2024-08-04T14:00:00.000Z",
+          "occupancy_pct": "0.7109",
+          "adr": "298.7706"
+        },
+        {
+          "region": "Cairns",
+          "date": "2024-08-05T14:00:00.000Z",
+          "occupancy_pct": "0.7066",
+          "adr": "294.7501"
+        },
+        {
+          "region": "Cairns",
+          "date": "2024-08-06T14:00:00.000Z",
+          "occupancy_pct": "0.7257",
+          "adr": "297.9063"
+        },
+        {
+          "region": "Cairns",
+          "date": "2024-08-07T14:00:00.000Z",
+          "occupancy_pct": "0.7312",
+          "adr": "297.9089"
+        },
+        {
+          "region": "Cairns",
+          "date": "2024-08-08T14:00:00.000Z",
+          "occupancy_pct": "0.7502",
+          "adr": "301.9876"
+        },
+        {
+          "region": "Cairns",
+          "date": "2024-08-09T14:00:00.000Z",
+          "occupancy_pct": "0.7504",
+          "adr": "305.8575"
+        },
+        {
+          "region": "Cairns",
+          "date": "2024-08-10T14:00:00.000Z",
+          "occupancy_pct": "0.7363",
+          "adr": "301.7991"
+        },
+        {
+          "region": "Cairns",
+          "date": "2024-08-11T14:00:00.000Z",
+          "occupancy_pct": "0.7313",
+          "adr": "299.8060"
+        },
+        {
+          "region": "Cairns",
+          "date": "2024-08-12T14:00:00.000Z",
+          "occupancy_pct": "0.7446",
+          "adr": "296.8633"
+        },
+        {
+          "region": "Cairns",
+          "date": "2024-08-13T14:00:00.000Z",
+          "occupancy_pct": "0.7548",
+          "adr": "296.1990"
+        },
+        {
+          "region": "Cairns",
+          "date": "2024-08-14T14:00:00.000Z",
+          "occupancy_pct": "0.7649",
+          "adr": "295.2631"
+        },
+        {
+          "region": "Cairns",
+          "date": "2024-08-15T14:00:00.000Z",
+          "occupancy_pct": "0.7841",
+          "adr": "305.2804"
+        },
+        {
+          "region": "Cairns",
+          "date": "2024-08-16T14:00:00.000Z",
+          "occupancy_pct": "0.7683",
+          "adr": "307.5360"
+        },
+        {
+          "region": "Cairns",
+          "date": "2024-08-17T14:00:00.000Z",
+          "occupancy_pct": "0.7445",
+          "adr": "303.3526"
+        },
+        {
+          "region": "Cairns",
+          "date": "2024-08-18T14:00:00.000Z",
+          "occupancy_pct": "0.7197",
+          "adr": "299.6758"
+        },
+        {
+          "region": "Cairns",
+          "date": "2024-08-19T14:00:00.000Z",
+          "occupancy_pct": "0.7027",
+          "adr": "292.7396"
+        },
+        {
+          "region": "Cairns",
+          "date": "2024-08-20T14:00:00.000Z",
+          "occupancy_pct": "0.7123",
+          "adr": "294.1686"
+        },
+        {
+          "region": "Cairns",
+          "date": "2024-08-21T14:00:00.000Z",
+          "occupancy_pct": "0.7187",
+          "adr": "292.3876"
+        },
+        {
+          "region": "Cairns",
+          "date": "2024-08-22T14:00:00.000Z",
+          "occupancy_pct": "0.7389",
+          "adr": "292.5274"
+        },
+        {
+          "region": "Cairns",
+          "date": "2024-08-23T14:00:00.000Z",
+          "occupancy_pct": "0.7450",
+          "adr": "295.2769"
+        },
+        {
+          "region": "Cairns",
+          "date": "2024-08-24T14:00:00.000Z",
+          "occupancy_pct": "0.6934",
+          "adr": "294.9103"
+        },
+        {
+          "region": "Cairns",
+          "date": "2024-08-25T14:00:00.000Z",
+          "occupancy_pct": "0.6565",
+          "adr": "288.2841"
+        },
+        {
+          "region": "Cairns",
+          "date": "2024-08-26T14:00:00.000Z",
+          "occupancy_pct": "0.6426",
+          "adr": "285.2883"
+        },
+        {
+          "region": "Cairns",
+          "date": "2024-08-27T14:00:00.000Z",
+          "occupancy_pct": "0.6455",
+          "adr": "285.3970"
+        },
+        {
+          "region": "Cairns",
+          "date": "2024-08-28T14:00:00.000Z",
+          "occupancy_pct": "0.6636",
+          "adr": "288.8554"
+        },
+        {
+          "region": "Cairns",
+          "date": "2024-08-29T14:00:00.000Z",
+          "occupancy_pct": "0.6675",
+          "adr": "289.0835"
+        },
+        {
+          "region": "Cairns",
+          "date": "2024-08-30T14:00:00.000Z",
+          "occupancy_pct": "0.6658",
+          "adr": "291.0571"
+        },
+        {
+          "region": "Gold Coast",
+          "date": "2024-06-02T14:00:00.000Z",
+          "occupancy_pct": "0.4578",
+          "adr": "283.0020"
+        },
+        {
+          "region": "Gold Coast",
+          "date": "2024-06-03T14:00:00.000Z",
+          "occupancy_pct": "0.4616",
+          "adr": "279.9807"
+        },
+        {
+          "region": "Gold Coast",
+          "date": "2024-06-04T14:00:00.000Z",
+          "occupancy_pct": "0.4830",
+          "adr": "281.1528"
+        },
+        {
+          "region": "Gold Coast",
+          "date": "2024-06-05T14:00:00.000Z",
+          "occupancy_pct": "0.5364",
+          "adr": "285.8232"
+        },
+        {
+          "region": "Gold Coast",
+          "date": "2024-06-06T14:00:00.000Z",
+          "occupancy_pct": "0.6194",
+          "adr": "330.0044"
+        },
+        {
+          "region": "Gold Coast",
+          "date": "2024-06-07T14:00:00.000Z",
+          "occupancy_pct": "0.6630",
+          "adr": "331.5978"
+        },
+        {
+          "region": "Gold Coast",
+          "date": "2024-06-08T14:00:00.000Z",
+          "occupancy_pct": "0.5757",
+          "adr": "308.4864"
+        },
+        {
+          "region": "Gold Coast",
+          "date": "2024-06-09T14:00:00.000Z",
+          "occupancy_pct": "0.5072",
+          "adr": "292.0328"
+        },
+        {
+          "region": "Gold Coast",
+          "date": "2024-06-10T14:00:00.000Z",
+          "occupancy_pct": "0.4913",
+          "adr": "285.4465"
+        },
+        {
+          "region": "Gold Coast",
+          "date": "2024-06-11T14:00:00.000Z",
+          "occupancy_pct": "0.4991",
+          "adr": "283.4705"
+        },
+        {
+          "region": "Gold Coast",
+          "date": "2024-06-12T14:00:00.000Z",
+          "occupancy_pct": "0.5233",
+          "adr": "285.3374"
+        },
+        {
+          "region": "Gold Coast",
+          "date": "2024-06-13T14:00:00.000Z",
+          "occupancy_pct": "0.5863",
+          "adr": "323.1101"
+        },
+        {
+          "region": "Gold Coast",
+          "date": "2024-06-14T14:00:00.000Z",
+          "occupancy_pct": "0.6189",
+          "adr": "323.1052"
+        },
+        {
+          "region": "Gold Coast",
+          "date": "2024-06-15T14:00:00.000Z",
+          "occupancy_pct": "0.5344",
+          "adr": "299.7886"
+        },
+        {
+          "region": "Gold Coast",
+          "date": "2024-06-16T14:00:00.000Z",
+          "occupancy_pct": "0.5011",
+          "adr": "289.6460"
+        },
+        {
+          "region": "Gold Coast",
+          "date": "2024-06-17T14:00:00.000Z",
+          "occupancy_pct": "0.4988",
+          "adr": "283.8122"
+        },
+        {
+          "region": "Gold Coast",
+          "date": "2024-06-18T14:00:00.000Z",
+          "occupancy_pct": "0.5122",
+          "adr": "284.1288"
+        },
+        {
+          "region": "Gold Coast",
+          "date": "2024-06-19T14:00:00.000Z",
+          "occupancy_pct": "0.5401",
+          "adr": "285.3340"
+        },
+        {
+          "region": "Gold Coast",
+          "date": "2024-06-20T14:00:00.000Z",
+          "occupancy_pct": "0.5943",
+          "adr": "337.4122"
+        },
+        {
+          "region": "Gold Coast",
+          "date": "2024-06-21T14:00:00.000Z",
+          "occupancy_pct": "0.6177",
+          "adr": "336.3107"
+        },
+        {
+          "region": "Gold Coast",
+          "date": "2024-06-22T14:00:00.000Z",
+          "occupancy_pct": "0.5491",
+          "adr": "320.9897"
+        },
+        {
+          "region": "Gold Coast",
+          "date": "2024-06-23T14:00:00.000Z",
+          "occupancy_pct": "0.5059",
+          "adr": "313.7807"
+        },
+        {
+          "region": "Gold Coast",
+          "date": "2024-06-24T14:00:00.000Z",
+          "occupancy_pct": "0.5108",
+          "adr": "313.8399"
+        },
+        {
+          "region": "Gold Coast",
+          "date": "2024-06-25T14:00:00.000Z",
+          "occupancy_pct": "0.5185",
+          "adr": "315.6342"
+        },
+        {
+          "region": "Gold Coast",
+          "date": "2024-06-26T14:00:00.000Z",
+          "occupancy_pct": "0.5447",
+          "adr": "318.9244"
+        },
+        {
+          "region": "Gold Coast",
+          "date": "2024-06-27T14:00:00.000Z",
+          "occupancy_pct": "0.6005",
+          "adr": "346.2186"
+        },
+        {
+          "region": "Gold Coast",
+          "date": "2024-06-28T14:00:00.000Z",
+          "occupancy_pct": "0.6381",
+          "adr": "349.7532"
+        },
+        {
+          "region": "Gold Coast",
+          "date": "2024-06-29T14:00:00.000Z",
+          "occupancy_pct": "0.5492",
+          "adr": "333.7797"
+        },
+        {
+          "region": "Gold Coast",
+          "date": "2024-06-30T14:00:00.000Z",
+          "occupancy_pct": "0.5325",
+          "adr": "332.7245"
+        },
+        {
+          "region": "Gold Coast",
+          "date": "2024-07-01T14:00:00.000Z",
+          "occupancy_pct": "0.5410",
+          "adr": "332.5973"
+        },
+        {
+          "region": "Gold Coast",
+          "date": "2024-07-02T14:00:00.000Z",
+          "occupancy_pct": "0.5660",
+          "adr": "333.0415"
+        },
+        {
+          "region": "Gold Coast",
+          "date": "2024-07-03T14:00:00.000Z",
+          "occupancy_pct": "0.6140",
+          "adr": "340.2887"
+        },
+        {
+          "region": "Gold Coast",
+          "date": "2024-07-04T14:00:00.000Z",
+          "occupancy_pct": "0.7331",
+          "adr": "391.8125"
+        },
+        {
+          "region": "Gold Coast",
+          "date": "2024-07-05T14:00:00.000Z",
+          "occupancy_pct": "0.7745",
+          "adr": "396.1158"
+        },
+        {
+          "region": "Gold Coast",
+          "date": "2024-07-06T14:00:00.000Z",
+          "occupancy_pct": "0.6839",
+          "adr": "380.7020"
+        },
+        {
+          "region": "Gold Coast",
+          "date": "2024-07-07T14:00:00.000Z",
+          "occupancy_pct": "0.6138",
+          "adr": "352.9092"
+        },
+        {
+          "region": "Gold Coast",
+          "date": "2024-07-08T14:00:00.000Z",
+          "occupancy_pct": "0.6064",
+          "adr": "341.0723"
+        },
+        {
+          "region": "Gold Coast",
+          "date": "2024-07-09T14:00:00.000Z",
+          "occupancy_pct": "0.6206",
+          "adr": "338.6032"
+        },
+        {
+          "region": "Gold Coast",
+          "date": "2024-07-10T14:00:00.000Z",
+          "occupancy_pct": "0.6420",
+          "adr": "335.8285"
+        },
+        {
+          "region": "Gold Coast",
+          "date": "2024-07-11T14:00:00.000Z",
+          "occupancy_pct": "0.6850",
+          "adr": "351.6896"
+        },
+        {
+          "region": "Gold Coast",
+          "date": "2024-07-12T14:00:00.000Z",
+          "occupancy_pct": "0.7145",
+          "adr": "351.5988"
+        },
+        {
+          "region": "Gold Coast",
+          "date": "2024-07-13T14:00:00.000Z",
+          "occupancy_pct": "0.6433",
+          "adr": "331.6798"
+        },
+        {
+          "region": "Gold Coast",
+          "date": "2024-07-14T14:00:00.000Z",
+          "occupancy_pct": "0.6122",
+          "adr": "319.4825"
+        },
+        {
+          "region": "Gold Coast",
+          "date": "2024-07-15T14:00:00.000Z",
+          "occupancy_pct": "0.6003",
+          "adr": "316.8652"
+        },
+        {
+          "region": "Gold Coast",
+          "date": "2024-07-16T14:00:00.000Z",
+          "occupancy_pct": "0.5943",
+          "adr": "311.8351"
+        },
+        {
+          "region": "Gold Coast",
+          "date": "2024-07-17T14:00:00.000Z",
+          "occupancy_pct": "0.6126",
+          "adr": "312.5842"
+        },
+        {
+          "region": "Gold Coast",
+          "date": "2024-07-18T14:00:00.000Z",
+          "occupancy_pct": "0.6586",
+          "adr": "332.3925"
+        },
+        {
+          "region": "Gold Coast",
+          "date": "2024-07-19T14:00:00.000Z",
+          "occupancy_pct": "0.6577",
+          "adr": "329.3285"
+        },
+        {
+          "region": "Gold Coast",
+          "date": "2024-07-20T14:00:00.000Z",
+          "occupancy_pct": "0.5673",
+          "adr": "306.2073"
+        },
+        {
+          "region": "Gold Coast",
+          "date": "2024-07-21T14:00:00.000Z",
+          "occupancy_pct": "0.5350",
+          "adr": "288.1134"
+        },
+        {
+          "region": "Gold Coast",
+          "date": "2024-07-22T14:00:00.000Z",
+          "occupancy_pct": "0.5361",
+          "adr": "286.0594"
+        },
+        {
+          "region": "Gold Coast",
+          "date": "2024-07-23T14:00:00.000Z",
+          "occupancy_pct": "0.5549",
+          "adr": "285.4268"
+        },
+        {
+          "region": "Gold Coast",
+          "date": "2024-07-24T14:00:00.000Z",
+          "occupancy_pct": "0.5944",
+          "adr": "289.8737"
+        },
+        {
+          "region": "Gold Coast",
+          "date": "2024-07-25T14:00:00.000Z",
+          "occupancy_pct": "0.6779",
+          "adr": "325.6732"
+        },
+        {
+          "region": "Gold Coast",
+          "date": "2024-07-26T14:00:00.000Z",
+          "occupancy_pct": "0.7050",
+          "adr": "326.0137"
+        },
+        {
+          "region": "Gold Coast",
+          "date": "2024-07-27T14:00:00.000Z",
+          "occupancy_pct": "0.5981",
+          "adr": "298.4045"
+        },
+        {
+          "region": "Gold Coast",
+          "date": "2024-07-28T14:00:00.000Z",
+          "occupancy_pct": "0.5636",
+          "adr": "282.8426"
+        },
+        {
+          "region": "Gold Coast",
+          "date": "2024-07-29T14:00:00.000Z",
+          "occupancy_pct": "0.5532",
+          "adr": "280.3446"
+        },
+        {
+          "region": "Gold Coast",
+          "date": "2024-07-30T14:00:00.000Z",
+          "occupancy_pct": "0.5562",
+          "adr": "278.0206"
+        },
+        {
+          "region": "Gold Coast",
+          "date": "2024-07-31T14:00:00.000Z",
+          "occupancy_pct": "0.5787",
+          "adr": "283.7576"
+        },
+        {
+          "region": "Gold Coast",
+          "date": "2024-08-01T14:00:00.000Z",
+          "occupancy_pct": "0.6573",
+          "adr": "322.2469"
+        },
+        {
+          "region": "Gold Coast",
+          "date": "2024-08-02T14:00:00.000Z",
+          "occupancy_pct": "0.6777",
+          "adr": "320.7381"
+        },
+        {
+          "region": "Gold Coast",
+          "date": "2024-08-03T14:00:00.000Z",
+          "occupancy_pct": "0.5790",
+          "adr": "293.4827"
+        },
+        {
+          "region": "Gold Coast",
+          "date": "2024-08-04T14:00:00.000Z",
+          "occupancy_pct": "0.5444",
+          "adr": "283.0234"
+        },
+        {
+          "region": "Gold Coast",
+          "date": "2024-08-05T14:00:00.000Z",
+          "occupancy_pct": "0.5462",
+          "adr": "281.6362"
+        },
+        {
+          "region": "Gold Coast",
+          "date": "2024-08-06T14:00:00.000Z",
+          "occupancy_pct": "0.5525",
+          "adr": "283.0497"
+        },
+        {
+          "region": "Gold Coast",
+          "date": "2024-08-07T14:00:00.000Z",
+          "occupancy_pct": "0.5956",
+          "adr": "286.2059"
+        },
+        {
+          "region": "Gold Coast",
+          "date": "2024-08-08T14:00:00.000Z",
+          "occupancy_pct": "0.6612",
+          "adr": "323.2216"
+        },
+        {
+          "region": "Gold Coast",
+          "date": "2024-08-09T14:00:00.000Z",
+          "occupancy_pct": "0.6926",
+          "adr": "324.4042"
+        },
+        {
+          "region": "Gold Coast",
+          "date": "2024-08-10T14:00:00.000Z",
+          "occupancy_pct": "0.5898",
+          "adr": "301.2925"
+        },
+        {
+          "region": "Gold Coast",
+          "date": "2024-08-11T14:00:00.000Z",
+          "occupancy_pct": "0.5499",
+          "adr": "290.3156"
+        },
+        {
+          "region": "Gold Coast",
+          "date": "2024-08-12T14:00:00.000Z",
+          "occupancy_pct": "0.5517",
+          "adr": "288.1452"
+        },
+        {
+          "region": "Gold Coast",
+          "date": "2024-08-13T14:00:00.000Z",
+          "occupancy_pct": "0.5660",
+          "adr": "290.3653"
+        },
+        {
+          "region": "Gold Coast",
+          "date": "2024-08-14T14:00:00.000Z",
+          "occupancy_pct": "0.6004",
+          "adr": "298.5850"
+        },
+        {
+          "region": "Gold Coast",
+          "date": "2024-08-15T14:00:00.000Z",
+          "occupancy_pct": "0.7102",
+          "adr": "364.5845"
+        },
+        {
+          "region": "Gold Coast",
+          "date": "2024-08-16T14:00:00.000Z",
+          "occupancy_pct": "0.7328",
+          "adr": "366.7503"
+        },
+        {
+          "region": "Gold Coast",
+          "date": "2024-08-17T14:00:00.000Z",
+          "occupancy_pct": "0.6110",
+          "adr": "337.0173"
+        },
+        {
+          "region": "Gold Coast",
+          "date": "2024-08-18T14:00:00.000Z",
+          "occupancy_pct": "0.5517",
+          "adr": "301.6353"
+        },
+        {
+          "region": "Gold Coast",
+          "date": "2024-08-19T14:00:00.000Z",
+          "occupancy_pct": "0.5512",
+          "adr": "292.0207"
+        },
+        {
+          "region": "Gold Coast",
+          "date": "2024-08-20T14:00:00.000Z",
+          "occupancy_pct": "0.5808",
+          "adr": "291.5887"
+        },
+        {
+          "region": "Gold Coast",
+          "date": "2024-08-21T14:00:00.000Z",
+          "occupancy_pct": "0.6035",
+          "adr": "293.7945"
+        },
+        {
+          "region": "Gold Coast",
+          "date": "2024-08-22T14:00:00.000Z",
+          "occupancy_pct": "0.6626",
+          "adr": "326.0687"
+        },
+        {
+          "region": "Gold Coast",
+          "date": "2024-08-23T14:00:00.000Z",
+          "occupancy_pct": "0.6902",
+          "adr": "326.3663"
+        },
+        {
+          "region": "Gold Coast",
+          "date": "2024-08-24T14:00:00.000Z",
+          "occupancy_pct": "0.5994",
+          "adr": "302.3741"
+        },
+        {
+          "region": "Gold Coast",
+          "date": "2024-08-25T14:00:00.000Z",
+          "occupancy_pct": "0.5546",
+          "adr": "285.5256"
+        },
+        {
+          "region": "Gold Coast",
+          "date": "2024-08-26T14:00:00.000Z",
+          "occupancy_pct": "0.5575",
+          "adr": "282.2661"
+        },
+        {
+          "region": "Gold Coast",
+          "date": "2024-08-27T14:00:00.000Z",
+          "occupancy_pct": "0.5650",
+          "adr": "283.2459"
+        },
+        {
+          "region": "Gold Coast",
+          "date": "2024-08-28T14:00:00.000Z",
+          "occupancy_pct": "0.5973",
+          "adr": "286.6873"
+        },
+        {
+          "region": "Gold Coast",
+          "date": "2024-08-29T14:00:00.000Z",
+          "occupancy_pct": "0.6630",
+          "adr": "322.5828"
+        },
+        {
+          "region": "Gold Coast",
+          "date": "2024-08-30T14:00:00.000Z",
+          "occupancy_pct": "0.6791",
+          "adr": "322.1542"
+        },
+        {
+          "region": "Noosa",
+          "date": "2024-06-02T14:00:00.000Z",
+          "occupancy_pct": "0.4341",
+          "adr": "344.3379"
+        },
+        {
+          "region": "Noosa",
+          "date": "2024-06-03T14:00:00.000Z",
+          "occupancy_pct": "0.4227",
+          "adr": "345.4773"
+        },
+        {
+          "region": "Noosa",
+          "date": "2024-06-04T14:00:00.000Z",
+          "occupancy_pct": "0.4451",
+          "adr": "347.0576"
+        },
+        {
+          "region": "Noosa",
+          "date": "2024-06-05T14:00:00.000Z",
+          "occupancy_pct": "0.4708",
+          "adr": "345.0047"
+        },
+        {
+          "region": "Noosa",
+          "date": "2024-06-06T14:00:00.000Z",
+          "occupancy_pct": "0.5234",
+          "adr": "360.1745"
+        },
+        {
+          "region": "Noosa",
+          "date": "2024-06-07T14:00:00.000Z",
+          "occupancy_pct": "0.5735",
+          "adr": "361.9386"
+        },
+        {
+          "region": "Noosa",
+          "date": "2024-06-08T14:00:00.000Z",
+          "occupancy_pct": "0.5237",
+          "adr": "357.0898"
+        },
+        {
+          "region": "Noosa",
+          "date": "2024-06-09T14:00:00.000Z",
+          "occupancy_pct": "0.4799",
+          "adr": "353.2030"
+        },
+        {
+          "region": "Noosa",
+          "date": "2024-06-10T14:00:00.000Z",
+          "occupancy_pct": "0.4593",
+          "adr": "346.9800"
+        },
+        {
+          "region": "Noosa",
+          "date": "2024-06-11T14:00:00.000Z",
+          "occupancy_pct": "0.4601",
+          "adr": "351.9440"
+        },
+        {
+          "region": "Noosa",
+          "date": "2024-06-12T14:00:00.000Z",
+          "occupancy_pct": "0.4895",
+          "adr": "350.8232"
+        },
+        {
+          "region": "Noosa",
+          "date": "2024-06-13T14:00:00.000Z",
+          "occupancy_pct": "0.5240",
+          "adr": "361.5127"
+        },
+        {
+          "region": "Noosa",
+          "date": "2024-06-14T14:00:00.000Z",
+          "occupancy_pct": "0.5889",
+          "adr": "369.3770"
+        },
+        {
+          "region": "Noosa",
+          "date": "2024-06-15T14:00:00.000Z",
+          "occupancy_pct": "0.5012",
+          "adr": "362.5852"
+        },
+        {
+          "region": "Noosa",
+          "date": "2024-06-16T14:00:00.000Z",
+          "occupancy_pct": "0.4888",
+          "adr": "363.0540"
+        },
+        {
+          "region": "Noosa",
+          "date": "2024-06-17T14:00:00.000Z",
+          "occupancy_pct": "0.4663",
+          "adr": "355.2548"
+        },
+        {
+          "region": "Noosa",
+          "date": "2024-06-18T14:00:00.000Z",
+          "occupancy_pct": "0.4673",
+          "adr": "356.5811"
+        },
+        {
+          "region": "Noosa",
+          "date": "2024-06-19T14:00:00.000Z",
+          "occupancy_pct": "0.4731",
+          "adr": "357.8166"
+        },
+        {
+          "region": "Noosa",
+          "date": "2024-06-20T14:00:00.000Z",
+          "occupancy_pct": "0.5170",
+          "adr": "377.6342"
+        },
+        {
+          "region": "Noosa",
+          "date": "2024-06-21T14:00:00.000Z",
+          "occupancy_pct": "0.5390",
+          "adr": "376.6862"
+        },
+        {
+          "region": "Noosa",
+          "date": "2024-06-22T14:00:00.000Z",
+          "occupancy_pct": "0.5058",
+          "adr": "378.3217"
+        },
+        {
+          "region": "Noosa",
+          "date": "2024-06-23T14:00:00.000Z",
+          "occupancy_pct": "0.5037",
+          "adr": "377.7817"
+        },
+        {
+          "region": "Noosa",
+          "date": "2024-06-24T14:00:00.000Z",
+          "occupancy_pct": "0.5071",
+          "adr": "380.4143"
+        },
+        {
+          "region": "Noosa",
+          "date": "2024-06-25T14:00:00.000Z",
+          "occupancy_pct": "0.5084",
+          "adr": "379.1825"
+        },
+        {
+          "region": "Noosa",
+          "date": "2024-06-26T14:00:00.000Z",
+          "occupancy_pct": "0.5331",
+          "adr": "379.9226"
+        },
+        {
+          "region": "Noosa",
+          "date": "2024-06-27T14:00:00.000Z",
+          "occupancy_pct": "0.5849",
+          "adr": "388.9418"
+        },
+        {
+          "region": "Noosa",
+          "date": "2024-06-28T14:00:00.000Z",
+          "occupancy_pct": "0.6147",
+          "adr": "391.1545"
+        },
+        {
+          "region": "Noosa",
+          "date": "2024-06-29T14:00:00.000Z",
+          "occupancy_pct": "0.5717",
+          "adr": "396.1865"
+        },
+        {
+          "region": "Noosa",
+          "date": "2024-06-30T14:00:00.000Z",
+          "occupancy_pct": "0.5774",
+          "adr": "400.5119"
+        },
+        {
+          "region": "Noosa",
+          "date": "2024-07-01T14:00:00.000Z",
+          "occupancy_pct": "0.5719",
+          "adr": "397.8091"
+        },
+        {
+          "region": "Noosa",
+          "date": "2024-07-02T14:00:00.000Z",
+          "occupancy_pct": "0.5964",
+          "adr": "394.3296"
+        },
+        {
+          "region": "Noosa",
+          "date": "2024-07-03T14:00:00.000Z",
+          "occupancy_pct": "0.6179",
+          "adr": "392.5924"
+        },
+        {
+          "region": "Noosa",
+          "date": "2024-07-04T14:00:00.000Z",
+          "occupancy_pct": "0.6369",
+          "adr": "401.8875"
+        },
+        {
+          "region": "Noosa",
+          "date": "2024-07-05T14:00:00.000Z",
+          "occupancy_pct": "0.6540",
+          "adr": "400.5440"
+        },
+        {
+          "region": "Noosa",
+          "date": "2024-07-06T14:00:00.000Z",
+          "occupancy_pct": "0.5759",
+          "adr": "399.1503"
+        },
+        {
+          "region": "Noosa",
+          "date": "2024-07-07T14:00:00.000Z",
+          "occupancy_pct": "0.5769",
+          "adr": "393.2405"
+        },
+        {
+          "region": "Noosa",
+          "date": "2024-07-08T14:00:00.000Z",
+          "occupancy_pct": "0.5907",
+          "adr": "391.1673"
+        },
+        {
+          "region": "Noosa",
+          "date": "2024-07-09T14:00:00.000Z",
+          "occupancy_pct": "0.6090",
+          "adr": "386.3344"
+        },
+        {
+          "region": "Noosa",
+          "date": "2024-07-10T14:00:00.000Z",
+          "occupancy_pct": "0.6171",
+          "adr": "390.2624"
+        },
+        {
+          "region": "Noosa",
+          "date": "2024-07-11T14:00:00.000Z",
+          "occupancy_pct": "0.6754",
+          "adr": "393.9117"
+        },
+        {
+          "region": "Noosa",
+          "date": "2024-07-12T14:00:00.000Z",
+          "occupancy_pct": "0.7005",
+          "adr": "389.4878"
+        },
+        {
+          "region": "Noosa",
+          "date": "2024-07-13T14:00:00.000Z",
+          "occupancy_pct": "0.6279",
+          "adr": "389.5750"
+        },
+        {
+          "region": "Noosa",
+          "date": "2024-07-14T14:00:00.000Z",
+          "occupancy_pct": "0.6032",
+          "adr": "387.4850"
+        },
+        {
+          "region": "Noosa",
+          "date": "2024-07-15T14:00:00.000Z",
+          "occupancy_pct": "0.6040",
+          "adr": "378.9513"
+        },
+        {
+          "region": "Noosa",
+          "date": "2024-07-16T14:00:00.000Z",
+          "occupancy_pct": "0.6379",
+          "adr": "378.7362"
+        },
+        {
+          "region": "Noosa",
+          "date": "2024-07-17T14:00:00.000Z",
+          "occupancy_pct": "0.6739",
+          "adr": "382.8588"
+        },
+        {
+          "region": "Noosa",
+          "date": "2024-07-18T14:00:00.000Z",
+          "occupancy_pct": "0.6832",
+          "adr": "381.5131"
+        },
+        {
+          "region": "Noosa",
+          "date": "2024-07-19T14:00:00.000Z",
+          "occupancy_pct": "0.6647",
+          "adr": "373.2157"
+        },
+        {
+          "region": "Noosa",
+          "date": "2024-07-20T14:00:00.000Z",
+          "occupancy_pct": "0.5831",
+          "adr": "370.3563"
+        },
+        {
+          "region": "Noosa",
+          "date": "2024-07-21T14:00:00.000Z",
+          "occupancy_pct": "0.5609",
+          "adr": "357.0458"
+        },
+        {
+          "region": "Noosa",
+          "date": "2024-07-22T14:00:00.000Z",
+          "occupancy_pct": "0.5801",
+          "adr": "359.1962"
+        },
+        {
+          "region": "Noosa",
+          "date": "2024-07-23T14:00:00.000Z",
+          "occupancy_pct": "0.5645",
+          "adr": "355.5192"
+        },
+        {
+          "region": "Noosa",
+          "date": "2024-07-24T14:00:00.000Z",
+          "occupancy_pct": "0.6061",
+          "adr": "356.1053"
+        },
+        {
+          "region": "Noosa",
+          "date": "2024-07-25T14:00:00.000Z",
+          "occupancy_pct": "0.6731",
+          "adr": "363.0715"
+        },
+        {
+          "region": "Noosa",
+          "date": "2024-07-26T14:00:00.000Z",
+          "occupancy_pct": "0.6881",
+          "adr": "360.5882"
+        },
+        {
+          "region": "Noosa",
+          "date": "2024-07-27T14:00:00.000Z",
+          "occupancy_pct": "0.6039",
+          "adr": "355.8974"
+        },
+        {
+          "region": "Noosa",
+          "date": "2024-07-28T14:00:00.000Z",
+          "occupancy_pct": "0.5672",
+          "adr": "350.5546"
+        },
+        {
+          "region": "Noosa",
+          "date": "2024-07-29T14:00:00.000Z",
+          "occupancy_pct": "0.5547",
+          "adr": "349.4780"
+        },
+        {
+          "region": "Noosa",
+          "date": "2024-07-30T14:00:00.000Z",
+          "occupancy_pct": "0.5531",
+          "adr": "347.9609"
+        },
+        {
+          "region": "Noosa",
+          "date": "2024-07-31T14:00:00.000Z",
+          "occupancy_pct": "0.5937",
+          "adr": "345.4940"
+        },
+        {
+          "region": "Noosa",
+          "date": "2024-08-01T14:00:00.000Z",
+          "occupancy_pct": "0.6510",
+          "adr": "359.2800"
+        },
+        {
+          "region": "Noosa",
+          "date": "2024-08-02T14:00:00.000Z",
+          "occupancy_pct": "0.6735",
+          "adr": "358.0181"
+        },
+        {
+          "region": "Noosa",
+          "date": "2024-08-03T14:00:00.000Z",
+          "occupancy_pct": "0.5925",
+          "adr": "356.0440"
+        },
+        {
+          "region": "Noosa",
+          "date": "2024-08-04T14:00:00.000Z",
+          "occupancy_pct": "0.5573",
+          "adr": "354.5274"
+        },
+        {
+          "region": "Noosa",
+          "date": "2024-08-05T14:00:00.000Z",
+          "occupancy_pct": "0.5584",
+          "adr": "346.5209"
+        },
+        {
+          "region": "Noosa",
+          "date": "2024-08-06T14:00:00.000Z",
+          "occupancy_pct": "0.5571",
+          "adr": "344.5285"
+        },
+        {
+          "region": "Noosa",
+          "date": "2024-08-07T14:00:00.000Z",
+          "occupancy_pct": "0.5911",
+          "adr": "346.1734"
+        },
+        {
+          "region": "Noosa",
+          "date": "2024-08-08T14:00:00.000Z",
+          "occupancy_pct": "0.6822",
+          "adr": "366.0277"
+        },
+        {
+          "region": "Noosa",
+          "date": "2024-08-09T14:00:00.000Z",
+          "occupancy_pct": "0.7301",
+          "adr": "363.5952"
+        },
+        {
+          "region": "Noosa",
+          "date": "2024-08-10T14:00:00.000Z",
+          "occupancy_pct": "0.6433",
+          "adr": "351.9067"
+        },
+        {
+          "region": "Noosa",
+          "date": "2024-08-11T14:00:00.000Z",
+          "occupancy_pct": "0.6166",
+          "adr": "349.5866"
+        },
+        {
+          "region": "Noosa",
+          "date": "2024-08-12T14:00:00.000Z",
+          "occupancy_pct": "0.6002",
+          "adr": "345.6765"
+        },
+        {
+          "region": "Noosa",
+          "date": "2024-08-13T14:00:00.000Z",
+          "occupancy_pct": "0.6253",
+          "adr": "347.4847"
+        },
+        {
+          "region": "Noosa",
+          "date": "2024-08-14T14:00:00.000Z",
+          "occupancy_pct": "0.6378",
+          "adr": "351.7588"
+        },
+        {
+          "region": "Noosa",
+          "date": "2024-08-15T14:00:00.000Z",
+          "occupancy_pct": "0.7040",
+          "adr": "363.7553"
+        },
+        {
+          "region": "Noosa",
+          "date": "2024-08-16T14:00:00.000Z",
+          "occupancy_pct": "0.7383",
+          "adr": "367.2357"
+        },
+        {
+          "region": "Noosa",
+          "date": "2024-08-17T14:00:00.000Z",
+          "occupancy_pct": "0.6218",
+          "adr": "359.0840"
+        },
+        {
+          "region": "Noosa",
+          "date": "2024-08-18T14:00:00.000Z",
+          "occupancy_pct": "0.5875",
+          "adr": "350.1774"
+        },
+        {
+          "region": "Noosa",
+          "date": "2024-08-19T14:00:00.000Z",
+          "occupancy_pct": "0.5776",
+          "adr": "345.3714"
+        },
+        {
+          "region": "Noosa",
+          "date": "2024-08-20T14:00:00.000Z",
+          "occupancy_pct": "0.6108",
+          "adr": "348.6238"
+        },
+        {
+          "region": "Noosa",
+          "date": "2024-08-21T14:00:00.000Z",
+          "occupancy_pct": "0.6233",
+          "adr": "348.5164"
+        },
+        {
+          "region": "Noosa",
+          "date": "2024-08-22T14:00:00.000Z",
+          "occupancy_pct": "0.6776",
+          "adr": "365.7338"
+        },
+        {
+          "region": "Noosa",
+          "date": "2024-08-23T14:00:00.000Z",
+          "occupancy_pct": "0.6835",
+          "adr": "364.1307"
+        },
+        {
+          "region": "Noosa",
+          "date": "2024-08-24T14:00:00.000Z",
+          "occupancy_pct": "0.6177",
+          "adr": "358.7967"
+        },
+        {
+          "region": "Noosa",
+          "date": "2024-08-25T14:00:00.000Z",
+          "occupancy_pct": "0.5678",
+          "adr": "354.1551"
+        },
+        {
+          "region": "Noosa",
+          "date": "2024-08-26T14:00:00.000Z",
+          "occupancy_pct": "0.5525",
+          "adr": "354.0285"
+        },
+        {
+          "region": "Noosa",
+          "date": "2024-08-27T14:00:00.000Z",
+          "occupancy_pct": "0.5561",
+          "adr": "351.9899"
+        },
+        {
+          "region": "Noosa",
+          "date": "2024-08-28T14:00:00.000Z",
+          "occupancy_pct": "0.5938",
+          "adr": "350.7600"
+        },
+        {
+          "region": "Noosa",
+          "date": "2024-08-29T14:00:00.000Z",
+          "occupancy_pct": "0.6832",
+          "adr": "366.8853"
+        },
+        {
+          "region": "Noosa",
+          "date": "2024-08-30T14:00:00.000Z",
+          "occupancy_pct": "0.6913",
+          "adr": "365.7773"
+        },
+        {
+          "region": "Whitsundays",
+          "date": "2024-06-02T14:00:00.000Z",
+          "occupancy_pct": "0.4297",
+          "adr": "347.4605"
+        },
+        {
+          "region": "Whitsundays",
+          "date": "2024-06-03T14:00:00.000Z",
+          "occupancy_pct": "0.4348",
+          "adr": "350.9730"
+        },
+        {
+          "region": "Whitsundays",
+          "date": "2024-06-04T14:00:00.000Z",
+          "occupancy_pct": "0.4563",
+          "adr": "353.7331"
+        },
+        {
+          "region": "Whitsundays",
+          "date": "2024-06-05T14:00:00.000Z",
+          "occupancy_pct": "0.4891",
+          "adr": "366.1562"
+        },
+        {
+          "region": "Whitsundays",
+          "date": "2024-06-06T14:00:00.000Z",
+          "occupancy_pct": "0.5712",
+          "adr": "378.6481"
+        },
+        {
+          "region": "Whitsundays",
+          "date": "2024-06-07T14:00:00.000Z",
+          "occupancy_pct": "0.6206",
+          "adr": "385.1163"
+        },
+        {
+          "region": "Whitsundays",
+          "date": "2024-06-08T14:00:00.000Z",
+          "occupancy_pct": "0.5764",
+          "adr": "384.1089"
+        },
+        {
+          "region": "Whitsundays",
+          "date": "2024-06-09T14:00:00.000Z",
+          "occupancy_pct": "0.5254",
+          "adr": "373.2060"
+        },
+        {
+          "region": "Whitsundays",
+          "date": "2024-06-10T14:00:00.000Z",
+          "occupancy_pct": "0.5062",
+          "adr": "372.4553"
+        },
+        {
+          "region": "Whitsundays",
+          "date": "2024-06-11T14:00:00.000Z",
+          "occupancy_pct": "0.4917",
+          "adr": "359.0892"
+        },
+        {
+          "region": "Whitsundays",
+          "date": "2024-06-12T14:00:00.000Z",
+          "occupancy_pct": "0.5092",
+          "adr": "364.8311"
+        },
+        {
+          "region": "Whitsundays",
+          "date": "2024-06-13T14:00:00.000Z",
+          "occupancy_pct": "0.5806",
+          "adr": "371.6562"
+        },
+        {
+          "region": "Whitsundays",
+          "date": "2024-06-14T14:00:00.000Z",
+          "occupancy_pct": "0.6000",
+          "adr": "373.9272"
+        },
+        {
+          "region": "Whitsundays",
+          "date": "2024-06-15T14:00:00.000Z",
+          "occupancy_pct": "0.5477",
+          "adr": "372.8217"
+        },
+        {
+          "region": "Whitsundays",
+          "date": "2024-06-16T14:00:00.000Z",
+          "occupancy_pct": "0.5041",
+          "adr": "378.6764"
+        },
+        {
+          "region": "Whitsundays",
+          "date": "2024-06-17T14:00:00.000Z",
+          "occupancy_pct": "0.5062",
+          "adr": "369.6171"
+        },
+        {
+          "region": "Whitsundays",
+          "date": "2024-06-18T14:00:00.000Z",
+          "occupancy_pct": "0.5250",
+          "adr": "368.3305"
+        },
+        {
+          "region": "Whitsundays",
+          "date": "2024-06-19T14:00:00.000Z",
+          "occupancy_pct": "0.5376",
+          "adr": "372.0023"
+        },
+        {
+          "region": "Whitsundays",
+          "date": "2024-06-20T14:00:00.000Z",
+          "occupancy_pct": "0.6021",
+          "adr": "382.6005"
+        },
+        {
+          "region": "Whitsundays",
+          "date": "2024-06-21T14:00:00.000Z",
+          "occupancy_pct": "0.6260",
+          "adr": "386.9903"
+        },
+        {
+          "region": "Whitsundays",
+          "date": "2024-06-22T14:00:00.000Z",
+          "occupancy_pct": "0.5740",
+          "adr": "391.1439"
+        },
+        {
+          "region": "Whitsundays",
+          "date": "2024-06-23T14:00:00.000Z",
+          "occupancy_pct": "0.5482",
+          "adr": "394.4521"
+        },
+        {
+          "region": "Whitsundays",
+          "date": "2024-06-24T14:00:00.000Z",
+          "occupancy_pct": "0.5405",
+          "adr": "394.3373"
+        },
+        {
+          "region": "Whitsundays",
+          "date": "2024-06-25T14:00:00.000Z",
+          "occupancy_pct": "0.5326",
+          "adr": "385.9837"
+        },
+        {
+          "region": "Whitsundays",
+          "date": "2024-06-26T14:00:00.000Z",
+          "occupancy_pct": "0.5791",
+          "adr": "381.9473"
+        },
+        {
+          "region": "Whitsundays",
+          "date": "2024-06-27T14:00:00.000Z",
+          "occupancy_pct": "0.6366",
+          "adr": "378.9144"
+        },
+        {
+          "region": "Whitsundays",
+          "date": "2024-06-28T14:00:00.000Z",
+          "occupancy_pct": "0.6666",
+          "adr": "373.8628"
+        },
+        {
+          "region": "Whitsundays",
+          "date": "2024-06-29T14:00:00.000Z",
+          "occupancy_pct": "0.6412",
+          "adr": "391.9370"
+        },
+        {
+          "region": "Whitsundays",
+          "date": "2024-06-30T14:00:00.000Z",
+          "occupancy_pct": "0.6287",
+          "adr": "401.4746"
+        },
+        {
+          "region": "Whitsundays",
+          "date": "2024-07-01T14:00:00.000Z",
+          "occupancy_pct": "0.6269",
+          "adr": "399.9533"
+        },
+        {
+          "region": "Whitsundays",
+          "date": "2024-07-02T14:00:00.000Z",
+          "occupancy_pct": "0.6418",
+          "adr": "396.7699"
+        },
+        {
+          "region": "Whitsundays",
+          "date": "2024-07-03T14:00:00.000Z",
+          "occupancy_pct": "0.6807",
+          "adr": "395.2810"
+        },
+        {
+          "region": "Whitsundays",
+          "date": "2024-07-04T14:00:00.000Z",
+          "occupancy_pct": "0.6891",
+          "adr": "394.7866"
+        },
+        {
+          "region": "Whitsundays",
+          "date": "2024-07-05T14:00:00.000Z",
+          "occupancy_pct": "0.7002",
+          "adr": "393.6076"
+        },
+        {
+          "region": "Whitsundays",
+          "date": "2024-07-06T14:00:00.000Z",
+          "occupancy_pct": "0.6415",
+          "adr": "401.7812"
+        },
+        {
+          "region": "Whitsundays",
+          "date": "2024-07-07T14:00:00.000Z",
+          "occupancy_pct": "0.6441",
+          "adr": "407.2441"
+        },
+        {
+          "region": "Whitsundays",
+          "date": "2024-07-08T14:00:00.000Z",
+          "occupancy_pct": "0.6319",
+          "adr": "405.8777"
+        },
+        {
+          "region": "Whitsundays",
+          "date": "2024-07-09T14:00:00.000Z",
+          "occupancy_pct": "0.6714",
+          "adr": "410.8592"
+        },
+        {
+          "region": "Whitsundays",
+          "date": "2024-07-10T14:00:00.000Z",
+          "occupancy_pct": "0.7105",
+          "adr": "401.9849"
+        },
+        {
+          "region": "Whitsundays",
+          "date": "2024-07-11T14:00:00.000Z",
+          "occupancy_pct": "0.7392",
+          "adr": "396.3978"
+        },
+        {
+          "region": "Whitsundays",
+          "date": "2024-07-12T14:00:00.000Z",
+          "occupancy_pct": "0.7035",
+          "adr": "396.8300"
+        },
+        {
+          "region": "Whitsundays",
+          "date": "2024-07-13T14:00:00.000Z",
+          "occupancy_pct": "0.6451",
+          "adr": "401.7415"
+        },
+        {
+          "region": "Whitsundays",
+          "date": "2024-07-14T14:00:00.000Z",
+          "occupancy_pct": "0.6280",
+          "adr": "398.2670"
+        },
+        {
+          "region": "Whitsundays",
+          "date": "2024-07-15T14:00:00.000Z",
+          "occupancy_pct": "0.6311",
+          "adr": "391.2520"
+        },
+        {
+          "region": "Whitsundays",
+          "date": "2024-07-16T14:00:00.000Z",
+          "occupancy_pct": "0.6627",
+          "adr": "395.0477"
+        },
+        {
+          "region": "Whitsundays",
+          "date": "2024-07-17T14:00:00.000Z",
+          "occupancy_pct": "0.6936",
+          "adr": "398.6583"
+        },
+        {
+          "region": "Whitsundays",
+          "date": "2024-07-18T14:00:00.000Z",
+          "occupancy_pct": "0.7108",
+          "adr": "385.0602"
+        },
+        {
+          "region": "Whitsundays",
+          "date": "2024-07-19T14:00:00.000Z",
+          "occupancy_pct": "0.7215",
+          "adr": "373.1156"
+        },
+        {
+          "region": "Whitsundays",
+          "date": "2024-07-20T14:00:00.000Z",
+          "occupancy_pct": "0.6374",
+          "adr": "371.0134"
+        },
+        {
+          "region": "Whitsundays",
+          "date": "2024-07-21T14:00:00.000Z",
+          "occupancy_pct": "0.6318",
+          "adr": "369.3628"
+        },
+        {
+          "region": "Whitsundays",
+          "date": "2024-07-22T14:00:00.000Z",
+          "occupancy_pct": "0.6320",
+          "adr": "373.4009"
+        },
+        {
+          "region": "Whitsundays",
+          "date": "2024-07-23T14:00:00.000Z",
+          "occupancy_pct": "0.6634",
+          "adr": "378.2789"
+        },
+        {
+          "region": "Whitsundays",
+          "date": "2024-07-24T14:00:00.000Z",
+          "occupancy_pct": "0.6726",
+          "adr": "378.6417"
+        },
+        {
+          "region": "Whitsundays",
+          "date": "2024-07-25T14:00:00.000Z",
+          "occupancy_pct": "0.7162",
+          "adr": "370.8333"
+        },
+        {
+          "region": "Whitsundays",
+          "date": "2024-07-26T14:00:00.000Z",
+          "occupancy_pct": "0.7258",
+          "adr": "376.6949"
+        },
+        {
+          "region": "Whitsundays",
+          "date": "2024-07-27T14:00:00.000Z",
+          "occupancy_pct": "0.6226",
+          "adr": "376.5871"
+        },
+        {
+          "region": "Whitsundays",
+          "date": "2024-07-28T14:00:00.000Z",
+          "occupancy_pct": "0.5894",
+          "adr": "382.7869"
+        },
+        {
+          "region": "Whitsundays",
+          "date": "2024-07-29T14:00:00.000Z",
+          "occupancy_pct": "0.5511",
+          "adr": "379.8699"
+        },
+        {
+          "region": "Whitsundays",
+          "date": "2024-07-30T14:00:00.000Z",
+          "occupancy_pct": "0.5458",
+          "adr": "376.6934"
+        },
+        {
+          "region": "Whitsundays",
+          "date": "2024-07-31T14:00:00.000Z",
+          "occupancy_pct": "0.5793",
+          "adr": "382.8040"
+        },
+        {
+          "region": "Whitsundays",
+          "date": "2024-08-01T14:00:00.000Z",
+          "occupancy_pct": "0.6642",
+          "adr": "391.9350"
+        },
+        {
+          "region": "Whitsundays",
+          "date": "2024-08-02T14:00:00.000Z",
+          "occupancy_pct": "0.6841",
+          "adr": "388.8227"
+        },
+        {
+          "region": "Whitsundays",
+          "date": "2024-08-03T14:00:00.000Z",
+          "occupancy_pct": "0.6206",
+          "adr": "389.8016"
+        },
+        {
+          "region": "Whitsundays",
+          "date": "2024-08-04T14:00:00.000Z",
+          "occupancy_pct": "0.5980",
+          "adr": "378.8475"
+        },
+        {
+          "region": "Whitsundays",
+          "date": "2024-08-05T14:00:00.000Z",
+          "occupancy_pct": "0.5929",
+          "adr": "383.5353"
+        },
+        {
+          "region": "Whitsundays",
+          "date": "2024-08-06T14:00:00.000Z",
+          "occupancy_pct": "0.6174",
+          "adr": "378.9455"
+        },
+        {
+          "region": "Whitsundays",
+          "date": "2024-08-07T14:00:00.000Z",
+          "occupancy_pct": "0.6612",
+          "adr": "383.1510"
+        },
+        {
+          "region": "Whitsundays",
+          "date": "2024-08-08T14:00:00.000Z",
+          "occupancy_pct": "0.7284",
+          "adr": "389.4972"
+        },
+        {
+          "region": "Whitsundays",
+          "date": "2024-08-09T14:00:00.000Z",
+          "occupancy_pct": "0.7557",
+          "adr": "386.4752"
+        },
+        {
+          "region": "Whitsundays",
+          "date": "2024-08-10T14:00:00.000Z",
+          "occupancy_pct": "0.7121",
+          "adr": "388.6419"
+        },
+        {
+          "region": "Whitsundays",
+          "date": "2024-08-11T14:00:00.000Z",
+          "occupancy_pct": "0.6473",
+          "adr": "394.8678"
+        },
+        {
+          "region": "Whitsundays",
+          "date": "2024-08-12T14:00:00.000Z",
+          "occupancy_pct": "0.6351",
+          "adr": "392.3851"
+        },
+        {
+          "region": "Whitsundays",
+          "date": "2024-08-13T14:00:00.000Z",
+          "occupancy_pct": "0.6383",
+          "adr": "389.4958"
+        },
+        {
+          "region": "Whitsundays",
+          "date": "2024-08-14T14:00:00.000Z",
+          "occupancy_pct": "0.6450",
+          "adr": "380.1438"
+        },
+        {
+          "region": "Whitsundays",
+          "date": "2024-08-15T14:00:00.000Z",
+          "occupancy_pct": "0.7388",
+          "adr": "384.7778"
+        },
+        {
+          "region": "Whitsundays",
+          "date": "2024-08-16T14:00:00.000Z",
+          "occupancy_pct": "0.7780",
+          "adr": "379.2602"
+        },
+        {
+          "region": "Whitsundays",
+          "date": "2024-08-17T14:00:00.000Z",
+          "occupancy_pct": "0.6857",
+          "adr": "388.3654"
+        },
+        {
+          "region": "Whitsundays",
+          "date": "2024-08-18T14:00:00.000Z",
+          "occupancy_pct": "0.6597",
+          "adr": "390.0071"
+        },
+        {
+          "region": "Whitsundays",
+          "date": "2024-08-19T14:00:00.000Z",
+          "occupancy_pct": "0.6273",
+          "adr": "395.0408"
+        },
+        {
+          "region": "Whitsundays",
+          "date": "2024-08-20T14:00:00.000Z",
+          "occupancy_pct": "0.6826",
+          "adr": "386.7782"
+        },
+        {
+          "region": "Whitsundays",
+          "date": "2024-08-21T14:00:00.000Z",
+          "occupancy_pct": "0.6923",
+          "adr": "389.9398"
+        },
+        {
+          "region": "Whitsundays",
+          "date": "2024-08-22T14:00:00.000Z",
+          "occupancy_pct": "0.7486",
+          "adr": "383.5502"
+        },
+        {
+          "region": "Whitsundays",
+          "date": "2024-08-23T14:00:00.000Z",
+          "occupancy_pct": "0.7350",
+          "adr": "381.8303"
+        },
+        {
+          "region": "Whitsundays",
+          "date": "2024-08-24T14:00:00.000Z",
+          "occupancy_pct": "0.5890",
+          "adr": "353.3080"
+        },
+        {
+          "region": "Whitsundays",
+          "date": "2024-08-25T14:00:00.000Z",
+          "occupancy_pct": "0.5234",
+          "adr": "364.1741"
+        },
+        {
+          "region": "Whitsundays",
+          "date": "2024-08-26T14:00:00.000Z",
+          "occupancy_pct": "0.5099",
+          "adr": "368.4123"
+        },
+        {
+          "region": "Whitsundays",
+          "date": "2024-08-27T14:00:00.000Z",
+          "occupancy_pct": "0.5398",
+          "adr": "374.2376"
+        },
+        {
+          "region": "Whitsundays",
+          "date": "2024-08-28T14:00:00.000Z",
+          "occupancy_pct": "0.5956",
+          "adr": "376.7826"
+        },
+        {
+          "region": "Whitsundays",
+          "date": "2024-08-29T14:00:00.000Z",
+          "occupancy_pct": "0.6631",
+          "adr": "377.4696"
+        },
+        {
+          "region": "Whitsundays",
+          "date": "2024-08-30T14:00:00.000Z",
+          "occupancy_pct": "0.6903",
+          "adr": "394.2782"
+        }
+      ]
+    }
+  }
+}

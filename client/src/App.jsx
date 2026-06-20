@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import { api } from './api/client.js';
 
 /**
@@ -88,6 +89,10 @@ export default function App() {
           Re-check
         </button>
       </section>
+
+      <Link className="btn" to="/insights">
+        View insights prototype →
+      </Link>
 
       <footer className="foot muted">
         Localis Technologies Australia · IFQ717 Capstone
