@@ -36,6 +36,16 @@ export const api = {
     return request('/api/health');
   },
 
+  /**
+   * GET /api/insights?persona=… → { persona, narrative, chartSpec, data }
+   * Unwraps the { data } success envelope.
+   */
+  getInsight(persona) {
+    return request(`/api/insights?persona=${encodeURIComponent(persona)}`).then(
+      (body) => body.data
+    );
+  },
+
   getOccupancySummary(region) {
     return request(
       `/api/occupancy/summary?region=${encodeURIComponent(region)}`
