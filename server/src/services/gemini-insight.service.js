@@ -1,89 +1,42 @@
-import { fileURLToPath } from 'node:url';
-import { genai } from '../config/gemini.js';
-import { getInsightCache } from './insights.service.js';
-import { INSIGHT_MODEL } from './gemini-cache.service.js';
+import { genai, INSIGHT_MODEL } from '../config/gemini.js';
+import { assembleInsightContext } from './insights.service.js';
+import { userPrompt } from './insight-prompt.js';
+import { parseInsightResponse } from './insight-response.js';
 import { logger } from '../utils/logger.js';
-import { createFileCache } from '../utils/file-cache.js';
+import { ApiError } from '../utils/ApiError.js';
 
-// Persisted response cache keyed by persona — a hit returns the stored result
-// without any Gemini call. TTL matches the 24h data cache; delete the file to
-// force regeneration (e.g. after reseeding the DB).
-const RESPONSE_TTL_MS = 24 * 60 * 60 * 1000;
-const cacheFile = fileURLToPath(new URL('../../.cache/insights.json', import.meta.url));
-const responseCache = createFileCache(cacheFile, RESPONSE_TTL_MS);
-
-// Bounded well under the model's 65,536 output-token cap. The chart carries no
-// inline data (see prompt), so the response stays small.
+// Bounded well under the model's output-token cap. Charts carry no inline data
+// (the server attaches rows), so the response stays small.
 const MAX_OUTPUT_TOKENS = 8_192;
 
-/**
- * Persona-specific framing. The data and output contract are shared; only the
- * analytical lens changes per reader (LLM-5).
- */
-const PERSONAS = {
-  government:
-    'The reader is a local government tourism officer. Focus on the visitor economy across all four LGAs, regional comparisons, and trends that inform policy and funding.',
-  admin:
-    'The reader is a platform administrator. Give an at-a-glance overview of every region, data coverage, and any anomalies worth monitoring.',
-  operator:
-    'The reader is a tourism operator. Focus on competitive context — how occupancy and average daily rate (ADR) are tracking and what that means for pricing decisions.',
-};
-
-export const VALID_PERSONAS = Object.keys(PERSONAS);
-
-/**
- * Persona prompt goes in the USER message (not systemInstruction): a request
- * that references cachedContent cannot also set systemInstruction.
- */
-function userPrompt(persona) {
-  return [
-    'You are an analyst for Destination Insight Hubs, explaining Queensland tourism occupancy data to a non-technical reader.',
-    'The provided data is the last 90 days of daily occupancy for four regions. Each row has: region, date, occupancy_pct (a fraction 0–1), adr (average daily rate in AUD).',
-    PERSONAS[persona],
-    'Write in plain English with no jargon. Call out peaks, troughs and notable differences between regions.',
-    'Reply with ONLY a JSON object (no markdown fences) with exactly these keys:',
-    '"persona": the persona string;',
-    '"narrative": 2–4 short plain-English paragraphs;',
-    '"chartSpec": a valid Vega-Lite v5 spec for the most relevant trend. Do NOT inline any data — set "data": {"name": "table"} and the client supplies the rows. Include mark, an encoding (x = date temporal, y = the relevant quantitative field, color = region nominal) and a title.',
-    `Generate the insight for the "${persona}" persona.`,
-  ].join('\n');
+/** True for Gemini rate-limit / quota-exhausted errors. */
+function isRateLimit(err) {
+  return (
+    err?.status === 429 ||
+    /\b429\b|quota|rate.?limit|RESOURCE_EXHAUSTED/i.test(err?.message ?? '')
+  );
 }
 
 /**
- * Structural sanity check on the returned Vega-Lite spec. Full schema
- * validation isn't practical (Vega-Lite is open-ended), but requiring a mark
- * and an x/y encoding catches the common cheap-model failure modes (e.g. a
- * spec with no mark). A spec that fails is dropped, not fatal — the narrative
- * still renders.
+ * Call Gemini with the role-framed prompt + the inlined DATA rows, then shape the
+ * structured JSON into { narrative, charts[] }. The prompt (insight-prompt.js)
+ * and the parsing/validation (insight-response.js) are pure and unit-tested; this
+ * function is the thin SDK wrapper around them.
+ *
+ * @param {string} role  reader role (government | dmo | operator | admin)
+ * @param {{ appliedFilters: object, data: object[] }} context
  */
-function isValidChartSpec(spec) {
-  if (!spec || typeof spec !== 'object') return false;
-  if (!spec.mark) return false; // string ('line') or object ({ type: 'line' })
-  const enc = spec.encoding;
-  return Boolean(enc && typeof enc === 'object' && enc.x && enc.y);
-}
-
-/**
- * Calls Gemini with the cached data (when available) plus the small per-request
- * persona prompt, then parses the structured JSON into
- * { persona, narrative, chartSpec } (LLM-2 + LLM-6).
- */
-export async function generateInsight(persona, { cacheName, dataPart }) {
-  // When cached, the data already lives in the cache; otherwise inline it first.
-  const parts = cacheName
-    ? [{ text: userPrompt(persona) }]
-    : [dataPart, { text: userPrompt(persona) }];
-
-  const config = {
-    responseMimeType: 'application/json',
-    maxOutputTokens: MAX_OUTPUT_TOKENS,
-  };
-  if (cacheName) config.cachedContent = cacheName;
+export async function generateInsight(role, context) {
+  const dataText = JSON.stringify({ appliedFilters: context.appliedFilters, data: context.data });
+  const parts = [
+    { text: userPrompt(role, context.appliedFilters) },
+    { text: `\nDATA:\n${dataText}` },
+  ];
 
   const response = await genai.models.generateContent({
     model: INSIGHT_MODEL,
     contents: [{ role: 'user', parts }],
-    config,
+    config: { responseMimeType: 'application/json', maxOutputTokens: MAX_OUTPUT_TOKENS },
   });
 
   const raw = response.text;
@@ -96,41 +49,37 @@ export async function generateInsight(persona, { cacheName, dataPart }) {
     throw new Error('Gemini response was not valid JSON');
   }
 
-  let chartSpec = parsed.chartSpec ?? null;
-  if (chartSpec && !isValidChartSpec(chartSpec)) {
-    logger.warn({ persona }, 'Gemini returned an invalid Vega-Lite chartSpec; dropping it');
-    chartSpec = null;
+  const result = parseInsightResponse(parsed, context);
+  const rawChartCount = Array.isArray(parsed.charts) ? parsed.charts.length : 0;
+  if (rawChartCount !== result.charts.length) {
+    logger.warn(
+      { role, dropped: rawChartCount - result.charts.length },
+      'Dropped invalid chart(s) from Gemini response',
+    );
   }
-
-  return {
-    persona,
-    narrative: parsed.narrative ?? '',
-    chartSpec,
-  };
+  return result;
 }
 
 /**
- * End-to-end: reuse the memoised data cache, generate an insight, and attach
- * the rows so the response is chart-ready — the client binds `data` to the
- * chartSpec's named "table" dataset (datasets: { table: data }).
+ * End-to-end for one insight request: assemble the data context, generate the
+ * role-framed narrative + charts, and compose the response.
+ *
+ * No KPIs and no response caching (both backlog); the AI-failure fallback is
+ * backlog too (DIH-70). Validation errors (ApiError) propagate; a Gemini
+ * rate-limit maps to 429; anything else rethrows (→ 500 via the error handler).
+ *
+ * @param {{ role: string, regions?: string[], metrics?: string[], period?: string }} params
+ * @returns {Promise<{ role: string, appliedFilters: object, narrative: string, charts: object[] }>}
  */
-export async function getInsight(persona) {
-  const cached = await responseCache.get(persona);
-  if (cached) return cached;
-
+export async function getInsight({ role, regions, metrics, period }) {
   try {
-    const cache = await getInsightCache();
-    const insight = await generateInsight(persona, cache);
-    const result = { ...insight, data: cache.context.rows };
-    await responseCache.set(persona, result);
-    return result;
+    const context = await assembleInsightContext({ regions, metrics, period });
+    const { narrative, charts } = await generateInsight(role, context);
+    return { role, appliedFilters: context.appliedFilters, narrative, charts };
   } catch (err) {
-    // No key / DB / API failure — serve the committed cache even if stale so
-    // teammates without a GEMINI_API_KEY can still see results.
-    const stale = await responseCache.get(persona, { allowStale: true });
-    if (stale) {
-      logger.warn({ persona, err: err.message }, 'Serving stale cached insight (live generation unavailable)');
-      return stale;
+    if (err instanceof ApiError) throw err; // validation (400) — propagate
+    if (isRateLimit(err)) {
+      throw new ApiError(429, 'RATE_LIMITED', 'Gemini rate limit reached — please try again shortly.');
     }
     throw err;
   }

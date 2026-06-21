@@ -1,6 +1,11 @@
 import 'dotenv/config';
 import { GoogleGenAI } from '@google/genai';
 
+// Default 2.5 Flash — reliable Vega-Lite specs at low cost. Override with
+// GEMINI_MODEL to switch. (Documented limits: 1,048,576-token context window,
+// 65,536 max output tokens — see ai.google.dev/gemini-api/docs/models.)
+export const INSIGHT_MODEL = process.env.GEMINI_MODEL || 'gemini-2.5-flash';
+
 let client = null;
 
 /**

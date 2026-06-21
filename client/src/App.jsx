@@ -85,9 +85,6 @@ export default function App() {
       </section>
 
       <nav className="links">
-        <Link className="btn" to="/insights">
-          View insights prototype →
-        </Link>
         <Link className="btn" to="/operator">
           Tourism operator dashboard →
         </Link>
