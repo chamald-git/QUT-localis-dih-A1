@@ -1,70 +1,58 @@
-import { knex } from '../db/knex.js';
-import { createInsightCache } from './gemini-cache.service.js';
+import {
+  getValidRegions,
+  queryInsightData,
+  INSIGHT_METRICS,
+} from '../repositories/insights.repository.js';
 
 /**
- * Fetches every daily occupancy row for the last 90 days, for every region, in
- * a single Knex query (one round-trip). Rows are returned RAW and unrounded —
- * the full daily series is handed to Gemini so it can reason over trends; any
- * rounding, percent scaling and number coercion are the UI's responsibility.
- *
- * Returned as a single flat array of region-day rows — Gemini consumes one
- * flat file, no per-region nesting.
- *
- * NOTE: no per-request timestamp in the payload — this object becomes the
- * cached prompt prefix, which must stay byte-identical for implicit caching
- * to hit. Stamp request time outside this blob if you need it.
- *
- * @returns {Promise<{ datasets: string[], rows: Array }>}
+ * @what  Orchestration for the AI insights endpoint (DIH-14).
+ * @why   Applies request defaults (all regions / [occupancy, adr] / last_90_days),
+ *        resolves the period preset to a day count, asks the repository for the
+ *        joined rows, and shapes the { appliedFilters, data } context the Gemini
+ *        layer consumes. SQL lives in insights.repository.js.
+ * @note  Strict input validation, response caching, and server-computed KPIs are
+ *        backlog work. Periods mirror the operator dashboard (Last 30/60/90 days).
  */
-export async function assembleInsightContext() {
-  // Subquery: the 90 most-recent distinct dates in the dataset.
-  const latest90 = knex('occupancy')
-    .distinct('date')
-    .orderBy('date', 'desc')
-    .limit(90);
 
-  // Single query: join those dates back to the data, fanned across all regions.
-  // Returned flat (one row per region-day) — Gemini takes a single flat file.
-  const rows = await knex('occupancy as o')
-    .join('regions as r', 'r.id', 'o.region_id')
-    .join(latest90.as('d'), 'd.date', 'o.date')
-    .orderBy(['r.name', 'o.date'])
-    .select('r.name as region', 'o.date', 'o.occupancy_pct', 'o.adr');
+const DEFAULT_METRICS = ['occupancy', 'adr'];
+
+// Period presets mirror Sarah's operator dashboard: each maps to how many of the
+// most-recent dates to include (the repository applies the LIMIT).
+const PRESET_DAYS = { last_30_days: 30, last_60_days: 60, last_90_days: 90 };
+const DEFAULT_PERIOD = 'last_90_days';
+
+/**
+ * Assemble the data context for an insight request.
+ *
+ * @param {{ regions?: string[], metrics?: string[], period?: string }} params
+ * @returns {Promise<{ appliedFilters: { regions: string[], metrics: string[], period: { preset: string, days: number } }, data: object[] }>}
+ *   `data` is the joined rows array — one wide row per region/date.
+ */
+export async function assembleInsightContext({ regions, metrics, period } = {}) {
+  const validRegions = await getValidRegions();
+  const regionNames = regions && regions.length ? regions : validRegions;
+
+  const requested = (metrics && metrics.length ? metrics : DEFAULT_METRICS).filter((m) =>
+    INSIGHT_METRICS.includes(m),
+  );
+  const metricNames = requested.length ? requested : DEFAULT_METRICS;
+
+  const preset = PRESET_DAYS[period] ? period : DEFAULT_PERIOD;
+  const days = PRESET_DAYS[preset];
+
+  const data = await queryInsightData({ regions: regionNames, metrics: metricNames, days });
+
+  // Start/end dates are read off the returned rows (min/max of the YYYY-MM-DD
+  // date strings) — no extra query. Null when there is no data.
+  let from = null;
+  let to = null;
+  for (const row of data) {
+    if (from === null || row.date < from) from = row.date;
+    if (to === null || row.date > to) to = row.date;
+  }
 
   return {
-    datasets: ['occupancy'],
-    rows,
+    appliedFilters: { regions: regionNames, metrics: metricNames, period: { preset, days, from, to } },
+    data,
   };
-}
-
-/**
- * Assembles the insight context and uploads it once, returning a stable prefix
- * part to place FIRST in generateContent (free-tier implicit caching reuses it
- * across requests — explicit caches.create is paid-only).
- *
- * @returns {Promise<{ context: object, uploadedFile: object, prefixPart: object }>}
- */
-export async function buildInsightCache() {
-  const context = await assembleInsightContext();
-  const cache = await createInsightCache(context);
-  return { context, ...cache };
-}
-
-let cachePromise = null;
-
-/**
- * Memoised cache: assemble + upload + cache the context once per process and
- * reuse the cache handle for all persona prompts (cache TTL is 24h; restart to
- * refresh). On failure the memo is cleared so the next call retries.
- *
- * @returns {Promise<{ context: object, uploadedFile: object, cacheName: string|null, dataPart: object, tokens: number }>}
- */
-export function getInsightCache() {
-  if (!cachePromise) {
-    cachePromise = buildInsightCache().catch((err) => {
-      cachePromise = null;
-      throw err;
-    });
-  }
-  return cachePromise;
 }

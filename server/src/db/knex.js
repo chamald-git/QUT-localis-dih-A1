@@ -2,12 +2,12 @@ import knexLib from 'knex';
 import { config } from '../config/index.js';
 
 /**
- * Knex instance scoped to the insights service ONLY.
+ * Knex instance confined to the insights repository ONLY (insights.repository.js).
  *
  * The rest of the codebase uses raw parameterised mysql2 queries via pool.js
- * (the convention recorded against ADR-0003). Knex is introduced here purely
- * for the insights aggregation query builder and should not spread to other
- * repositories without revisiting that decision.
+ * (the convention recorded against ADR-0003). Knex is introduced here purely for
+ * the insights aggregation/join query builder and should not spread to the other
+ * (mysql2) repositories without revisiting that decision.
  */
 export const knex = knexLib({
   client: 'mysql2',

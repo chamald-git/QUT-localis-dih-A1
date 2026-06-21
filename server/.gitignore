@@ -1,5 +1,3 @@
 
-# Persisted insight response cache — ignore the dir but commit the seed file so
-# teammates without a GEMINI_API_KEY can still see results.
-.cache/*
-!.cache/insights.json
+# Local cache artifacts
+.cache/
