@@ -10,11 +10,24 @@
  * isn't practical (Vega-Lite is open-ended); requiring a mark and an x/y encoding
  * catches the common cheap-model failures. An invalid spec drops just that chart.
  */
+function hasXY(node) {
+  const enc = node?.encoding;
+  return Boolean(enc && typeof enc === 'object' && enc.x && enc.y);
+}
+
 export function isValidChartSpec(spec) {
   if (!spec || typeof spec !== 'object') return false;
-  if (!spec.mark) return false; // string ('line') or object ({ type: 'line' })
-  const enc = spec.encoding;
-  return Boolean(enc && typeof enc === 'object' && enc.x && enc.y);
+  // Layered spec (used for annotations): every layer needs a mark, and an x/y
+  // encoding must exist somewhere — shared at the top level or on a layer.
+  if (Array.isArray(spec.layer)) {
+    return (
+      spec.layer.length > 0 &&
+      spec.layer.every((layer) => layer && layer.mark) &&
+      (hasXY(spec) || spec.layer.some(hasXY))
+    );
+  }
+  // Single view: a mark plus x/y encoding.
+  return Boolean(spec.mark) && hasXY(spec);
 }
 
 /**

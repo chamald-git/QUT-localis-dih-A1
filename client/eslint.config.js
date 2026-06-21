@@ -31,4 +31,12 @@ export default [
       'react/prop-types': 'off',
     },
   },
+  {
+    files: ['src/**/*.test.{js,jsx}'],
+    languageOptions: {
+      globals: {
+        ...globals.jest,
+      },
+    },
+  },
 ];

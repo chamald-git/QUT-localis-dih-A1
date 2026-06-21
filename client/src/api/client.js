@@ -1,3 +1,5 @@
+import { buildInsightsQuery } from '../lib/buildInsightsQuery.js';
+
 /**
  * Thin fetch wrapper. In development, calls go to relative /api paths and Vite
  * proxies them to the Express server. In production, VITE_API_URL points at the
@@ -45,6 +47,17 @@ export const api = {
   getOccupancyRows(region, limit = 5) {
     return request(
       `/api/occupancy?region=${encodeURIComponent(region)}&limit=${limit}`
+    );
+  },
+
+  /**
+   * AI insights story. Role is sent via the x-user-role header (the dev mock
+   * standing in for JWT); regions/metrics/period go as query params.
+   */
+  getInsights({ regions = [], metrics = [], period, role = 'government' } = {}) {
+    return request(
+      `/api/insights${buildInsightsQuery({ regions, metrics, period })}`,
+      { headers: { 'x-user-role': role } }
     );
   },
 };
