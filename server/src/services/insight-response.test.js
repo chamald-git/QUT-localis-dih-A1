@@ -16,6 +16,22 @@ describe('isValidChartSpec', () => {
     expect(isValidChartSpec({ mark: 'line' })).toBe(false);
     expect(isValidChartSpec(null)).toBe(false);
   });
+  it('accepts a layered (annotated) spec with marks + shared or per-layer x/y', () => {
+    expect(
+      isValidChartSpec({
+        encoding: { x: { field: 'date' }, y: { field: 'occupancy_pct' } },
+        layer: [{ mark: 'line' }, { mark: 'point' }],
+      })
+    ).toBe(true);
+    expect(
+      isValidChartSpec({ layer: [{ mark: 'line', encoding: { x: {}, y: {} } }, { mark: 'rule' }] })
+    ).toBe(true);
+  });
+  it('rejects a layered spec with a layer missing a mark, or no x/y anywhere, or empty', () => {
+    expect(isValidChartSpec({ layer: [{ mark: 'line', encoding: { x: {}, y: {} } }, { encoding: {} }] })).toBe(false);
+    expect(isValidChartSpec({ layer: [{ mark: 'line' }] })).toBe(false);
+    expect(isValidChartSpec({ layer: [] })).toBe(false);
+  });
 });
 
 describe('parseInsightResponse', () => {

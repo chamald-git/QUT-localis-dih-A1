@@ -2,12 +2,14 @@ import { genai, INSIGHT_MODEL } from '../config/gemini.js';
 import { assembleInsightContext } from './insights.service.js';
 import { userPrompt } from './insight-prompt.js';
 import { parseInsightResponse } from './insight-response.js';
+import { rateLimitDetails } from './rate-limit-details.js';
 import { logger } from '../utils/logger.js';
 import { ApiError } from '../utils/ApiError.js';
 
-// Bounded well under the model's output-token cap. Charts carry no inline data
-// (the server attaches rows), so the response stays small.
-const MAX_OUTPUT_TOKENS = 8_192;
+// Headroom for up to ~5 layered chart specs + the narrative in one JSON reply.
+// Charts carry no inline data (the server attaches rows), but layered specs with
+// tooltips/transforms/filters add up; too low truncates the JSON and parsing fails.
+const MAX_OUTPUT_TOKENS = 24_576;
 
 /** True for Gemini rate-limit / quota-exhausted errors. */
 function isRateLimit(err) {
@@ -79,7 +81,14 @@ export async function getInsight({ role, regions, metrics, period }) {
   } catch (err) {
     if (err instanceof ApiError) throw err; // validation (400) — propagate
     if (isRateLimit(err)) {
-      throw new ApiError(429, 'RATE_LIMITED', 'Gemini rate limit reached — please try again shortly.');
+      const details = rateLimitDetails(err);
+      logger.warn({ rateLimit: details }, 'Gemini rate limit / quota exhausted');
+      throw new ApiError(
+        429,
+        'RATE_LIMITED',
+        'Gemini rate limit reached — please try again shortly.',
+        details,
+      );
     }
     throw err;
   }
