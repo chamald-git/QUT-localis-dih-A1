@@ -88,6 +88,9 @@ export default function App() {
         <Link className="btn" to="/operator">
           Tourism operator dashboard →
         </Link>
+        <Link className="btn" to="/government">
+          Government AI insights →
+        </Link>
       </nav>
 
       <footer className="foot muted">
