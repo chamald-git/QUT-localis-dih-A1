@@ -26,10 +26,14 @@ function isRateLimit(err) {
  * function is the thin SDK wrapper around them.
  *
  * @param {string} role  reader role (government | dmo | operator | admin)
- * @param {{ appliedFilters: object, data: object[] }} context
+ * @param {{ appliedFilters: object, data: object[], spend?: object[]|null }} context
  */
 export async function generateInsight(role, context) {
-  const dataText = JSON.stringify({ appliedFilters: context.appliedFilters, data: context.data });
+  // Spend is a second dataset (region×category); include it only when requested
+  // so tourism-only requests send the exact same payload as before.
+  const payload = { appliedFilters: context.appliedFilters, data: context.data };
+  if (context.spend) payload.spend = context.spend;
+  const dataText = JSON.stringify(payload);
   const parts = [
     { text: userPrompt(role, context.appliedFilters) },
     { text: `\nDATA:\n${dataText}` },

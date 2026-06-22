@@ -1,7 +1,9 @@
 import {
   getValidRegions,
   queryInsightData,
+  querySpendData,
   INSIGHT_METRICS,
+  SPEND_METRIC,
 } from '../repositories/insights.repository.js';
 
 /**
@@ -25,8 +27,9 @@ const DEFAULT_PERIOD = 'last_90_days';
  * Assemble the data context for an insight request.
  *
  * @param {{ regions?: string[], metrics?: string[], period?: string }} params
- * @returns {Promise<{ appliedFilters: { regions: string[], metrics: string[], period: { preset: string, days: number } }, data: object[] }>}
- *   `data` is the joined rows array — one wide row per region/date.
+ * @returns {Promise<{ appliedFilters: { regions: string[], metrics: string[], period: { preset: string, days: number } }, data: object[], spend: object[]|null }>}
+ *   `data` is the joined date-grain rows (one wide row per region/date); `spend`
+ *   is the region×category spend dataset, or null when spend wasn't requested.
  */
 export async function assembleInsightContext({ regions, metrics, period } = {}) {
   const validRegions = await getValidRegions();
@@ -40,7 +43,14 @@ export async function assembleInsightContext({ regions, metrics, period } = {}) 
   const preset = PRESET_DAYS[period] ? period : DEFAULT_PERIOD;
   const days = PRESET_DAYS[preset];
 
-  const data = await queryInsightData({ regions: regionNames, metrics: metricNames, days });
+  // Spend is a pseudo-metric backed by a separate dataset (different grain), so
+  // split it out: the date-grain join only ever sees the tourism metrics. The
+  // date spine (and from/to below) always comes from the join, even spend-only.
+  const includeSpend = metricNames.includes(SPEND_METRIC);
+  const tourismMetrics = metricNames.filter((m) => m !== SPEND_METRIC);
+
+  const data = await queryInsightData({ regions: regionNames, metrics: tourismMetrics, days });
+  const spend = includeSpend ? await querySpendData({ regions: regionNames, days }) : null;
 
   // Start/end dates are read off the returned rows (min/max of the YYYY-MM-DD
   // date strings) — no extra query. Null when there is no data.
@@ -54,5 +64,6 @@ export async function assembleInsightContext({ regions, metrics, period } = {}) 
   return {
     appliedFilters: { regions: regionNames, metrics: metricNames, period: { preset, days, from, to } },
     data,
+    spend,
   };
 }
