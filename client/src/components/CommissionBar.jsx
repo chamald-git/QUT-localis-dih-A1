@@ -3,7 +3,9 @@
  * a period, then Generate. Controlled component — the page owns the selection.
  *
  * Options are hardcoded to the sets the endpoint supports. Period uses the
- * endpoint presets (no custom range). Spend is omitted (not yet supported).
+ * endpoint presets (no custom range). "Spend by category" is a separate dataset
+ * (region × category) the endpoint adds when requested — it renders as its own
+ * spend-by-category chart rather than a date-trend line.
  */
 
 export const REGION_OPTIONS = ['Cairns', 'Gold Coast', 'Noosa', 'Whitsundays'];
@@ -13,6 +15,7 @@ export const METRIC_OPTIONS = [
   { value: 'adr', label: 'ADR' },
   { value: 'length_of_stay', label: 'Length of stay' },
   { value: 'booking_window', label: 'Booking window' },
+  { value: 'spend', label: 'Spend by category' },
 ];
 
 export const PERIOD_OPTIONS = [
