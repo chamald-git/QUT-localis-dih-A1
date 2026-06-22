@@ -1,3 +1,5 @@
+import { SPEND_METRIC } from '../repositories/insights.repository.js';
+
 /**
  * @what  Pure parsing/validation of the Gemini insight response (DIH-14).
  * @why   Keeps the shaping out of the Gemini-calling service so it's unit-testable
@@ -37,7 +39,7 @@ export function isValidChartSpec(spec) {
  * data" needs no extra request. Pure — no SDK / DB.
  *
  * @param {{ narrative?: unknown, charts?: unknown }} raw  parsed Gemini JSON
- * @param {{ appliedFilters: { metrics: string[] }, data: object[] }} context
+ * @param {{ appliedFilters: { metrics: string[] }, data: object[], spend?: object[]|null }} context
  * @returns {{ narrative: string, charts: object[] }}
  */
 export function parseInsightResponse(raw, context) {
@@ -50,7 +52,10 @@ export function parseInsightResponse(raw, context) {
       title: typeof c.title === 'string' ? c.title : '',
       caption: typeof c.caption === 'string' ? c.caption : '',
       chartSpec: c.chartSpec,
-      data: context.data,
+      // A spend chart carries the region×category spend rows; every other chart
+      // carries the date-grain rows. Both are attached server-side so rendering
+      // and "view data" need no extra request.
+      data: c.metric === SPEND_METRIC ? (context.spend ?? []) : context.data,
     }));
   // The prompt asks for a single string; a cheap model may return otherwise.
   const narrative = typeof raw?.narrative === 'string' ? raw.narrative : '';

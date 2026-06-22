@@ -12,6 +12,17 @@ describe('applyAxisStyle', () => {
     expect(out.encoding.y.axis).toMatchObject({ title: null, grid: false });
   });
 
+  test('a non-temporal x (e.g. spend by category) drops title/grid but keeps its own labels', () => {
+    const out = applyAxisStyle({
+      mark: 'bar',
+      encoding: { y: { field: 'category', type: 'nominal' }, x: { field: 'spend', type: 'quantitative' } },
+    });
+    expect(out.encoding.x.axis).toMatchObject({ title: null, grid: false });
+    expect(out.encoding.x.axis.tickCount).toBeUndefined();
+    expect(out.encoding.x.axis.format).toBeUndefined();
+    expect(out.encoding.y.axis).toMatchObject({ title: null, grid: false });
+  });
+
   test('walks layers, preserves other axis props, no mutation', () => {
     const input = {
       layer: [{ mark: 'line', encoding: { x: { field: 'date', axis: { labelColor: 'red' } }, y: { field: 'adr' } } }],

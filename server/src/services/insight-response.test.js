@@ -55,4 +55,30 @@ describe('parseInsightResponse', () => {
     expect(out.narrative).toBe('');
     expect(out.charts).toHaveLength(0);
   });
+
+  it('attaches the spend rows to a spend chart and the date-grain rows to the others', () => {
+    const spendCtx = {
+      appliedFilters: { metrics: ['occupancy', 'spend'] },
+      data: ctx.data,
+      spend: [{ region: 'Cairns', category: 'RESTAURANTS', spend: 91000, no_txns: 1200, cards_seen: 800 }],
+    };
+    const spendSpec = { mark: 'bar', encoding: { x: { field: 'spend' }, y: { field: 'category' } } };
+    const raw = {
+      narrative: 'story',
+      charts: [
+        { metric: 'occupancy', chartSpec: goodSpec },
+        { metric: 'spend', chartSpec: spendSpec },
+      ],
+    };
+    const out = parseInsightResponse(raw, spendCtx);
+    expect(out.charts).toHaveLength(2);
+    expect(out.charts.find((c) => c.metric === 'occupancy').data).toBe(spendCtx.data);
+    expect(out.charts.find((c) => c.metric === 'spend').data).toBe(spendCtx.spend);
+  });
+
+  it('drops a spend chart when spend was not requested', () => {
+    const spendSpec = { mark: 'bar', encoding: { x: { field: 'spend' }, y: { field: 'category' } } };
+    const out = parseInsightResponse({ narrative: 'x', charts: [{ metric: 'spend', chartSpec: spendSpec }] }, ctx);
+    expect(out.charts).toHaveLength(0);
+  });
 });

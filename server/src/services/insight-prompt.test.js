@@ -22,4 +22,18 @@ describe('userPrompt', () => {
   it('falls back to the government framing for an unknown role', () => {
     expect(userPrompt('nope', APPLIED)).toMatch(/government tourism officer/i);
   });
+
+  it('omits spend guidance when spend is not a requested metric', () => {
+    const p = userPrompt('government', APPLIED);
+    expect(p).not.toContain('no_txns');
+    expect(p).not.toMatch(/spend by category|spending CATEGORY/i);
+  });
+
+  it('adds the spend dataset + horizontal-bar guidance when spend is requested', () => {
+    const p = userPrompt('government', { ...APPLIED, metrics: ['occupancy', 'spend'] });
+    expect(p).toContain('"spend"'); // names the second dataset
+    expect(p).toContain('no_txns');
+    expect(p).toContain('category');
+    expect(p).toMatch(/horizontal bar/i);
+  });
 });
