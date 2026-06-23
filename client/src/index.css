@@ -11,7 +11,12 @@
   --error: #c0392b;
   --radius: 12px;
 
-  font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  font-family:
+    system-ui,
+    -apple-system,
+    "Segoe UI",
+    Roboto,
+    sans-serif;
 }
 
 * {
@@ -21,8 +26,14 @@
 body {
   margin: 0;
   color: var(--ink);
+  font-size: 1rem;
+  line-height: 1.5;
   background:
-    radial-gradient(circle at top left, rgba(200, 75, 47, 0.12), transparent 32rem),
+    radial-gradient(
+      circle at top left,
+      rgba(200, 75, 47, 0.12),
+      transparent 32rem
+    ),
     linear-gradient(180deg, #f4faf7 0%, var(--light-green) 100%);
 }
 
@@ -62,7 +73,8 @@ h1 {
 .subtitle {
   margin: 2px 0 0;
   color: var(--muted);
-  font-size: 0.9rem;
+  font-size: 0.95rem;
+  line-height: 1.55;
 }
 
 .card {
@@ -131,7 +143,8 @@ h1 {
 
 .muted {
   color: var(--muted);
-  font-size: 0.88rem;
+  font-size: 0.95rem;
+  line-height: 1.55;
   margin: 4px 0 0;
 }
 
@@ -148,9 +161,9 @@ code {
   background: var(--forest);
   color: #fff;
   border: 0;
-  padding: 10px 18px;
+  padding: 11px 18px;
   border-radius: 8px;
-  font-size: 0.9rem;
+  font-size: 0.95rem;
   text-decoration: none;
   cursor: pointer;
 }
@@ -174,22 +187,27 @@ code {
 /* Main page layout for the operator dashboard. */
 .dashboard-shell {
   width: min(1180px, calc(100% - 32px));
+  max-width: 1180px;
   margin: 0 auto;
-  padding: 40px 0 56px;
+  padding: 40px 16px 56px;
 }
 
 /* Top area with the page title and mock user details. */
 .dashboard-header {
   display: flex;
   justify-content: space-between;
-  align-items: flex-start;
+  align-items: center;
   gap: 24px;
   margin-bottom: 28px;
   padding: 28px;
   border: 1px solid rgba(13, 59, 46, 0.12);
   border-radius: 24px;
   background:
-    linear-gradient(135deg, rgba(255, 255, 255, 0.96), rgba(232, 242, 238, 0.92)),
+    linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.96),
+      rgba(232, 242, 238, 0.92)
+    ),
     #fff;
   box-shadow: 0 18px 40px rgba(13, 59, 46, 0.09);
 }
@@ -249,7 +267,7 @@ code {
   display: grid;
   gap: 8px;
   color: var(--forest);
-  font-size: 0.9rem;
+  font-size: 0.95rem;
   font-weight: 700;
 }
 
@@ -279,11 +297,11 @@ code {
   gap: 10px;
   margin: 0 0 14px;
   color: var(--forest);
-  font-size: 1.25rem;
+  font-size: 1.35rem;
 }
 
 .dashboard-section h2::before {
-  content: '';
+  content: "";
   width: 10px;
   height: 28px;
   border-radius: 999px;
@@ -298,7 +316,7 @@ code {
 }
 
 .summary-grid.three-columns {
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
 }
 
 .summary-card,
@@ -311,7 +329,7 @@ code {
 }
 
 .summary-card {
-  padding: 20px;
+  padding: 22px;
   transition:
     transform 160ms ease,
     box-shadow 160ms ease,
@@ -327,7 +345,8 @@ code {
 .card-label {
   margin: 0 0 10px;
   color: var(--muted);
-  font-size: 0.82rem;
+  font-size: 0.9rem;
+  line-height: 1.35;
   font-weight: 700;
   letter-spacing: 0.05em;
   text-transform: uppercase;
@@ -336,14 +355,15 @@ code {
 .card-value {
   display: block;
   color: var(--forest);
-  font-size: 1.55rem;
-  line-height: 1.1;
+  font-size: 1.7rem;
+  line-height: 1.15;
 }
 
 .card-note {
   margin: 10px 0 0;
   color: var(--muted);
-  font-size: 0.9rem;
+  font-size: 0.95rem;
+  line-height: 1.5;
 }
 
 /* Plain-English explanation panels. */
@@ -352,7 +372,11 @@ code {
   padding: 22px;
   border-left: 5px solid var(--terracotta);
   background:
-    linear-gradient(90deg, rgba(247, 231, 225, 0.65), rgba(255, 255, 255, 1) 28%),
+    linear-gradient(
+      90deg,
+      rgba(247, 231, 225, 0.65),
+      rgba(255, 255, 255, 1) 28%
+    ),
     #fff;
 }
 
@@ -360,7 +384,7 @@ code {
 .panel h3 {
   margin: 0 0 10px;
   color: var(--forest);
-  font-size: 1rem;
+  font-size: 1.15rem;
 }
 
 .insight-panel p,
@@ -372,13 +396,19 @@ code {
 /* Two-column panels for spend and plan-ahead sections. */
 .panel-grid {
   display: grid;
-  grid-template-columns: 1.4fr 1fr;
+  grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
+  align-items: start;
   gap: 16px;
   margin-top: 16px;
 }
 
+.panel-grid > * {
+  min-width: 0;
+}
+
 .panel {
-  padding: 22px;
+  min-width: 0;
+  padding: 24px;
 }
 
 /* Simple placeholder bars for spend categories. */
@@ -434,7 +464,7 @@ code {
 .mini-table {
   width: 100%;
   border-collapse: collapse;
-  font-size: 0.9rem;
+  font-size: 0.95rem;
 }
 
 .mini-table th,
@@ -506,6 +536,287 @@ code {
   .bar-row {
     grid-template-columns: 1fr;
     gap: 6px;
+  }
+
+  .panel {
+    padding: 20px;
+  }
+
+  .activity-stat-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .quick-takeaways {
+    padding: 16px;
+  }
+
+  .spend-data-details summary {
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+  }
+}
+
+/* Operator dashboard readability and spending insights. */
+
+.operator-dashboard .dashboard-header h1 {
+  max-width: 18ch;
+}
+
+.operator-dashboard .panel p,
+.operator-dashboard .insight-panel p {
+  font-size: 1rem;
+}
+
+.spending-chart-panel .vega-chart {
+  margin-top: 14px;
+}
+
+.chart-intro {
+  max-width: 68ch;
+}
+
+.chart-selection-note {
+  padding: 10px 12px;
+  border-left: 4px solid var(--terracotta);
+  border-radius: 6px;
+  background: var(--terracotta-soft);
+  color: var(--ink);
+}
+
+.spend-data-details {
+  margin-top: 18px;
+  padding-top: 14px;
+  border-top: 1px solid rgba(13, 59, 46, 0.12);
+}
+
+.spend-data-details summary {
+  width: fit-content;
+  color: var(--forest);
+  font-size: 0.98rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.spend-data-details summary:hover {
+  color: var(--terracotta);
+}
+
+.spend-data-details summary:focus-visible,
+.btn:focus-visible {
+  outline: 3px solid rgba(200, 75, 47, 0.24);
+  outline-offset: 4px;
+}
+
+.spend-data-help {
+  margin-top: 8px;
+}
+
+.visitor-activity-panel {
+  display: grid;
+  width: 100%;
+  min-width: 0;
+  gap: 18px;
+}
+
+.activity-scope {
+  margin-top: -2px;
+}
+
+.activity-stat-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 12px;
+}
+
+.activity-stat {
+  width: 100%;
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 16px 18px;
+  border: 1px solid rgba(13, 59, 46, 0.12);
+  border-radius: 10px;
+  background: rgba(232, 242, 238, 0.46);
+  flex-wrap: wrap;
+}
+
+.activity-stat-label {
+  display: block;
+  min-width: 0;
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.85rem;
+  font-weight: 700;
+  line-height: 1.35;
+  letter-spacing: 0.035em;
+  text-transform: uppercase;
+}
+
+.activity-stat-value {
+  display: block;
+  flex: none;
+  color: var(--forest);
+  font-size: clamp(1.25rem, 2vw, 1.5rem);
+  line-height: 1.15;
+  text-align: right;
+  white-space: nowrap;
+  overflow-wrap: normal;
+  word-break: normal;
+  font-variant-numeric: tabular-nums;
+}
+
+.quick-takeaways {
+  padding: 18px;
+  border-left: 4px solid var(--terracotta);
+  border-radius: 8px;
+  background: linear-gradient(
+    90deg,
+    rgba(247, 231, 225, 0.72),
+    rgba(255, 255, 255, 0.94)
+  );
+}
+
+.quick-takeaways h4 {
+  margin: 0 0 10px;
+  color: var(--forest);
+  font-size: 1.05rem;
+}
+
+.quick-takeaways ul {
+  display: grid;
+  gap: 10px;
+  margin: 0;
+  padding-left: 1.25rem;
+}
+
+.quick-takeaways li {
+  padding-left: 3px;
+  color: var(--ink);
+  font-size: 0.98rem;
+  line-height: 1.5;
+}
+
+.quick-takeaways li::marker {
+  color: var(--terracotta);
+}
+
+.activity-data-note {
+  padding-top: 10px;
+  border-top: 1px solid rgba(13, 59, 46, 0.1);
+}
+
+
+.spend-share-section {
+  display: grid;
+  gap: 14px;
+  padding-top: 18px;
+  border-top: 1px solid rgba(13, 59, 46, 0.12);
+}
+
+.spend-share-section h4 {
+  margin: 0 0 5px;
+  color: var(--forest);
+  font-size: 1.05rem;
+}
+
+.spend-share-chart-wrap {
+  display: grid;
+  justify-items: center;
+  gap: 12px;
+  padding: 14px;
+  border: 1px solid rgba(13, 59, 46, 0.1);
+  border-radius: 10px;
+  background: rgba(232, 242, 238, 0.28);
+}
+
+.spend-share-chart-wrap .vega-chart {
+  width: 100%;
+  max-width: 100%;
+  overflow: visible;
+}
+
+.spend-share-legend {
+  display: grid;
+  width: 100%;
+  gap: 10px;
+}
+
+.spend-share-legend-item {
+  display: grid;
+  grid-template-columns: 14px minmax(0, 1fr);
+  align-items: start;
+  gap: 9px;
+}
+
+.spend-share-swatch {
+  width: 14px;
+  height: 14px;
+  margin-top: 3px;
+  border-radius: 4px;
+  box-shadow: inset 0 0 0 1px rgba(13, 59, 46, 0.08);
+}
+
+.spend-share-legend-copy {
+  display: grid;
+  min-width: 0;
+  gap: 2px;
+}
+
+.spend-share-legend-copy strong {
+  color: var(--ink);
+  font-size: 0.92rem;
+  line-height: 1.35;
+}
+
+.spend-share-legend-copy span {
+  color: var(--muted);
+  font-size: 0.9rem;
+  line-height: 1.35;
+  font-variant-numeric: tabular-nums;
+}
+
+/* Make Vega hover details readable across Operator and Government charts. */
+#vg-tooltip-element,
+.vg-tooltip {
+  max-width: min(360px, calc(100vw - 24px));
+  padding: 14px 16px !important;
+  border-radius: 10px !important;
+  font-family:
+    system-ui,
+    -apple-system,
+    "Segoe UI",
+    Roboto,
+    sans-serif !important;
+  font-size: 1rem !important;
+  line-height: 1.45 !important;
+  box-shadow: 0 12px 30px rgba(13, 59, 46, 0.18) !important;
+}
+
+#vg-tooltip-element table,
+.vg-tooltip table {
+  border-spacing: 8px 5px !important;
+}
+
+#vg-tooltip-element td,
+#vg-tooltip-element th,
+.vg-tooltip td,
+.vg-tooltip th {
+  padding: 3px 5px !important;
+  font-size: 1rem !important;
+  line-height: 1.4 !important;
+}
+
+
+@media (max-width: 520px) {
+  .spend-share-chart-wrap {
+    padding: 10px;
+  }
+
+  .spend-share-chart-wrap .vega-chart {
+    max-width: calc(100vw - 80px);
   }
 }
 
@@ -636,13 +947,13 @@ code {
 
 .chartbox h3 {
   margin: 0 0 2px;
-  font-size: 1rem;
+  font-size: 1.1rem;
   color: var(--forest);
 }
 
 .chartbox .cap {
   margin: 0 0 12px;
-  font-size: 0.82rem;
+  font-size: 0.9rem;
 }
 
 .vega-chart {
@@ -652,7 +963,7 @@ code {
 
 .chart-error {
   color: var(--error);
-  font-size: 0.85rem;
+  font-size: 0.9rem;
 }
 
 /* One shared region legend for the whole chart grid (under the section title). */
@@ -667,7 +978,7 @@ code {
   display: inline-flex;
   align-items: center;
   gap: 7px;
-  font-size: 0.85rem;
+  font-size: 0.9rem;
   color: var(--ink);
 }
 

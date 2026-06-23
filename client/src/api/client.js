@@ -64,6 +64,11 @@ export const api = {
     );
   },
 
+  getOperatorSummary(region, days = 90) {
+  return request(
+    `/api/operator-summary?region=${encodeURIComponent(region)}&days=${days}`,
+  );
+},
   /**
    * AI insights story. Role is sent via the x-user-role header (the dev mock
    * standing in for JWT); regions/metrics/period go as query params.
