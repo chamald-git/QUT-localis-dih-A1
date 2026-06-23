@@ -60,10 +60,9 @@ const spendCategories = [
 function SummaryCard({ label, value, note }) {
   return (
     <article className="summary-card">
-      {" "}
-      <p className="card-label">{label}</p>{" "}
-      <strong className="card-value">{value}</strong>{" "}
-      <p className="card-note">{note}</p>{" "}
+      <p className="card-label">{label}</p>
+      <strong className="card-value">{value}</strong>
+      <p className="card-note">{note}</p>
     </article>
   );
 }
@@ -222,13 +221,13 @@ export default function TourismOperatorDashboard() {
   const [occupancyError, setOccupancyError] = useState(null);
   const [occupancyLoading, setOccupancyLoading] = useState(true);
 
-  const [aiInsight, setAiInsight] = useState(null);
+  const [operatorStory, setOperatorStory] = useState(null);
   const [aiLoading, setAiLoading] = useState(false);
   const [aiError, setAiError] = useState(null);
 
   // Loads new data when the selected region or time period changes.
   useEffect(() => {
-    setAiInsight(null);
+    setOperatorStory(null);
     setAiError(null);
     async function loadOccupancyData() {
       setOccupancyLoading(true);
@@ -262,21 +261,39 @@ export default function TourismOperatorDashboard() {
     try {
       const result = await api.getInsights({
         regions: [selectedRegion],
-        metrics: ["occupancy", "adr"],
+        metrics: [
+          "occupancy",
+          "adr",
+          "length_of_stay",
+          "booking_window",
+          "spend",
+        ],
         period: selectedTimePeriod.apiPeriod,
         role: "operator",
       });
 
-      const narrative = result.data?.narrative;
-
-      if (!narrative) {
+      if (!result.data?.narrative) {
         throw new Error("No AI insight was returned.");
       }
 
-      setAiInsight(narrative);
+      setOperatorStory(result.data);
     } catch (err) {
-      setAiInsight(null);
-      setAiError(err.message);
+      console.error("Operator AI insight failed:", err);
+
+      const errorMessage =
+        err instanceof Error ? err.message : String(err);
+
+      const isHighDemandError =
+        errorMessage.includes('"code":503') ||
+        errorMessage.includes('"status":"UNAVAILABLE"') ||
+        errorMessage.toLowerCase().includes("high demand");
+
+      setOperatorStory(null);
+      setAiError(
+        isHighDemandError
+          ? "The AI service is busy right now. Please try generating the insight again shortly."
+          : errorMessage,
+      );
     } finally {
       setAiLoading(false);
     }
@@ -285,7 +302,8 @@ export default function TourismOperatorDashboard() {
   const trendSummary = getTrendSummary(occupancyRows);
 
   const operatorInsight =
-    aiInsight ?? getOperatorInsight(selectedRegion, occupancySummary);
+    operatorStory?.narrative ??
+    getOperatorInsight(selectedRegion, occupancySummary);
 
   const currentSnapshot = [
     {
@@ -433,13 +451,18 @@ export default function TourismOperatorDashboard() {
           </button>
 
           {aiError && (
-            <p className="muted" aria-live="polite">
-              AI insight is temporarily unavailable. The rule-based operator
-              insight is shown instead.
-            </p>
+            <div className="status status-error" aria-live="polite">
+              <div>
+                <strong>AI insight unavailable</strong>
+                <p className="muted">{aiError}</p>
+                <p className="muted">
+                  The rule-based operator insight is shown instead.
+                </p>
+              </div>
+            </div>
           )}
 
-          {aiInsight && (
+          {operatorStory && (
             <p className="muted">
               AI-generated using the selected region and time period.
             </p>

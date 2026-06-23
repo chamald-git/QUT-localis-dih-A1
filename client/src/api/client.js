@@ -25,10 +25,24 @@ async function request(path, options = {}) {
   const body = text ? JSON.parse(text) : null;
 
   if (!response.ok) {
-    const message =
-      body?.error?.message ?? `Request failed with status ${response.status}`;
-    throw new Error(message);
-  }
+  const errorMessage =
+    body?.error?.message ?? `Request failed with status ${response.status}`;
+
+  const errorDetails = body?.error?.details;
+
+  const detailsText =
+    typeof errorDetails === 'string'
+      ? errorDetails
+      : errorDetails
+        ? JSON.stringify(errorDetails)
+        : '';
+
+  const message = detailsText
+    ? `${errorMessage}: ${detailsText}`
+    : errorMessage;
+
+  throw new Error(message);
+}
 
   return body;
 }
