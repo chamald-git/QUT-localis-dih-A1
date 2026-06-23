@@ -1,100 +1,113 @@
-import { useEffect, useState } from 'react';
-import { api } from '../api/client.js';
+import { useEffect, useState } from "react";
+import { api } from "../api/client.js";
 
-// Temporary user data so I can build the operator view before login is ready.
+// Temporary user data until login is ready.
 const mockUser = {
-  role: 'operator',
-  region: 'Noosa',
-  tier: 'operator-basic',
+  role: "operator",
+  region: "Noosa",
+  tier: "operator-basic",
 };
 
-const regions = ['Cairns', 'Gold Coast', 'Noosa', 'Whitsundays'];
+const regions = ["Cairns", "Gold Coast", "Noosa", "Whitsundays"];
 
-// These options control how many recent rows we ask for from the occupancy API.
+// These options are used for the occupancy rows and the AI insight.
 const timePeriods = [
-  { label: 'Last 30 days', rowLimit: 30 },
-  { label: 'Last 60 days', rowLimit: 60 },
-  { label: 'Last 90 days', rowLimit: 90 },
+  {
+    label: "Last 30 days",
+    rowLimit: 30,
+    apiPeriod: "last_30_days",
+  },
+  {
+    label: "Last 60 days",
+    rowLimit: 60,
+    apiPeriod: "last_60_days",
+  },
+  {
+    label: "Last 90 days",
+    rowLimit: 90,
+    apiPeriod: "last_90_days",
+  },
 ];
 
-// These values are examples until the spend API endpoints are connected.
+// These values are examples until the spend API is connected.
 const visitorSpending = [
   {
-    label: 'Total Visitor Spend',
-    value: 'Example: $2.4M',
-    note: 'Mock value until spend API is connected',
+    label: "Total Visitor Spend",
+    value: "Example: $2.4M",
+    note: "Mock value until spend API is connected",
   },
   {
-    label: 'Spend per Visitor',
-    value: 'Example: $148',
-    note: 'Mock value until spend API is connected',
+    label: "Spend per Visitor",
+    value: "Example: $148",
+    note: "Mock value until spend API is connected",
   },
   {
-    label: 'Spend per Transaction',
-    value: 'Example: $42',
-    note: 'Mock value until spend API is connected',
+    label: "Spend per Transaction",
+    value: "Example: $42",
+    note: "Mock value until spend API is connected",
   },
 ];
 
 // Example category data for the first dashboard version.
 const spendCategories = [
-  { label: 'Accommodation', percentage: 90 },
-  { label: 'Restaurants', percentage: 72 },
-  { label: 'Transport', percentage: 58 },
-  { label: 'Retail', percentage: 44 },
-  { label: 'Attractions', percentage: 32 },
+  { label: "Accommodation", percentage: 90 },
+  { label: "Restaurants", percentage: 72 },
+  { label: "Transport", percentage: 58 },
+  { label: "Retail", percentage: 44 },
+  { label: "Attractions", percentage: 32 },
 ];
 
 function SummaryCard({ label, value, note }) {
   return (
     <article className="summary-card">
-      <p className="card-label">{label}</p>
-      <strong className="card-value">{value}</strong>
-      <p className="card-note">{note}</p>
+      {" "}
+      <p className="card-label">{label}</p>{" "}
+      <strong className="card-value">{value}</strong>{" "}
+      <p className="card-note">{note}</p>{" "}
     </article>
   );
 }
 
-// Makes API dates easier to read on the dashboard.
+// Makes API dates easier to read.
 function formatDate(dateString) {
-  return new Intl.DateTimeFormat('en-AU', {
-    day: 'numeric',
-    month: 'short',
-    year: 'numeric',
+  return new Intl.DateTimeFormat("en-AU", {
+    day: "numeric",
+    month: "short",
+    year: "numeric",
   }).format(new Date(dateString));
 }
 
-// The list API returns occupancy as a decimal, so this turns it into a percent.
+// The API returns occupancy as a decimal, so this turns it into a percentage.
 function formatOccupancyFromDecimal(decimalValue) {
   const occupancyNumber = Number(decimalValue);
 
   if (Number.isNaN(occupancyNumber)) {
-    return 'Unavailable';
+    return "Unavailable";
   }
 
   return `${(occupancyNumber * 100).toFixed(1)}%`;
 }
 
-// Simple wording for the live occupancy card.
+// Gives the live occupancy card a simple demand message.
 function getDemandNote(occupancyValue) {
   const occupancyNumber = Number(occupancyValue);
 
   if (Number.isNaN(occupancyNumber)) {
-    return 'Demand signal unavailable';
+    return "Demand signal unavailable";
   }
 
   if (occupancyNumber >= 70) {
-    return 'Demand is strong';
+    return "Demand is strong";
   }
 
   if (occupancyNumber >= 55) {
-    return 'Demand is steady';
+    return "Demand is steady";
   }
 
-  return 'Demand is softer';
+  return "Demand is softer";
 }
 
-// Fallback insight text for operators until the AI endpoint is connected.
+// This is shown when the AI insight is not available.
 function getOperatorInsight(region, summary) {
   if (!summary) {
     return `Waiting for live occupancy and ADR data for ${region}.`;
@@ -108,27 +121,27 @@ function getOperatorInsight(region, summary) {
   }
 
   const adrText = Number.isNaN(adrNumber)
-    ? 'ADR data is not currently available.'
+    ? "ADR data is not currently available."
     : `Average daily rate is about $${adrNumber.toFixed(0)}.`;
 
   if (occupancyNumber >= 70) {
     return `${region} is currently showing strong demand at ${occupancyNumber.toFixed(
-      1
-    )}% occupancy. ${adrText} Operators may want to confirm casual staff early, review stock levels, and check whether pricing or package offers need adjusting. This is fallback text until the AI insight endpoint is connected.`;
+      1,
+    )}% occupancy. ${adrText} Operators may want to confirm casual staff early, review stock levels, and check whether pricing or package offers need adjusting.`;
   }
 
   if (occupancyNumber >= 55) {
     return `${region} is currently showing steady demand at ${occupancyNumber.toFixed(
-      1
-    )}% occupancy. ${adrText} Operators may want to keep staffing flexible, monitor bookings, and prepare early offers if demand increases. This is fallback text until the AI insight endpoint is connected.`;
+      1,
+    )}% occupancy. ${adrText} Operators may want to keep staffing flexible, monitor bookings, and prepare early offers if demand increases.`;
   }
 
   return `${region} is currently showing softer demand at ${occupancyNumber.toFixed(
-    1
-  )}% occupancy. ${adrText} Operators may want to consider targeted promotions, flexible staffing, or using quieter periods for maintenance and planning. This is fallback text until the AI insight endpoint is connected.`;
+    1,
+  )}% occupancy. ${adrText} Operators may want to consider targeted promotions, flexible staffing, or using quieter periods for maintenance and planning.`;
 }
 
-// Uses the recent rows already loaded from the API to create a simple trend summary.
+// Uses the recent API rows to create a trend summary.
 function getTrendSummary(rows) {
   if (!rows.length) {
     return null;
@@ -136,7 +149,7 @@ function getTrendSummary(rows) {
 
   const sortedRows = [...rows].sort(
     (firstRow, secondRow) =>
-      new Date(firstRow.date).getTime() - new Date(secondRow.date).getTime()
+      new Date(firstRow.date).getTime() - new Date(secondRow.date).getTime(),
   );
 
   const firstRow = sortedRows[0];
@@ -183,33 +196,40 @@ function getTrendSummary(rows) {
   };
 }
 
-// Gives the trend summary a plain-English operator meaning.
+// Gives the trend numbers a simple operator meaning.
 function getTrendMessage(summary) {
   if (!summary) {
-    return 'Trend summary is waiting for live occupancy rows.';
+    return "Trend summary is waiting for live occupancy rows.";
   }
 
   if (summary.occupancyChange > 2) {
-    return 'Occupancy has increased across this period. Operators may want to prepare for stronger demand.';
+    return "Occupancy has increased across this period. Operators may want to prepare for stronger demand.";
   }
 
   if (summary.occupancyChange < -2) {
-    return 'Occupancy has softened across this period. Operators may want to watch bookings and consider targeted offers.';
+    return "Occupancy has softened across this period. Operators may want to watch bookings and consider targeted offers.";
   }
 
-  return 'Occupancy has stayed fairly steady across this period. Operators may want to keep staffing flexible and continue monitoring demand.';
+  return "Occupancy has stayed fairly steady across this period. Operators may want to keep staffing flexible and continue monitoring demand.";
 }
 
 export default function TourismOperatorDashboard() {
   const [selectedRegion, setSelectedRegion] = useState(mockUser.region);
   const [selectedTimePeriod, setSelectedTimePeriod] = useState(timePeriods[2]);
+
   const [occupancySummary, setOccupancySummary] = useState(null);
   const [occupancyRows, setOccupancyRows] = useState([]);
   const [occupancyError, setOccupancyError] = useState(null);
   const [occupancyLoading, setOccupancyLoading] = useState(true);
 
-  // Load the live occupancy data whenever the selected region or time period changes.
+  const [aiInsight, setAiInsight] = useState(null);
+  const [aiLoading, setAiLoading] = useState(false);
+  const [aiError, setAiError] = useState(null);
+
+  // Loads new data when the selected region or time period changes.
   useEffect(() => {
+    setAiInsight(null);
+    setAiError(null);
     async function loadOccupancyData() {
       setOccupancyLoading(true);
       setOccupancyError(null);
@@ -234,45 +254,76 @@ export default function TourismOperatorDashboard() {
     loadOccupancyData();
   }, [selectedRegion, selectedTimePeriod]);
 
+  // Requests an AI insight using the selected filters.
+  async function generateAiInsight() {
+    setAiLoading(true);
+    setAiError(null);
+
+    try {
+      const result = await api.getInsights({
+        regions: [selectedRegion],
+        metrics: ["occupancy", "adr"],
+        period: selectedTimePeriod.apiPeriod,
+        role: "operator",
+      });
+
+      const narrative = result.data?.narrative;
+
+      if (!narrative) {
+        throw new Error("No AI insight was returned.");
+      }
+
+      setAiInsight(narrative);
+    } catch (err) {
+      setAiInsight(null);
+      setAiError(err.message);
+    } finally {
+      setAiLoading(false);
+    }
+  }
+
   const trendSummary = getTrendSummary(occupancyRows);
+
+  const operatorInsight =
+    aiInsight ?? getOperatorInsight(selectedRegion, occupancySummary);
 
   const currentSnapshot = [
     {
-      label: 'Visitor Demand',
+      label: "Visitor Demand",
       value: occupancySummary
         ? `${Number(occupancySummary.occupancy_pct).toFixed(1)}% occupancy`
         : occupancyError
-          ? 'Unavailable'
-          : 'Loading...',
+          ? "Unavailable"
+          : "Loading...",
       note: occupancySummary
         ? getDemandNote(occupancySummary.occupancy_pct)
-        : 'Using live occupancy API',
+        : "Using live occupancy API",
     },
     {
-      label: 'Average Daily Rate',
+      label: "Average Daily Rate",
       value: occupancySummary
         ? `$${Number(occupancySummary.adr).toFixed(0)}`
         : occupancyError
-          ? 'Unavailable'
-          : 'Loading...',
+          ? "Unavailable"
+          : "Loading...",
       note: occupancySummary
         ? `Based on ${occupancySummary.data_points} recent records`
-        : 'Using live occupancy API',
+        : "Using live occupancy API",
     },
     {
-      label: 'Booking Window',
-      value: 'Example: 32 days',
-      note: 'Mock value until booking API is connected',
+      label: "Booking Window",
+      value: "Example: 32 days",
+      note: "Mock value until booking API is connected",
     },
     {
-      label: 'Average Stay',
-      value: 'Example: 4.2 nights',
-      note: 'Mock value until length-of-stay API is connected',
+      label: "Average Stay",
+      value: "Example: 4.2 nights",
+      note: "Mock value until length-of-stay API is connected",
     },
     {
-      label: 'Staffing Pressure',
-      value: 'Example: High',
-      note: 'Derived signal, waiting on spend/booking data',
+      label: "Staffing Pressure",
+      value: "Example: High",
+      note: "Derived signal, waiting on spend/booking data",
     },
   ];
 
@@ -313,7 +364,7 @@ export default function TourismOperatorDashboard() {
             value={selectedTimePeriod.label}
             onChange={(event) => {
               const newTimePeriod = timePeriods.find(
-                (period) => period.label === event.target.value
+                (period) => period.label === event.target.value,
               );
 
               if (newTimePeriod) {
@@ -369,7 +420,30 @@ export default function TourismOperatorDashboard() {
 
         <article className="insight-panel">
           <h3>Plain-English Operator Insight</h3>
-          <p>{getOperatorInsight(selectedRegion, occupancySummary)}</p>
+
+          <p>{operatorInsight}</p>
+
+          <button
+            type="button"
+            className="btn"
+            onClick={generateAiInsight}
+            disabled={aiLoading || occupancyLoading || !occupancySummary}
+          >
+            {aiLoading ? "Generating AI insight..." : "Generate AI insight"}
+          </button>
+
+          {aiError && (
+            <p className="muted" aria-live="polite">
+              AI insight is temporarily unavailable. The rule-based operator
+              insight is shown instead.
+            </p>
+          )}
+
+          {aiInsight && (
+            <p className="muted">
+              AI-generated using the selected region and time period.
+            </p>
+          )}
         </article>
       </section>
 
@@ -395,6 +469,7 @@ export default function TourismOperatorDashboard() {
               {spendCategories.map((category) => (
                 <div className="bar-row" key={category.label}>
                   <span>{category.label}</span>
+
                   <div className="bar-track">
                     <div
                       className="bar-fill"
@@ -408,12 +483,15 @@ export default function TourismOperatorDashboard() {
 
           <article className="panel">
             <h3>Visitor Activity</h3>
+
             <p>
               <strong>Cards seen:</strong> Example: 16,200
             </p>
+
             <p>
               <strong>Transactions:</strong> Example: 57,000
             </p>
+
             <p className="muted">
               Placeholder values. More transactions may mean more staffing
               pressure.
@@ -428,8 +506,9 @@ export default function TourismOperatorDashboard() {
         <div className="panel-grid">
           <article className="panel chart-placeholder">
             <h3>Occupancy and ADR Trend</h3>
+
             <p className="muted">
-              Recent live occupancy and ADR rows for {selectedRegion} using the{' '}
+              Recent live occupancy and ADR rows for {selectedRegion} using the{" "}
               {selectedTimePeriod.label.toLowerCase()} view.
             </p>
 
@@ -450,6 +529,7 @@ export default function TourismOperatorDashboard() {
                       <th>ADR</th>
                     </tr>
                   </thead>
+
                   <tbody>
                     {occupancyRows.map((row) => (
                       <tr key={`${row.date}-${row.region}`}>
@@ -476,23 +556,27 @@ export default function TourismOperatorDashboard() {
             {trendSummary ? (
               <>
                 <p>
-                  <strong>Average occupancy:</strong>{' '}
+                  <strong>Average occupancy:</strong>{" "}
                   {trendSummary.averageOccupancy.toFixed(1)}%
                 </p>
+
                 <p>
                   <strong>Average ADR:</strong> $
                   {trendSummary.averageAdr.toFixed(0)}
                 </p>
+
                 <p>
-                  <strong>Occupancy change:</strong>{' '}
-                  {trendSummary.occupancyChange >= 0 ? '+' : ''}
+                  <strong>Occupancy change:</strong>{" "}
+                  {trendSummary.occupancyChange >= 0 ? "+" : ""}
                   {trendSummary.occupancyChange.toFixed(1)} percentage points
                 </p>
+
                 <p>
-                  <strong>ADR change:</strong>{' '}
-                  {trendSummary.adrChange >= 0 ? '+' : '-'}$
+                  <strong>ADR change:</strong>{" "}
+                  {trendSummary.adrChange >= 0 ? "+" : "-"}$
                   {Math.abs(trendSummary.adrChange).toFixed(0)}
                 </p>
+
                 <p className="muted">{getTrendMessage(trendSummary)}</p>
               </>
             ) : (
@@ -503,6 +587,7 @@ export default function TourismOperatorDashboard() {
 
         <article className="insight-panel">
           <h3>Growth Signal</h3>
+
           <p>
             Sustained high occupancy, rising daily rates, longer stays and
             strong visitor spending may suggest opportunities for extra staff,
@@ -514,6 +599,7 @@ export default function TourismOperatorDashboard() {
 
       <section className="mvp-note">
         <h2>MVP data note</h2>
+
         <p>
           This dashboard currently uses live occupancy and average daily rate
           data from the backend API. Booking window, average stay, visitor
