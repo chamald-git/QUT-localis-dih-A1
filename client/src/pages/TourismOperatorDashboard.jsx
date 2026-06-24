@@ -72,11 +72,128 @@ const timePeriods = [
   },
 ];
 
-function SummaryCard({ label, value, note }) {
+function DashboardIcon({ name, className = "", size = 20 }) {
+  const iconPaths = {
+    demand: (
+      <>
+        <circle cx="8" cy="8" r="3" />
+        <circle cx="16" cy="7" r="2.5" />
+        <path d="M2.5 20c.7-4 2.8-6 5.5-6s4.8 2 5.5 6" />
+        <path d="M12.5 14.5c1-.8 2.1-1.2 3.5-1.2 2.7 0 4.6 1.9 5.2 5.7" />
+      </>
+    ),
+    rate: (
+      <>
+        <circle cx="12" cy="12" r="8.5" />
+        <path d="M14.8 8.6c-.7-.7-1.6-1.1-2.8-1.1-1.7 0-2.8.8-2.8 2s1 1.8 3 2.1c2 .4 3 1.1 3 2.5 0 1.3-1.2 2.3-3.1 2.3-1.3 0-2.5-.5-3.3-1.4" />
+        <path d="M12 5.8v12.4" />
+      </>
+    ),
+    booking: (
+      <>
+        <rect x="4" y="5.5" width="16" height="14" rx="2" />
+        <path d="M8 3.5v4M16 3.5v4M4 9.5h16" />
+        <path d="M8 13h3M13 13h3M8 16h3" />
+      </>
+    ),
+    stay: (
+      <>
+        <path d="M3 18V9M21 18V11.5c0-1.4-1.1-2.5-2.5-2.5H9v9" />
+        <path d="M3 14h18M6.5 9a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5Z" />
+      </>
+    ),
+    staffing: (
+      <>
+        <circle cx="12" cy="7" r="3" />
+        <circle cx="5.5" cy="9" r="2" />
+        <circle cx="18.5" cy="9" r="2" />
+        <path d="M6.5 20c.5-4.2 2.3-6.5 5.5-6.5s5 2.3 5.5 6.5" />
+        <path d="M1.8 19c.4-3.1 1.7-4.8 3.9-4.8M22.2 19c-.4-3.1-1.7-4.8-3.9-4.8" />
+      </>
+    ),
+    wallet: (
+      <>
+        <path d="M4 7.5h14.5A2.5 2.5 0 0 1 21 10v8.5H5A2 2 0 0 1 3 16.5v-11A2 2 0 0 1 5 3.5h11" />
+        <path d="M16 11.5h5v4h-5a2 2 0 1 1 0-4Z" />
+      </>
+    ),
+    visitor: (
+      <>
+        <circle cx="12" cy="7" r="3" />
+        <path d="M5.5 20c.6-4.6 2.7-7 6.5-7s5.9 2.4 6.5 7" />
+      </>
+    ),
+    receipt: (
+      <>
+        <path d="M6 3.5h12v17l-2-1.3-2 1.3-2-1.3-2 1.3-2-1.3-2 1.3v-17Z" />
+        <path d="M9 8h6M9 11.5h6M9 15h3" />
+      </>
+    ),
+    location: (
+      <>
+        <path d="M12 21s6-5.4 6-11a6 6 0 1 0-12 0c0 5.6 6 11 6 11Z" />
+        <circle cx="12" cy="10" r="2" />
+      </>
+    ),
+    tag: (
+      <>
+        <path d="m20 13-7 7-9-9V4h7l9 9Z" />
+        <circle cx="8.5" cy="8.5" r="1.5" />
+      </>
+    ),
+    insight: (
+      <>
+        <path d="M8.5 16.5h7M9.5 20h5" />
+        <path d="M8.2 14.5C6.8 13.4 6 11.7 6 9.8a6 6 0 1 1 12 0c0 1.9-.8 3.6-2.2 4.7-.6.5-.9 1-.9 1.5H9.1c0-.5-.3-1-.9-1.5Z" />
+      </>
+    ),
+  };
+
+  return (
+    <svg
+      className={className}
+      width={size}
+      height={size}
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.8"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden="true"
+      focusable="false"
+    >
+      {iconPaths[name] ?? iconPaths.insight}
+    </svg>
+  );
+}
+
+function SummaryCard({ label, value, change, note, icon }) {
+  let changeClass = "card-change card-change-same";
+
+  if (change?.startsWith("Up ")) {
+    changeClass = "card-change card-change-up";
+  }
+
+  if (change?.startsWith("Down ")) {
+    changeClass = "card-change card-change-down";
+  }
+
   return (
     <article className="summary-card">
-      <p className="card-label">{label}</p>
-      <strong className="card-value">{value}</strong>
+      <div className="summary-card-top">
+        <span className="metric-icon" aria-hidden="true">
+          <DashboardIcon name={icon} size={20} />
+        </span>
+
+        <div className="summary-card-heading">
+          <p className="card-label">{label}</p>
+          <strong className="card-value">{value}</strong>
+        </div>
+      </div>
+
+      {change && <p className={changeClass}>{change}</p>}
+
       <p className="card-note">{note}</p>
     </article>
   );
@@ -151,6 +268,70 @@ function formatNumber(value) {
   }
 
   return new Intl.NumberFormat("en-AU").format(number);
+}
+
+function getComparisonText(value, formattedValue, periodDays) {
+  const number = Number(value);
+
+  if (!Number.isFinite(number)) {
+    return null;
+  }
+
+  if (number === 0) {
+    return `About the same as the previous ${periodDays} days`;
+  }
+
+  const direction = number > 0 ? "Up" : "Down";
+
+  return `${direction} ${formattedValue} compared with the previous ${periodDays} days`;
+}
+
+function formatUnitChange(
+  value,
+  singularUnit,
+  pluralUnit,
+  periodDays,
+  decimalPlaces = 1,
+) {
+  const number = Number(value);
+
+  if (!Number.isFinite(number)) {
+    return null;
+  }
+
+  const absoluteValue = Math.abs(number);
+  const unit = absoluteValue === 1 ? singularUnit : pluralUnit;
+  const formattedValue = `${absoluteValue.toFixed(decimalPlaces)} ${unit}`;
+
+  return getComparisonText(value, formattedValue, periodDays);
+}
+
+function formatCurrencyChange(value, periodDays, decimalPlaces = 0) {
+  const number = Number(value);
+
+  if (!Number.isFinite(number)) {
+    return null;
+  }
+
+  return getComparisonText(
+    value,
+    formatCurrency(Math.abs(number), decimalPlaces),
+    periodDays,
+  );
+}
+
+function formatPercentChange(value, periodDays, decimalPlaces = 1) {
+  const number = Number(value);
+
+  if (!Number.isFinite(number)) {
+    return null;
+  }
+
+  return getComparisonText(
+    value,
+    `${Math.abs(number).toFixed(decimalPlaces)}%`,
+    periodDays,
+  );
 }
 
 function getOrdinal(position) {
@@ -311,29 +492,59 @@ function SpendCategoryBarChart({
 
   const hasSelection = selectedCategoryName !== "All categories";
 
-  const chartData = categories
-    .map((category) => {
-      const totalSpend = Number(category.total_spend ?? 0);
-      const cardsSeen = Number(category.cards_seen ?? 0);
-      const transactions = Number(category.transactions ?? 0);
+  const groupedCategories = categories.reduce((groups, category) => {
+  const displayName = getCategoryDisplayName(category.category);
 
-      return {
-        category: getCategoryDisplayName(category.category),
-        raw_category: category.category,
-        total_spend: totalSpend,
-        display_spend: formatCompactCurrency(totalSpend),
-        spend_per_recorded_card: cardsSeen > 0 ? totalSpend / cardsSeen : null,
-        spend_per_transaction:
-          transactions > 0 ? totalSpend / transactions : null,
-        transactions,
-        is_selected: category.category === selectedCategoryName,
-        has_selection: hasSelection,
-      };
-    })
-    .sort(
-      (firstCategory, secondCategory) =>
-        secondCategory.total_spend - firstCategory.total_spend,
-    );
+  const totalSpend = Number(category.total_spend ?? 0);
+  const cardsSeen = Number(category.cards_seen ?? 0);
+  const transactions = Number(category.transactions ?? 0);
+
+  const existingCategory = groups.get(displayName) ?? {
+    category: displayName,
+    total_spend: 0,
+    cards_seen: 0,
+    transactions: 0,
+    is_selected: false,
+    has_selection: hasSelection,
+  };
+
+  existingCategory.total_spend += totalSpend;
+  existingCategory.cards_seen += cardsSeen;
+  existingCategory.transactions += transactions;
+
+  if (category.category === selectedCategoryName) {
+    existingCategory.is_selected = true;
+  }
+
+  groups.set(displayName, existingCategory);
+
+  return groups;
+}, new Map());
+
+const chartData = Array.from(groupedCategories.values())
+  .map((category) => ({
+    category: category.category,
+    total_spend: category.total_spend,
+    display_spend: formatCompactCurrency(category.total_spend),
+
+    spend_per_recorded_card:
+      category.cards_seen > 0
+        ? category.total_spend / category.cards_seen
+        : null,
+
+    spend_per_transaction:
+      category.transactions > 0
+        ? category.total_spend / category.transactions
+        : null,
+
+    transactions: category.transactions,
+    is_selected: category.is_selected,
+    has_selection: category.has_selection,
+  }))
+  .sort(
+    (firstCategory, secondCategory) =>
+      secondCategory.total_spend - firstCategory.total_spend,
+  );
 
   const maximumSpend = Math.max(
     ...chartData.map((category) => category.total_spend),
@@ -1056,62 +1267,103 @@ export default function TourismOperatorDashboard() {
 
   const visitorSpending = [
     {
-      label: "Total visitor spending",
+      icon: "wallet",
+      label: "Total Visitor Spend",
       value: operatorSummary
         ? formatCurrency(displayedTotalSpend)
         : occupancyError
           ? "Unavailable"
           : "Loading...",
+      change:
+        selectedSpendCategory === "All categories"
+          ? formatPercentChange(
+              operatorSummary?.changes?.total_visitor_spend_percent,
+              selectedTimePeriod.rowLimit,
+            )
+          : null,
       note:
         selectedSpendCategory === "All categories"
-          ? "Total spending across all categories"
-          : `Total for ${getCategoryDisplayName(selectedSpendCategory)}`,
+          ? "Total across all spending categories"
+          : `Total for ${selectedSpendCategory}`,
     },
     {
-      label: "Average spend per recorded card",
+      icon: "visitor",
+      label: "Spend per Visitor",
       value: operatorSummary
         ? formatCurrency(displayedSpendPerVisitor, 2)
         : occupancyError
           ? "Unavailable"
           : "Loading...",
-      note: "This is an estimate because one person may use more than one card.",
+      change:
+        selectedSpendCategory === "All categories"
+          ? formatCurrencyChange(
+              operatorSummary?.changes?.spend_per_visitor,
+              selectedTimePeriod.rowLimit,
+              2,
+            )
+          : null,
+      note: "Approximate value using recorded cards",
     },
     {
-      label: "Average purchase amount",
+      icon: "receipt",
+      label: "Spend per Transaction",
       value: operatorSummary
         ? formatCurrency(displayedSpendPerTransaction, 2)
         : occupancyError
           ? "Unavailable"
           : "Loading...",
-      note: "Average value of each purchase recorded.",
+      change:
+        selectedSpendCategory === "All categories"
+          ? formatCurrencyChange(
+              operatorSummary?.changes?.spend_per_transaction,
+              selectedTimePeriod.rowLimit,
+              2,
+            )
+          : null,
+      note: "Average value of each recorded transaction",
     },
   ];
 
   const currentSnapshot = [
     {
-      label: "Regional visitor demand",
+      icon: "demand",
+      label: "Visitor Demand",
       value: occupancySummary
         ? `${Number(occupancySummary.occupancy_pct).toFixed(1)}% occupancy`
         : occupancyError
           ? "Unavailable"
           : "Loading...",
+      change: formatUnitChange(
+        operatorSummary?.changes?.occupancy_percentage_points,
+        "percentage point",
+        "percentage points",
+        selectedTimePeriod.rowLimit,
+        1,
+      ),
       note: occupancySummary
         ? getDemandNote(occupancySummary.occupancy_pct)
-        : "Using the latest available regional information.",
+        : "Using live occupancy API",
     },
     {
-      label: "Average room price",
+      icon: "rate",
+      label: "Average Daily Rate",
       value: occupancySummary
         ? formatCurrency(occupancySummary.adr)
         : occupancyError
           ? "Unavailable"
           : "Loading...",
+      change: formatCurrencyChange(
+        operatorSummary?.changes?.adr,
+        selectedTimePeriod.rowLimit,
+        0,
+      ),
       note: occupancySummary
-        ? "Average price of an occupied room during the selected period."
-        : "Using the latest available regional information.",
+        ? `Based on ${occupancySummary.data_points} recent records`
+        : "Using live occupancy API",
     },
     {
-      label: "How far ahead people book",
+      icon: "booking",
+      label: "Booking Window",
       value:
         operatorSummary?.booking_window_days !== null &&
         operatorSummary?.booking_window_days !== undefined
@@ -1119,10 +1371,18 @@ export default function TourismOperatorDashboard() {
           : occupancyError
             ? "Unavailable"
             : "Loading...",
-      note: "On average, visitors booked this many days before arriving.",
+      change: formatUnitChange(
+        operatorSummary?.changes?.booking_window_days,
+        "day",
+        "days",
+        selectedTimePeriod.rowLimit,
+        0,
+      ),
+      note: "Average time between booking and arrival",
     },
     {
-      label: "Average length of stay",
+      icon: "stay",
+      label: "Average Stay",
       value:
         operatorSummary?.average_stay_nights !== null &&
         operatorSummary?.average_stay_nights !== undefined
@@ -1130,23 +1390,34 @@ export default function TourismOperatorDashboard() {
           : occupancyError
             ? "Unavailable"
             : "Loading...",
-      note: "Average number of nights visitors stayed.",
+      change: formatUnitChange(
+        operatorSummary?.changes?.average_stay_nights,
+        "night",
+        "nights",
+        selectedTimePeriod.rowLimit,
+        1,
+      ),
+      note: "Average visitor length of stay",
     },
     {
-      label: "Likely staffing needs",
+      icon: "staffing",
+      label: "Estimated Staffing Pressure",
       value:
         operatorSummary?.staffing_pressure ??
         (occupancyError ? "Unavailable" : "Loading..."),
+      change: null,
       note:
         operatorSummary?.staffing_pressure_note ??
-        "Estimated from room occupancy and how far ahead visitors are booking.",
+        "Calculated from live demand and booking notice",
     },
   ];
 
   return (
     <main className="dashboard-shell operator-dashboard">
       <header className="dashboard-header">
-        <div>
+
+
+        <div className="dashboard-header-copy">
           <p className="eyebrow">Destination Insight Hubs</p>
           <h1>Tourism Operator Dashboard</h1>
           <p className="subtitle">
@@ -1162,52 +1433,61 @@ export default function TourismOperatorDashboard() {
       </header>
 
       <section className="filter-row" aria-label="Dashboard filters">
-        <label>
-          Region
-          <select
-            value={selectedRegion}
-            onChange={(event) => setSelectedRegion(event.target.value)}
-          >
-            {regions.map((region) => (
-              <option key={region}>{region}</option>
-            ))}
-          </select>
+        <label className="filter-field">
+          <span className="filter-label">Region</span>
+          <span className="select-shell">
+            <DashboardIcon className="select-icon" name="location" size={18} />
+            <select
+              value={selectedRegion}
+              onChange={(event) => setSelectedRegion(event.target.value)}
+            >
+              {regions.map((region) => (
+                <option key={region}>{region}</option>
+              ))}
+            </select>
+          </span>
         </label>
 
-        <label>
-          Time period
-          <select
-            value={selectedTimePeriod.label}
-            onChange={(event) => {
-              const newTimePeriod = timePeriods.find(
-                (period) => period.label === event.target.value,
-              );
+        <label className="filter-field">
+          <span className="filter-label">Time period</span>
+          <span className="select-shell">
+            <DashboardIcon className="select-icon" name="booking" size={18} />
+            <select
+              value={selectedTimePeriod.label}
+              onChange={(event) => {
+                const newTimePeriod = timePeriods.find(
+                  (period) => period.label === event.target.value,
+                );
 
-              if (newTimePeriod) {
-                setSelectedTimePeriod(newTimePeriod);
-              }
-            }}
-          >
-            {timePeriods.map((period) => (
-              <option key={period.label}>{period.label}</option>
-            ))}
-          </select>
+                if (newTimePeriod) {
+                  setSelectedTimePeriod(newTimePeriod);
+                }
+              }}
+            >
+              {timePeriods.map((period) => (
+                <option key={period.label}>{period.label}</option>
+              ))}
+            </select>
+          </span>
         </label>
 
-        <label>
-          Spending category
-          <select
-            value={selectedSpendCategory}
-            onChange={(event) => setSelectedSpendCategory(event.target.value)}
-          >
-            <option value="All categories">All categories</option>
+        <label className="filter-field">
+          <span className="filter-label">Spending category</span>
+          <span className="select-shell">
+            <DashboardIcon className="select-icon" name="tag" size={18} />
+            <select
+              value={selectedSpendCategory}
+              onChange={(event) => setSelectedSpendCategory(event.target.value)}
+            >
+              <option value="All categories">All categories</option>
 
-            {spendCategories.map((category) => (
-              <option key={category.category} value={category.category}>
-                {getCategoryDisplayName(category.category)}
-              </option>
-            ))}
-          </select>
+              {spendCategories.map((category) => (
+                <option key={category.category} value={category.category}>
+                  {getCategoryDisplayName(category.category)}
+                </option>
+              ))}
+            </select>
+          </span>
         </label>
       </section>
 
@@ -1234,40 +1514,52 @@ export default function TourismOperatorDashboard() {
               key={item.label}
               label={item.label}
               value={item.value}
+              change={item.change}
               note={item.note}
+              icon={item.icon}
             />
           ))}
         </div>
 
-        <article className="insight-panel">
-          <h3>What this means for your business</h3>
+        <article className="insight-panel operator-insight-panel">
+          <span className="insight-icon" aria-hidden="true">
+            <DashboardIcon name="insight" size={24} />
+          </span>
 
-          <p>{operatorInsight}</p>
+          <div className="operator-insight-copy">
+            <h3>What this means for your business</h3>
 
-          <button
-            type="button"
-            className="btn"
-            onClick={generateAiInsight}
-            disabled={aiLoading || occupancyLoading || !occupancySummary}
-          >
-            {aiLoading ? "Preparing explanation..." : "Explain these results"}
-          </button>
+            <p>{operatorInsight}</p>
 
-          {aiError && (
-            <div className="status status-error" aria-live="polite">
-              <div>
-                <strong>Explanation unavailable</strong>
-                <p className="muted">{aiError}</p>
-                <p className="muted">The standard summary is shown instead.</p>
+            <button
+              type="button"
+              className="btn"
+              onClick={generateAiInsight}
+              disabled={aiLoading || occupancyLoading || !occupancySummary}
+            >
+              {aiLoading ? "Preparing explanation..." : "Explain these results"}
+            </button>
+
+            {aiError && (
+              <div className="status status-error" aria-live="polite">
+                <div>
+                  <strong>Explanation unavailable</strong>
+                  <p className="muted">{aiError}</p>
+                  <p className="muted">
+                    The standard summary is shown instead.
+                  </p>
+                </div>
               </div>
-            </div>
-          )}
+            )}
 
-          {operatorStory && (
-            <p className="muted">
-              Generated by AI using the selected region and time period.
-            </p>
-          )}
+            {operatorStory && (
+              <p className="muted">
+                Generated by AI using the selected region and time period.
+              </p>
+            )}
+          </div>
+
+
         </article>
       </section>
 
@@ -1280,7 +1572,9 @@ export default function TourismOperatorDashboard() {
               key={item.label}
               label={item.label}
               value={item.value}
+              change={item.change}
               note={item.note}
+              icon={item.icon}
             />
           ))}
         </div>

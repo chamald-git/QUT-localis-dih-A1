@@ -6,7 +6,7 @@ import { pool } from "../db/pool.js";
  * Occupancy is used as the date spine and length-of-stay data is joined
  * by region and date.
  */
-export async function getOperatorSummary(regionName, days = 90) {
+export async function getOperatorSummary(regionName, days = 90, offset = 0) {
   const [rows] = await pool.query(
     `SELECT
       r.name AS region,
@@ -29,10 +29,11 @@ export async function getOperatorSummary(regionName, days = 90) {
           FROM occupancy
           ORDER BY date DESC
           LIMIT ?
+          OFFSET ?
         ) AS recent_dates
       )
     GROUP BY r.name`,
-    [regionName, days],
+    [regionName, days, offset],
   );
 
   return rows[0] ?? null;
@@ -41,13 +42,18 @@ export async function getOperatorSummary(regionName, days = 90) {
 /**
  * Returns live visitor-spending totals and category breakdowns.
  */
-export async function getOperatorSpendSummary(regionName, days = 90) {
+export async function getOperatorSpendSummary(
+  regionName,
+  days = 90,
+  offset = 0,
+) {
   const [[totalRows], [categoryRows]] = await Promise.all([
     pool.query(
       `SELECT
         ROUND(SUM(s.spend), 2) AS total_visitor_spend,
         SUM(s.cards_seen) AS cards_seen,
-        SUM(s.no_txns) AS transactions
+        SUM(s.no_txns) AS transactions,
+        COUNT(DISTINCT s.date) AS data_points
       FROM spend s
       JOIN regions r
         ON r.id = s.region_id
@@ -59,9 +65,10 @@ export async function getOperatorSpendSummary(regionName, days = 90) {
             FROM spend
             ORDER BY date DESC
             LIMIT ?
+            OFFSET ?
           ) AS recent_dates
         )`,
-      [regionName, days],
+      [regionName, days, offset],
     ),
 
     pool.query(
@@ -81,11 +88,12 @@ export async function getOperatorSpendSummary(regionName, days = 90) {
             FROM spend
             ORDER BY date DESC
             LIMIT ?
+            OFFSET ?
           ) AS recent_dates
         )
       GROUP BY s.category
       ORDER BY total_spend DESC`,
-      [regionName, days],
+      [regionName, days, offset],
     ),
   ]);
 
@@ -95,6 +103,8 @@ export async function getOperatorSpendSummary(regionName, days = 90) {
     total_visitor_spend: Number(totals?.total_visitor_spend ?? 0),
     cards_seen: Number(totals?.cards_seen ?? 0),
     transactions: Number(totals?.transactions ?? 0),
+    data_points: Number(totals?.data_points ?? 0),
+
     categories: categoryRows.map((row) => ({
       category: row.category,
       total_spend: Number(row.total_spend),
