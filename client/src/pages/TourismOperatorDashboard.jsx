@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useSearchParams } from "react-router-dom";
 import { api } from "../api/client.js";
 import VegaChart from "../components/VegaChart.jsx";
 
@@ -493,58 +494,58 @@ function SpendCategoryBarChart({
   const hasSelection = selectedCategoryName !== "All categories";
 
   const groupedCategories = categories.reduce((groups, category) => {
-  const displayName = getCategoryDisplayName(category.category);
+    const displayName = getCategoryDisplayName(category.category);
 
-  const totalSpend = Number(category.total_spend ?? 0);
-  const cardsSeen = Number(category.cards_seen ?? 0);
-  const transactions = Number(category.transactions ?? 0);
+    const totalSpend = Number(category.total_spend ?? 0);
+    const cardsSeen = Number(category.cards_seen ?? 0);
+    const transactions = Number(category.transactions ?? 0);
 
-  const existingCategory = groups.get(displayName) ?? {
-    category: displayName,
-    total_spend: 0,
-    cards_seen: 0,
-    transactions: 0,
-    is_selected: false,
-    has_selection: hasSelection,
-  };
+    const existingCategory = groups.get(displayName) ?? {
+      category: displayName,
+      total_spend: 0,
+      cards_seen: 0,
+      transactions: 0,
+      is_selected: false,
+      has_selection: hasSelection,
+    };
 
-  existingCategory.total_spend += totalSpend;
-  existingCategory.cards_seen += cardsSeen;
-  existingCategory.transactions += transactions;
+    existingCategory.total_spend += totalSpend;
+    existingCategory.cards_seen += cardsSeen;
+    existingCategory.transactions += transactions;
 
-  if (category.category === selectedCategoryName) {
-    existingCategory.is_selected = true;
-  }
+    if (category.category === selectedCategoryName) {
+      existingCategory.is_selected = true;
+    }
 
-  groups.set(displayName, existingCategory);
+    groups.set(displayName, existingCategory);
 
-  return groups;
-}, new Map());
+    return groups;
+  }, new Map());
 
-const chartData = Array.from(groupedCategories.values())
-  .map((category) => ({
-    category: category.category,
-    total_spend: category.total_spend,
-    display_spend: formatCompactCurrency(category.total_spend),
+  const chartData = Array.from(groupedCategories.values())
+    .map((category) => ({
+      category: category.category,
+      total_spend: category.total_spend,
+      display_spend: formatCompactCurrency(category.total_spend),
 
-    spend_per_recorded_card:
-      category.cards_seen > 0
-        ? category.total_spend / category.cards_seen
-        : null,
+      spend_per_recorded_card:
+        category.cards_seen > 0
+          ? category.total_spend / category.cards_seen
+          : null,
 
-    spend_per_transaction:
-      category.transactions > 0
-        ? category.total_spend / category.transactions
-        : null,
+      spend_per_transaction:
+        category.transactions > 0
+          ? category.total_spend / category.transactions
+          : null,
 
-    transactions: category.transactions,
-    is_selected: category.is_selected,
-    has_selection: category.has_selection,
-  }))
-  .sort(
-    (firstCategory, secondCategory) =>
-      secondCategory.total_spend - firstCategory.total_spend,
-  );
+      transactions: category.transactions,
+      is_selected: category.is_selected,
+      has_selection: category.has_selection,
+    }))
+    .sort(
+      (firstCategory, secondCategory) =>
+        secondCategory.total_spend - firstCategory.total_spend,
+    );
 
   const maximumSpend = Math.max(
     ...chartData.map((category) => category.total_spend),
@@ -1035,10 +1036,22 @@ function SpendCategoryTable({
 }
 
 export default function TourismOperatorDashboard() {
-  const [selectedRegion, setSelectedRegion] = useState(mockUser.region);
-  const [selectedTimePeriod, setSelectedTimePeriod] = useState(timePeriods[2]);
-  const [selectedSpendCategory, setSelectedSpendCategory] =
-    useState("All categories");
+  const [searchParams, setSearchParams] = useSearchParams();
+  const requestedRegion = searchParams.get("region");
+  const selectedRegion = regions.includes(requestedRegion)
+    ? requestedRegion
+    : mockUser.region;
+  const requestedDays = Number(searchParams.get("days"));
+  const selectedTimePeriod =
+    timePeriods.find((period) => period.rowLimit === requestedDays) ??
+    timePeriods[2];
+  function updateFilterParams(updates) {
+    const nextParams = new URLSearchParams(searchParams);
+    Object.entries(updates).forEach(([key, value]) => {
+      nextParams.set(key, String(value));
+    });
+    setSearchParams(nextParams);
+  }
 
   const [occupancySummary, setOccupancySummary] = useState(null);
   const [occupancyRows, setOccupancyRows] = useState([]);
@@ -1050,9 +1063,58 @@ export default function TourismOperatorDashboard() {
   const [aiLoading, setAiLoading] = useState(false);
   const [aiError, setAiError] = useState(null);
 
+  useEffect(() => {
+    const nextParams = new URLSearchParams(searchParams);
+    let needsUpdate = false;
+
+    if (!regions.includes(nextParams.get("region"))) {
+      nextParams.set("region", mockUser.region);
+      needsUpdate = true;
+    }
+
+    const days = Number(nextParams.get("days"));
+    const validDays = timePeriods.some((period) => period.rowLimit === days);
+
+    if (!validDays) {
+      nextParams.set("days", String(timePeriods[2].rowLimit));
+      needsUpdate = true;
+    }
+
+    if (!nextParams.has("category")) {
+      nextParams.set("category", "All categories");
+      needsUpdate = true;
+    }
+
+    if (needsUpdate) {
+      setSearchParams(nextParams, { replace: true });
+    }
+  }, [searchParams, setSearchParams]);
+
+useEffect(() => {
+  const requestedCategory = searchParams.get("category");
+
+  if (
+    !operatorSummary ||
+    !requestedCategory ||
+    requestedCategory === "All categories"
+  ) {
+    return;
+  }
+
+  const categoryIsValid = (
+    operatorSummary.spend_categories ?? []
+  ).some((category) => category.category === requestedCategory);
+
+  if (!categoryIsValid) {
+    const nextParams = new URLSearchParams(searchParams);
+
+    nextParams.set("category", "All categories");
+    setSearchParams(nextParams, { replace: true });
+  }
+}, [operatorSummary, searchParams, setSearchParams]);
+
   // Loads new data when the selected region or time period changes.
   useEffect(() => {
-    setSelectedSpendCategory("All categories");
     setOperatorStory(null);
     setAiError(null);
 
@@ -1140,6 +1202,17 @@ export default function TourismOperatorDashboard() {
     getOperatorInsight(selectedRegion, occupancySummary);
 
   const spendCategories = operatorSummary?.spend_categories ?? [];
+
+  const requestedSpendCategory =
+    searchParams.get("category") ?? "All categories";
+
+  const selectedSpendCategory =
+    requestedSpendCategory === "All categories" ||
+    spendCategories.some(
+      (category) => category.category === requestedSpendCategory,
+    )
+      ? requestedSpendCategory
+      : "All categories";
 
   const selectedCategory =
     selectedSpendCategory === "All categories"
@@ -1415,8 +1488,6 @@ export default function TourismOperatorDashboard() {
   return (
     <main className="dashboard-shell operator-dashboard">
       <header className="dashboard-header">
-
-
         <div className="dashboard-header-copy">
           <p className="eyebrow">Destination Insight Hubs</p>
           <h1>Tourism Operator Dashboard</h1>
@@ -1439,7 +1510,12 @@ export default function TourismOperatorDashboard() {
             <DashboardIcon className="select-icon" name="location" size={18} />
             <select
               value={selectedRegion}
-              onChange={(event) => setSelectedRegion(event.target.value)}
+              onChange={(event) =>
+                updateFilterParams({
+                  region: event.target.value,
+                  category: "All categories",
+                })
+              }
             >
               {regions.map((region) => (
                 <option key={region}>{region}</option>
@@ -1460,7 +1536,10 @@ export default function TourismOperatorDashboard() {
                 );
 
                 if (newTimePeriod) {
-                  setSelectedTimePeriod(newTimePeriod);
+                  updateFilterParams({
+                    days: newTimePeriod.rowLimit,
+                    category: "All categories",
+                  });
                 }
               }}
             >
@@ -1477,7 +1556,11 @@ export default function TourismOperatorDashboard() {
             <DashboardIcon className="select-icon" name="tag" size={18} />
             <select
               value={selectedSpendCategory}
-              onChange={(event) => setSelectedSpendCategory(event.target.value)}
+              onChange={(event) =>
+                updateFilterParams({
+                  category: event.target.value,
+                })
+              }
             >
               <option value="All categories">All categories</option>
 
@@ -1558,8 +1641,6 @@ export default function TourismOperatorDashboard() {
               </p>
             )}
           </div>
-
-
         </article>
       </section>
 
