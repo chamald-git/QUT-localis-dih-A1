@@ -1,4 +1,5 @@
 import { createContext, useContext, useState, useCallback, useMemo } from 'react';
+import { setAuthToken, clearAuthToken } from './tokenStore.js';
 
 const AuthContext = createContext(null);
 
@@ -7,18 +8,20 @@ const API_BASE = import.meta.env.VITE_API_URL || 'http://localhost:4000/api';
 /**
  * @what  React context provider that holds the JWT in component state
  *        (memory-only) and exposes login, logout, and an authenticated
- *        fetch wrapper to the entire component tree.
+ *        fetch wrapper to the entire component tree. Also mirrors the
+ *        token into a module-scoped store so the api client can attach
+ *        Bearer headers from non-React modules.
  * @why   ADR-0006 mandates in-memory token storage, not localStorage,
  *        to limit XSS exposure surface. Every child component can call
  *        useAuth() to check authentication state, read the user profile
  *        (role, regions, tier), or make authenticated API requests
  *        without manually attaching the Bearer header.
- * @alternative-considered  localStorage was considered for persistence
+ * @alternative-considered localStorage was considered for persistence
  *        across page reloads but rejected per ADR-0006 because a single
  *        XSS vector would expose the token. In-memory storage means a
  *        page refresh logs the user out, which is acceptable for a
  *        capstone demo and safer by default.
- * @module-source  IFQ716 Week 9, React context authentication pattern
+ * @module-source IFQ716 Week 9, React context authentication pattern.
  */
 export function AuthProvider({ children }) {
   const [token, setToken] = useState(null);
@@ -41,12 +44,14 @@ export function AuthProvider({ children }) {
 
     setToken(data.data.token);
     setUser(data.data.user);
+    setAuthToken(data.data.token);
     return data.data.user;
   }, []);
 
   const logout = useCallback(() => {
     setToken(null);
     setUser(null);
+    clearAuthToken();
   }, []);
 
   /**
@@ -75,6 +80,7 @@ export function AuthProvider({ children }) {
     if (res.status === 401) {
       setToken(null);
       setUser(null);
+      clearAuthToken();
     }
 
     return res;

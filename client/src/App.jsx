@@ -1,8 +1,11 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { api } from './api/client.js';
+import { useAuth } from './context/AuthContext.jsx';
 
 export default function App() {
+  const { user } = useAuth();
+
   const [health, setHealth] = useState(null);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -56,19 +59,14 @@ export default function App() {
         )}
 
         {health && (
-          <div
-            className={`status ${dbConnected ? 'status-ok' : 'status-warn'}`}
-          >
+          <div className={`status ${dbConnected ? 'status-ok' : 'status-warn'}`}>
             <span className="dot" />
             <div>
               <strong>
-                {dbConnected
-                  ? 'All systems connected'
-                  : 'API up, database disconnected'}
+                {dbConnected ? 'All systems connected' : 'API up, database disconnected'}
               </strong>
               <p className="muted">
-                status: <code>{health.status}</code> &nbsp;|&nbsp; db:{' '}
-                <code>{health.db}</code>
+                status: <code>{health.status}</code> &nbsp;|&nbsp; db: <code>{health.db}</code>
               </p>
               {!dbConnected && (
                 <p className="muted">
@@ -91,6 +89,11 @@ export default function App() {
         <Link className="btn" to="/government">
           Government AI insights →
         </Link>
+        {user?.role === 'admin' && (
+          <Link className="btn" to="/admin/users">
+            Admin users →
+          </Link>
+        )}
       </nav>
 
       <footer className="foot muted">
