@@ -13,8 +13,9 @@ import { knex } from '../db/knex.js';
 
 // Requested metric -> source table alias + column. Both tables are keyed
 // (region_id, date): occupancy/adr live on `occupancy` (alias o);
-// length_of_stay/booking_window on `length_of_stay` (alias l).
-const METRIC_SPECS = {
+// length_of_stay/booking_window on `length_of_stay` (alias l). Exported so the
+// snapshot builder can map a metric to its column in the date-grain rows.
+export const METRIC_SPECS = {
   occupancy: { alias: 'o', column: 'occupancy_pct' },
   adr: { alias: 'o', column: 'adr' },
   length_of_stay: { alias: 'l', column: 'avg_length_of_stay' },

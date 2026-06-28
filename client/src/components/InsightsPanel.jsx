@@ -1,4 +1,5 @@
 import VegaChart from './VegaChart.jsx';
+import ChoroplethSnapshot from './ChoroplethSnapshot.jsx';
 import { toParagraphs } from '../lib/toParagraphs.js';
 import { colorScaleFor } from '../lib/regionLegend.js';
 
@@ -33,7 +34,7 @@ export default function InsightsPanel({ insights, loading, error }) {
 
   if (!insights) return null;
 
-  const { narrative, charts = [], appliedFilters } = insights;
+  const { narrative, charts = [], appliedFilters, snapshot = [] } = insights;
   const paragraphs = toParagraphs(narrative);
   const period = appliedFilters?.period;
   const regions = appliedFilters?.regions ?? [];
@@ -49,13 +50,14 @@ export default function InsightsPanel({ insights, loading, error }) {
         </p>
       )}
 
-      {/* KPI summary cards are owned by DIH-7 (Sarah) — placeholder slot. */}
-      <section className="dashboard-section">
-        <h2>Current Snapshot</h2>
-        <div className="kpi-placeholder">
-          KPI summary cards — owned by DIH-7. Slot reserved.
-        </div>
-      </section>
+      {/* Current Snapshot: a choropleth per metric, shaded by server-computed
+          per-region values (snapshot). Replaces the DIH-7 KPI-card placeholder. */}
+      {snapshot.length > 0 && (
+        <section className="dashboard-section">
+          <h2>Current Snapshot</h2>
+          <ChoroplethSnapshot snapshot={snapshot} />
+        </section>
+      )}
 
       <section className="dashboard-section">
         <article className="insight-panel">

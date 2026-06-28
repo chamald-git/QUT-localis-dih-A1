@@ -2,6 +2,7 @@ import { genai, INSIGHT_MODEL } from '../config/gemini.js';
 import { assembleInsightContext } from './insights.service.js';
 import { userPrompt } from './insight-prompt.js';
 import { parseInsightResponse } from './insight-response.js';
+import { buildSnapshot } from './insight-snapshot.js';
 import { rateLimitDetails } from './rate-limit-details.js';
 import { logger } from '../utils/logger.js';
 import { ApiError } from '../utils/ApiError.js';
@@ -75,13 +76,16 @@ export async function generateInsight(role, context) {
  * rate-limit maps to 429; anything else rethrows (→ 500 via the error handler).
  *
  * @param {{ role: string, regions?: string[], metrics?: string[], period?: string }} params
- * @returns {Promise<{ role: string, appliedFilters: object, narrative: string, charts: object[] }>}
+ * @returns {Promise<{ role: string, appliedFilters: object, snapshot: object[], narrative: string, charts: object[] }>}
  */
 export async function getInsight({ role, regions, metrics, period }) {
   try {
     const context = await assembleInsightContext({ regions, metrics, period });
+    // Deterministic per-region snapshot (drives the Government choropleths) — computed
+    // server-side from the same rows, independent of the model. See insight-snapshot.js.
+    const snapshot = buildSnapshot(context.data, context.appliedFilters.metrics);
     const { narrative, charts } = await generateInsight(role, context);
-    return { role, appliedFilters: context.appliedFilters, narrative, charts };
+    return { role, appliedFilters: context.appliedFilters, snapshot, narrative, charts };
   } catch (err) {
     if (err instanceof ApiError) throw err; // validation (400) — propagate
     if (isRateLimit(err)) {
