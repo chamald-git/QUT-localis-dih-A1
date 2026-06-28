@@ -12,7 +12,7 @@ import { sendSuccess } from '../utils/respond.js';
 const router = Router();
 
 const ALLOWED_ROLES = ['admin', 'government', 'dmo', 'operator'];
-const ALLOWED_TIERS = ['full', 'spend-only'];
+const ALLOWED_TIERS = ['spend-only', 'accommodation-only', 'full'];
 const ALLOWED_REGIONS = ['Cairns', 'Gold Coast', 'Noosa', 'Whitsundays'];
 
 /**
