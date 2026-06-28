@@ -970,13 +970,79 @@ code {
   font-size: 0.85rem;
 }
 
-.kpi-placeholder {
-  padding: 18px 20px;
-  border: 1px dashed rgba(13, 59, 46, 0.25);
-  border-radius: var(--radius);
-  background: rgba(255, 255, 255, 0.5);
+/* Current Snapshot — choropleth small-multiples (one mini-map per metric). */
+.choro-scale {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  margin: 0 0 14px;
+  font-size: 0.8rem;
   color: var(--muted);
-  font-size: 0.9rem;
+}
+
+.choro-grad {
+  height: 10px;
+  width: 150px;
+  border-radius: 5px;
+  background: linear-gradient(90deg, #dcebe4, #6fae93, #0d3b2e);
+}
+
+.choro-scale-note {
+  font-style: italic;
+}
+
+.choro-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 16px;
+}
+
+.choro-card {
+  padding: 14px 16px;
+  border: 1px solid rgba(13, 59, 46, 0.12);
+  border-radius: var(--radius);
+  background: #fff;
+  box-shadow: 0 2px 16px rgba(13, 59, 46, 0.08);
+}
+
+.choro-card-title {
+  margin: 0 0 8px;
+  font-size: 1rem;
+  color: var(--forest);
+}
+
+.choro-values {
+  list-style: none;
+  margin: 10px 0 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.choro-values li {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.88rem;
+  color: var(--ink);
+}
+
+.choro-swatch {
+  width: 12px;
+  height: 12px;
+  border-radius: 3px;
+  flex: none;
+  border: 1px solid rgba(13, 59, 46, 0.15);
+}
+
+.choro-region {
+  flex: 1;
+}
+
+.choro-value {
+  font-weight: 700;
+  color: var(--forest);
 }
 
 .chart-grid {
