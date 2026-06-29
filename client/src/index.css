@@ -1932,6 +1932,7 @@ body:has(.operator-dashboard) {
   .admin-table { font-size: 0.82rem; }
   .admin-table th, .admin-table td { padding: 0.65rem 0.8rem; }
   .admin-stats-grid { grid-template-columns: repeat(2, 1fr); }
+}
 
 /* Shared app footer */
 
@@ -1955,11 +1956,17 @@ body:has(.operator-dashboard) {
   color: var(--forest);
   font-size: 0.95rem;
   font-weight: 700;
+  text-align: center;
 }
 
 .app-footer-disclaimer {
-  max-width: 760px;
-  margin: 8px auto 0;
-  font-size: 0.86rem;
+  max-width: 800px;
+  margin: 12px auto 0;
+  padding: 12px 24px;
+  font-size: 1.1rem;
   line-height: 1.5;
+  text-align: center;
+  color: var(--ink);
+  background: rgba(203, 241, 216, 0.4);
+  border-radius: 8px;
 }
