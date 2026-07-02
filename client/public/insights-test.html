@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DIH · /api/insights test harness</title>
+  <!-- Vega-Lite renderer for the chartSpec the API returns (CDN; dev-only test page). -->
+  <script src="https://cdn.jsdelivr.net/npm/vega@5"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vega-lite@5"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vega-embed@6"></script>
+  <style>
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; margin: 0; padding: 1.5rem; max-width: 980px; margin: 0 auto; color: #1a1a1a; }
+    h1 { font-size: 1.3rem; }
+    .sub { color: #666; font-size: 0.85rem; margin-top: -0.4rem; }
+    form { display: flex; flex-wrap: wrap; gap: 1rem 1.5rem; align-items: flex-end; background: #f6f8fa; border: 1px solid #d0d7de; border-radius: 10px; padding: 1rem 1.2rem; margin: 1rem 0; }
+    label { display: block; font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.04em; color: #57606a; margin-bottom: 0.25rem; }
+    select, input[type=text] { font: inherit; padding: 0.35rem 0.5rem; border: 1px solid #d0d7de; border-radius: 6px; }
+    .metrics label { display: inline-flex; align-items: center; gap: 0.3rem; text-transform: none; letter-spacing: 0; font-size: 0.85rem; margin-right: 0.8rem; color: #1a1a1a; }
+    button { font: inherit; font-weight: 600; background: #1f6feb; color: #fff; border: 0; border-radius: 6px; padding: 0.5rem 1.1rem; cursor: pointer; }
+    button:disabled { opacity: 0.6; cursor: default; }
+    .req { font-family: ui-monospace, Menlo, monospace; font-size: 0.78rem; color: #57606a; word-break: break-all; margin: 0.5rem 0; }
+    .scope { background: #eef6ff; border: 1px solid #cfe3ff; border-radius: 8px; padding: 0.5rem 0.8rem; font-size: 0.85rem; }
+    .narrative p { line-height: 1.55; }
+    .chart { border: 1px solid #d0d7de; border-radius: 10px; padding: 0.8rem 1rem; margin: 0.8rem 0; }
+    .chart h3 { margin: 0 0 0.1rem; font-size: 1rem; }
+    .chart .cap { color: #57606a; font-size: 0.82rem; margin: 0 0 0.5rem; }
+    .error { background: #ffebe9; border: 1px solid #ffc1bc; color: #82071e; border-radius: 8px; padding: 0.6rem 0.9rem; }
+    details { margin-top: 1rem; } pre { background: #0b0f14; color: #e6edf3; padding: 0.8rem 1rem; border-radius: 8px; overflow-x: auto; font-size: 0.76rem; }
+    .muted { color: #888; font-size: 0.8rem; }
+  </style>
+</head>
+<body>
+  <h1>/api/insights — test harness</h1>
+  <p class="sub">Role is sent via the <code>x-user-role</code> header (the Phase-1 mock). Calls go through the Vite proxy → Express :4000. Run with the dev server + DB + (optionally) <code>GEMINI_API_KEY</code>.</p>
+
+  <form id="f">
+    <div>
+      <label for="role">role (x-user-role)</label>
+      <select id="role">
+        <option>government</option><option>dmo</option><option>operator</option><option>admin</option>
+      </select>
+    </div>
+    <div>
+      <label for="regions">regions (CSV, blank = all)</label>
+      <input type="text" id="regions" placeholder="Cairns,Noosa" size="20" />
+    </div>
+    <div>
+      <label>metrics</label>
+      <div class="metrics">
+        <label><input type="checkbox" value="occupancy" checked /> occupancy</label>
+        <label><input type="checkbox" value="adr" checked /> adr</label>
+        <label><input type="checkbox" value="length_of_stay" /> length_of_stay</label>
+        <label><input type="checkbox" value="booking_window" /> booking_window</label>
+      </div>
+    </div>
+    <div>
+      <label for="period">period</label>
+      <select id="period">
+        <option>last_30_days</option><option>last_60_days</option><option selected>last_90_days</option>
+      </select>
+    </div>
+    <button id="run" type="submit">Run</button>
+  </form>
+
+  <div class="req" id="req"></div>
+  <div id="out"></div>
+
+  <script>
+    const $ = (id) => document.getElementById(id);
+    const esc = (s) => String(s).replace(/[&<>]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;' }[c]));
+
+    $('f').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const role = $('role').value;
+      const regions = $('regions').value.trim();
+      const metrics = [...document.querySelectorAll('.metrics input:checked')].map((c) => c.value);
+      const period = $('period').value;
+
+      const qs = new URLSearchParams();
+      if (regions) qs.set('regions', regions);
+      if (metrics.length) qs.set('metrics', metrics.join(','));
+      qs.set('period', period);
+      const url = `/api/insights?${qs.toString()}`;
+      $('req').textContent = `GET ${url}    (header x-user-role: ${role})`;
+
+      const out = $('out');
+      out.innerHTML = '<p class="muted">Loading…</p>';
+      $('run').disabled = true;
+      try {
+        const res = await fetch(url, { headers: { 'x-user-role': role } });
+        const body = await res.json().catch(() => null);
+        if (!res.ok) {
+          out.innerHTML = `<div class="error">${res.status} — ${esc(body?.error?.message ?? 'request failed')} (${esc(body?.error?.code ?? '')})</div>`;
+          return;
+        }
+        render(body.data);
+      } catch (err) {
+        out.innerHTML = `<div class="error">${esc(err.message)}</div>`;
+      } finally {
+        $('run').disabled = false;
+      }
+    });
+
+    function render(d) {
+      const out = $('out');
+      const f = d.appliedFilters || {};
+      const p = f.period || {};
+      out.innerHTML = `
+        <div class="scope"><b>role:</b> ${esc(d.role)} &nbsp;·&nbsp; <b>regions:</b> ${esc((f.regions || []).join(', '))} &nbsp;·&nbsp;
+          <b>metrics:</b> ${esc((f.metrics || []).join(', '))} &nbsp;·&nbsp;
+          <b>period:</b> ${esc(p.preset)} (${esc(p.days)}d, ${esc(p.from)} → ${esc(p.to)})</div>
+        <div class="narrative">${(d.narrative || '').split('\n').filter(Boolean).map((para) => `<p>${esc(para)}</p>`).join('')}</div>
+        <div id="charts"></div>
+        <details><summary>Raw JSON</summary><pre>${esc(JSON.stringify(d, null, 2))}</pre></details>`;
+
+      const charts = $('charts');
+      (d.charts || []).forEach((c, i) => {
+        const div = document.createElement('div');
+        div.className = 'chart';
+        div.innerHTML = `<h3>${esc(c.title || c.metric)}</h3><p class="cap">${esc(c.caption || '')}</p><div id="vg${i}"></div>`;
+        charts.appendChild(div);
+        // Inject the real rows the server attached (chartSpec.data is a {name} placeholder).
+        const spec = { ...c.chartSpec, data: { values: c.data || [] } };
+        vegaEmbed(`#vg${i}`, spec, { actions: false }).catch((err) => {
+          document.getElementById(`vg${i}`).innerHTML = `<span class="error">chart failed: ${esc(err.message)}</span>`;
+        });
+      });
+      if (!(d.charts || []).length) {
+        charts.innerHTML = '<p class="muted">No charts in this response (narrative-only).</p>';
+      }
+    }
+  </script>
+</body>
+</html>
