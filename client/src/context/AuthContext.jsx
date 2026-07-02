@@ -3,7 +3,7 @@ import { setAuthToken, clearAuthToken } from './tokenStore.js';
 
 const AuthContext = createContext(null);
 
-const API_BASE = import.meta.env.VITE_API_URL || 'http://localhost:4000/api';
+const API_BASE = import.meta.env.VITE_API_URL || 'http://localhost:4000';
 
 /**
  * @what  React context provider that holds the JWT in component state
@@ -30,7 +30,7 @@ export function AuthProvider({ children }) {
   const isAuthenticated = token !== null;
 
   const login = useCallback(async (email, password) => {
-    const res = await fetch(`${API_BASE}/auth/login`, {
+    const res = await fetch(`${API_BASE}/api/auth/login`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ email, password })
